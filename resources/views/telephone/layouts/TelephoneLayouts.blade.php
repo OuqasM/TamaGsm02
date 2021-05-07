@@ -92,20 +92,22 @@
     @yield('contenetCss')
 </head>
 <body>
-    <div id="container">
+    <div id="wrapper">
         @include('telephone.layouts.partials.Header')
         
-        <div class="content-page">
+        <div class="content">
             <!-- Content -->
-            <div class="content">
+            <div class="container-fluid">
                 <div class="container-fluid">
                     @yield('content')
                 </div>
             </div>
             <!-- content -->
         </div>
-    </div>
+    </div><br><br>
     @include('telephone.layouts.partials.Footer')
+
+
 
 <script>
             // When the user scrolls the page, execute myFunction

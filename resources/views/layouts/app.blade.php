@@ -93,7 +93,7 @@
             body {
             padding-top: 85px;
             background: linear-gradient(to right, #c04848, #480048);
-}
+            }
          #myBtn {
             display: none; /* Hidden by default */
             position: fixed; /* Fixed/sticky position */
@@ -114,6 +114,7 @@
             background-color: #555; /* Add a dark-grey background on hover */
             }
     </style>
+    @yield('contentCss')
      </head>
 <body>
     <div id="wrapper">

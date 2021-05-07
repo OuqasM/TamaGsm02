@@ -1,10 +1,39 @@
 @extends('layouts.app')    
 @section('contentCss')
     <style>
-             .jumbotron {
-            background-image: url('images/bgi.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;}
+                                    
+                                    /* E-commerce */
+                                    body {
+                      background: #e8cbc0;
+                    background: -webkit-linear-gradient(to right, #e8cbc0, #636fa4);
+                    background: linear-gradient(to right, #e8cbc0, #636fa4);
+                    min-height: 100vh;}
+
+                .card {
+                box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+                transition: all 0.2s ease-in-out;
+                box-sizing: border-box;
+                margin-top:10px;
+                margin-bottom:10px;
+                background-color:#FFF;
+                }
+
+                .card:hover {
+                box-shadow: 0 5px 5px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+                }
+                .card > .card-inner {
+                padding:10px;
+                }
+                .card .header h2, h3 {
+                margin-bottom: 0px;
+                margin-top:0px;
+                }
+                .card .header {
+                margin-bottom:5px;
+                }
+                .card img{
+                width:100%;
+                }
     </style>
 @endsection
 @section('content')
@@ -63,38 +92,28 @@
                     @foreach ($collect->all() as $couple)
                     <!-- list group item-->
            
-               
-                <li class="list-group-item">
-                    <!-- Custom content-->
-                    <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-                        <div class="media-body order-2 order-lg-1" >
-                            <h5 class="mt-0 font-weight-bold mb-2">{{$couple['telephones']->nom}})</h5>
-                            <p class="font-italic text-muted mb-0 small">{{$couple['telephones']->description}}</p>
-                            <div class="d-flex align-items-center justify-content-between mt-1">
-                                <h6 class="font-weight-bold my-2">{{$couple['telephones']->prix}}DH</h6>
-                               
+                    <div class="col-sm-4">
+                        <div class="card">
+                          <div class="image">
+                            <img src="storage/{{$couple['imgs']->get(0)['path']}}" class="rounded" width="80" height="200" />
+                          </div>
+                          <div class="card-inner">
+                            <div class="header">
+                              <a href="show/{{$couple['telephones']->id_tele}}"><h2>{{$couple['telephones']->nom}}</h2></a>
+                              <h6>{{$couple['telephones']->marque}}</h6>
+                          </div>
+                          <div class="content">
+                            @if($couple['telephones']->per_solde > 0)
+                            <p><del>{{$couple['telephones']->prix}}DH</del><strong class="bloc_left_price">{{$couple['telephones']->per_solde}}DH</strong></p>
+                            @else 
+                                <p>{{$couple['telephones']->prix}}DH</p>
+                            @endif
+                          </div>
                             </div>
-                        </div><img src="storage/{{$couple['imgs']->get(0)['path']}}" alt="Generic placeholder image" width="200" height="100" class="ml-lg-5 rounded  order-1 order-lg-2">
-                    </div> <!-- End -->
-                </li> 
+                        </div>
+                      </div>
                     @endforeach
-                <div class="col-12">
-                    <nav aria-label="...">
-                        <ul class="pagination">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+
             </div>
         </div>
 

@@ -25,10 +25,10 @@
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
                         <h5>Contacter le developpeur</h5>
                         <section class="mb-4">             
+                        <a href="#ma phone" class="text-white"><img src="{{ asset('images/telephone.png') }}" alt="" height="30" /></a>
                         <a href="#ma Email" class="text-white"><img src="{{ asset('images/email.png') }}" alt="" height="30" /></a>
                         <a href="#maIn" class="text-white"><img src="{{ asset('images/in.png') }}" alt="" height="30" /></a>
                         <a href="#maface" class="text-white"><img src="{{ asset('images/face.png') }}" alt="" height="30" />
-                        <br><a href="#" class="text-white"><img src="{{ asset('images/telephone.png') }}" alt="" height="30" /> 0637360750</a><br>
                         </section> 
                     </div>
                 </div>

@@ -3,7 +3,12 @@
     <style>
                             body {
                 font-family: 'open sans';
-                overflow-x: hidden; }
+                overflow-x: hidden; 
+                background: #e8cbc0;
+                    background: -webkit-linear-gradient(to right, #e8cbc0, #636fa4);
+                    background: linear-gradient(to right, #e8cbc0, #636fa4);
+                    min-height: 100vh;
+                    }
 
                 img {
                 max-width: 100%; }
@@ -31,16 +36,6 @@
                     display: -ms-flexbox;
                     display: flex; } }
 
-                .details {
-                display: -webkit-box;
-                display: -webkit-flex;
-                display: -ms-flexbox;
-                display: flex;
-                -webkit-box-orient: vertical;
-                -webkit-box-direction: normal;
-                -webkit-flex-direction: column;
-                    -ms-flex-direction: column;
-                        flex-direction: column; }
 
                 .colors {
                 -webkit-box-flex: 1;
@@ -58,8 +53,6 @@
                 .checked, .price span {
                 color: #ff9f1a; }
 
-                .product-title, .rating, .product-description, .price, .sizes {
-                margin-bottom: 15px; }
 
                 .product-title {
                 margin-top: 0; }
@@ -156,7 +149,12 @@
                                   </tr>
                                 </tbody>
                               </table>
+                              @if($tele->per_solde > 0)
+                              <p><h4 class="price">prix actuel : <span><del>{{$tele->prix}}DH</del></span></h4>
+                              <strong class="bloc_left_price">{{$tele->per_solde}}DH</strong></p>
+                              @else 
                               <h4 class="price">prix actuel : <span>{{$tele->prix}}DH</span></h4>
+                              @endif
 
 					</div>
 				</div>
