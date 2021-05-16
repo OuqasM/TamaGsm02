@@ -10,42 +10,43 @@ use Illuminate\Support\Facades\Storage;
 
 class TelephoneController extends Controller
 {
-    public function stroimg(Request $request){
+    public function createtelephone(Request $request){
 
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-        $ti = new Telephone_img();
-        $t = Telephone::where('id_tele','=',$request->id)->first();
-        if($t != null){
-        if ($request->has('image')) {
-
-                $img = $request->image;
-
+    
+        $t = new Telephone();
+        $t->nom = $request->nomproduit;
+        $t->description = $request->description;
+        $t->prix = $request->prix;
+        $t->marque = $request->marque;
+        $t->nbr_produit = 5;
+        $t->nbr_visite = 0;
+        $t->admin_id = 4;
+        $t->per_solde = $request->solde;
+        $t->ram = $request->ram;
+        $t->stockage = $request->stockage;
+        $t->back_cam_reslolution = $request->camera;
+        $t->selfy_cam_resolution = $request->selfie;
+        $t->taille_ecron = $request->ecran;
+        $t->battery = $request->batterie;
+        $t->save();
+        
+        $tid = Telephone::where('id_tele','=',$t->id)->first();
+        if ($request->has('images')) {
+            $imgs = $request->images;
+           
+            foreach($imgs as $img){
+                $ti = new Telephone_img();
                 $name = time() . '_' .$img->getClientOriginalName();
-                $request->file('image')->storeAs('public/images/'.$t->nom.'/', $name);
-                $ti->path = 'images/'. $t->nom.'/' . $name;
-                $ti->tele_id = $request->id;
+                $img->storeAs('public/images/'.$tid->nom.'/', $name);
+                $ti->path = 'images/'. $tid->nom.'/' . $name;
+                $ti->tele_id = $tid->id_tele;
                 $ti->save();
             }
-            else{
+        }else{
                 dd('imag makayanash');
             }
-        }else{
-            dd('telephone makaynsh');
-        }
-        dd($img->getClientOriginalExtension());
     }
-
-    public function showAllImg(Request $request,$id)
-    {
-        $t = Telephone::where('id_tele','=',$id)->first();
-
-        $allimg = Telephone_img::where('tele_id','=',$id)->get();
-        foreach($allimg as $img)
-        echo $img->path.'  ';
-        return view('telephone.show', compact('allimg','t'));
-    } 
+ 
     public function showPhones()
     {
         $al = Telephone::all();

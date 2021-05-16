@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-lg p-3 mb-5 bg-white rounded" id="navbar">
   <a class="navbar-brand" href="#">
       <img src="{{ asset('images/logot.png') }}" alt="" height="30" />
@@ -7,26 +6,16 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
+  <!--left navbar  -->    
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{{route('index')}}">Home <span class="sr-only">(current)</span></a>
-      </li>
+    <ul class="navbar-nav ml-auto">
+          <li>
+              <a class="nav-link" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+          </li>           
       
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-fw fa-envelope"></i> Contatez nous
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="https://www.facebook.com/mehdi.ouqas"><i class="fab fa-facebook"> Facebook</i></a>
-          <a class="dropdown-item" href="https://www.linkedin.com/in/mehdi-ouqas-292320180/"><i class="fab fa-linkedin"> Linkedin</i></a>
-        </div>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
   </div>
 </nav>
-

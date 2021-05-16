@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +19,8 @@ Route::get('/index', [App\Http\Controllers\TelephoneController::class, 'showPhon
 Route::get('/createTI', function () {
     return view('telephone.index');
 });
-
+Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/showAll/{id}', [App\Http\Controllers\TelephoneController::class, 'showAllImg'])->name('showAll');
-Route::post('/addImg', [App\Http\Controllers\TelephoneController::class, 'stroimg'])->name('addImg');
+Route::post('/CreateTelephone', [App\Http\Controllers\TelephoneController::class, 'createtelephone'])->name('createtelephone');
 Route::get('/show/{id}', [App\Http\Controllers\TelephoneController::class, 'showphone'])->name('showphone');

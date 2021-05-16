@@ -66,10 +66,9 @@
                 /*# sourceMappingURL=style.css.map */
     </style>
 @endsection
+
 @section('content')
-	<div class="container">
 		<div class="card">
-			<div class="container-fliud">
 				<div class="wrapper row">
 					<div class="preview col-md-6">
 						<div class="carousel slide my-4" id="carouselExampleIndicators" data-ride="carousel">
@@ -84,7 +83,7 @@
 
                                 @foreach($allimg as $key => $slider)
                                 <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
-                                        <img class="d-block w-100" src="{{asset('storage/'.$slider->path)}}" height="400" width="250 "/></div>
+                                        <img class="d-block w-100" src="{{asset('storage/'.$slider->path)}}" /></div>
                           
                                 @endforeach
                              </div>
@@ -97,7 +96,6 @@
                                 <span class="sr-only">Next</span>
                             </a>
                         </div>
-						
 					</div>
 					<div class="details col-md-6">
 						<h3 class="product-title">{{$tele->nom}}</h3>
@@ -116,14 +114,14 @@
                                   <tr>
                                     <th scope="row">Stockage</th>
                                     <td><span class="price" data-toggle="tooltip" title="small">{{$tele->stockage ?: 64}}</span> </td>
-                                    <td><img src="{{ asset('images/ram.png') }}"
+                                    <td><img src="{{ asset('images/storage.png') }}"
                                         width="30" height="30" /></td>
                                   </tr>
                                   <tr>
                                     <th scope="row">Batterie</th>
                                     <td><span class="price" data-toggle="tooltip" title="small">{{$tele->ram ? : 6}}</span>
                                     </td>
-                                    <td><img src="{{ asset('images/file-storage.png') }}"
+                                    <td><img src="{{ asset('images/battery.png') }}"
                                         width="30" height="30" /></td>
                                   </tr>
                                   <tr>
@@ -148,18 +146,28 @@
                                         width="30" height="30" /></td>
                                   </tr>
                                 </tbody>
-                              </table>
+                            </table>
                               @if($tele->per_solde > 0)
                               <p><h4 class="price">prix actuel : <span><del>{{$tele->prix}}DH</del></span></h4>
                               <strong class="bloc_left_price">{{$tele->per_solde}}DH</strong></p>
                               @else 
                               <h4 class="price">prix actuel : <span>{{$tele->prix}}DH</span></h4>
                               @endif
+                              <p><i class="fas fa-map-marked-alt"></i> Mrirt, Rue El Farah Qrt 2 appt 101</p>
+                              <p><i class="fas fa-phone"></i> 0635666101</p>
+                      
 
 					</div>
 				</div>
-			</div>
 		</div>
-	</div>
   </body>
+  @endsection
+  @section('contentJs')
+  <script>
+      var mybutton = document.getElementById("myBtn");
+     mybutton.innerHTML = '<i class="fas fa-chevron-circle-up"></i>';
+    
+     
+  </script>
+      
   @endsection

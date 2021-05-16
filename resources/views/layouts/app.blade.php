@@ -18,8 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
+    <link href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" rel="stylesheet"/>
 
+<style>
+
+            
             .bloc_left_price {
                 color: #c01508;
                 text-align: center;
@@ -56,6 +59,7 @@
             footer {
                 background: #343a40;
                 padding: 20px;
+                margin-bottom: 0px;
             }
             footer a {
                 color: #f8f9fa!important;
@@ -73,12 +77,6 @@
                 background-repeat: no-repeat;
                 display:block;
             }
-            .nbr {
-                
-            }
-            .nbr {
-                
-            }
             #navbarr {
             overflow: hidden;
             background-color: #333;
@@ -94,7 +92,7 @@
             padding-top: 85px;
             background: linear-gradient(to right, #c04848, #480048);
             }
-         #myBtn {
+            #myBtn {
             display: none; /* Hidden by default */
             position: fixed; /* Fixed/sticky position */
             bottom: 20px; /* Place the button at the bottom of the page */
@@ -102,28 +100,28 @@
             z-index: 99; /* Make sure it does not overlap */
             border: none; /* Remove borders */
             outline: none; /* Remove outline */
-            background-color: red; /* Set a background color */
+            background-color: rgb(207, 163, 163); /* Set a background color */
             color: white; /* Text color */
             cursor: pointer; /* Add a mouse pointer on hover */
             padding: 15px; /* Some padding */
-            border-radius: 10px; /* Rounded corners */
+            border-radius: 50px; /* Rounded corners */
             font-size: 18px; /* Increase font size */
             }
 
             #myBtn:hover {
             background-color: #555; /* Add a dark-grey background on hover */
             }
-    </style>
+</style>
     @yield('contentCss')
      </head>
 <body>
-    <div id="wrapper">
+    <div id="">
       @include('layouts.partials.navbar')
-      <div class="content-page">
+      <div class="">
             <!-- Content -->
-            <div class="content">
-                <div class="container-fluid">
-                    @yield('content')
+            <div id="wrap">
+                <div id="main" class="container clear-top">
+                       @yield('content')
                 </div>
             </div>
             <!-- content -->
@@ -131,44 +129,43 @@
     </div>
     @include('layouts.partials.Footer')
 
-  </body>
-  <script>
-    // When the user scrolls the page, execute myFunction
-window.onscroll = function() {myFunction()};
-
-// Get the navbar
-var navbar = document.getElementById("navbarr");
-
-// Get the offset position of the navbar
-var sticky = navbar.offsetTop;
-
-// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-function myFunction() {
-  if (window.pageYOffset >= sticky) {
-    navbar.classList.add("sticky")
-  } else {
-    navbar.classList.remove("sticky");
-  }
-}
+</body>
+<script>
+        // When the user scrolls the page, execute myFunction
+        window.onscroll = function() {myFunction()};
+        // Get the navbar
+        var navbar = document.getElementById("navbarr");
+        // Get the offset position of the navbar
+        var sticky = navbar.offsetTop;
+        // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+        }
 </script>
 <script>
-    mybutton = document.getElementById("myBtn");
+        var mybutton = document.getElementById("myBtn");
+        mybutton.innerHTML = '<i class="fas fa-chevron-circle-up"></i>';
+        
+        
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+        function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+        }
 
-function scrollFunction() {
-if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-} else {
-    mybutton.style.display = "none";
-}
-}
-
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-document.body.scrollTop = 0; // For Safari
-document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
 </script>
 </html>
