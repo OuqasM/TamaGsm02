@@ -20,9 +20,67 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" rel="stylesheet"/>
 
-<style>
+    <!-- nabar style-->
+    <style>
+        
+          
+            nav{
+                display: flex;
+                justify-content: space-between;
+                margin: 10% auto;
+                width: 90%;
+                padding: 20px;
+                background-color: #ffffff;
+                border-radius: 4px;
+                
+            }
+           
+            nav ul li{
+                display: inline-block;
+                list-style: none;
+                margin: 0 10px;
+            }
+            nav ul li a{
+                text-decoration: none;
+                color:rgba(0, 0, 0, 0.993);
+                position: relative;
+                display: inline-block;
+            }
+            nav a::before{
+                content: attr(data-text);
+                color:rgb(0, 0, 0);
+                position: absolute;
+                left: 0;
+                top: 0%;
+                width: 0%;
+                white-space: nowrap;
+                overflow: hidden;
+                transition: .5s;
+                border-bottom: 3px solid orange;
 
-            
+            }
+            a:hover{
+                color:rgba(255, 255, 255, .5);
+
+                text-decoration: none;
+            }
+            a:hover::before{
+                width: 100%;
+            }
+            @media(max-width:700px){
+                nav{
+                    display: block;
+                    text-align: center;
+                }
+                nav ul li{
+                    display: block;
+                    padding: 10px 0;
+                }
+            }
+
+
+    </style>
+    <style>
             .bloc_left_price {
                 color: #c01508;
                 text-align: center;
@@ -77,21 +135,15 @@
                 background-repeat: no-repeat;
                 display:block;
             }
-            #navbarr {
-            overflow: hidden;
-            background-color: #333;
-            }
-            
-            /* The sticky class is added to the navbar with JS when it reaches its scroll position */
-            .sticky {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            } 
+           
             body {
-            padding-top: 85px;
-            background: linear-gradient(to right, #c04848, #480048);
-            }
+                padding-top: 85px;
+                background-image: url('images/brown.jpg');
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                display:block;
+                background-size: cover;
+                }
             #myBtn {
             display: none; /* Hidden by default */
             position: fixed; /* Fixed/sticky position */
@@ -107,11 +159,10 @@
             border-radius: 50px; /* Rounded corners */
             font-size: 18px; /* Increase font size */
             }
-
             #myBtn:hover {
             background-color: #555; /* Add a dark-grey background on hover */
             }
-</style>
+    </style>
     @yield('contentCss')
      </head>
 <body>
@@ -128,9 +179,8 @@
         </div>
     </div>
     @include('layouts.partials.Footer')
-
-</body>
-<script>
+    @yield('contentJs')
+    <script>
         // When the user scrolls the page, execute myFunction
         window.onscroll = function() {myFunction()};
         // Get the navbar
@@ -164,8 +214,8 @@
 
         // When the user clicks on the button, scroll to the top of the document
         function topFunction() {
-        document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         }
 </script>
+</body>
 </html>

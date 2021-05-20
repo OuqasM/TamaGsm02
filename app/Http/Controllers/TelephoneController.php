@@ -37,8 +37,8 @@ class TelephoneController extends Controller
             foreach($imgs as $img){
                 $ti = new Telephone_img();
                 $name = time() . '_' .$img->getClientOriginalName();
-                $img->storeAs('public/images/'.$tid->nom.'/', $name);
-                $ti->path = 'images/'. $tid->nom.'/' . $name;
+                $img->storeAs('public/images/'.$tid->marque.'/', $name);
+                $ti->path = 'images/'. $tid->marque.'/' . $name;
                 $ti->tele_id = $tid->id_tele;
                 $ti->save();
             }

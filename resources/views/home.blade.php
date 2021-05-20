@@ -1,20 +1,19 @@
 @extends('layouts.app')    
 @section('contentCss')
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
                                     
                 /* E-commerce */
-                body {
-                background: #e8cbc0;
-                background: -webkit-linear-gradient(to right, #e8cbc0, #636fa4);
-                background: linear-gradient(to right, #e8cbc0, #636fa4);
-                min-height: 100vh;
+                .price {
+                    color: #ff9f1a; 
                 }
+                
                 .card {
                 padding:10px;
                 display: flex;
-                background-color:#FFF;
-                border-radius: 15px;
+                background-color:rgb(255, 255, 255);
+                border-radius: 5px;
                 box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                 margin: 5px; 
                 transition: all 0.20s ease-in-out;                
@@ -33,65 +32,53 @@
 @endsection
 @section('content')
  
+
 <div class="row ">
-    <div class="col-md-12 carousel slide my-4" id="carouselExampleIndicators" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li class="active" data-target="#carouselExampleIndicators" data-slide-to="0"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active"><img class="d-block img-fluid" src="assets" alt="First slide" /></div>
-            <div class="carousel-item"><img class="d-block img-fluid" src="https://via.placeholder.com/900x350" alt="Second slide" /></div>
-            <div class="carousel-item"><img class="d-block img-fluid" src="https://via.placeholder.com/900x350" alt="Third slide" /></div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
+    {{-- --}}
 </div>
 
-    <div class="row">
+    <div class="row container">
         <div class="col-md-9">
             <div class="row">
                
-
+                   @php
+                       $cmt=0;
+                   @endphp  
                     @foreach ($collect->all() as $couple)
                     <!-- list group item-->
-           
-                    <div class="col-sm-4">
+                    <div class="col-sm-12"  @if ($cmt%2==0) data-aos="zoom-in-right"   @else  data-aos="zoom-in-left"  @endif data-aos-duration="1500">
                         <div class="card">
-                          <div class="image">
-                            <div class="container">
-                                <a class="link" href="show/{{$couple['telephones']->id_tele}}">
-                                <img src="storage/{{$couple['imgs']->get(0)['path']}}" class="rounded" width="80" height="200" />
-                                <p href="dog.png" download="new-filename"><i class="fas fa-camera"> {{count($couple['imgs'])}}</i></p>
-                                </a>
+                            <div class="row">
+                                <div class="image col-md-5">
+                                        <a class="link" href="show/{{$couple['telephones']->id_tele}}">
+                                        <img src="storage/{{$couple['imgs']->get(0)['path']}}" class="rounded" width="80" height="200" />
+                                        </a>
+                                    
+                                </div>
+                                <div>
+                                    <div class="container">
+                                        <div class="">
+                                        <h2>{{$couple['telephones']->nom}}</h2></a>
+                                        <h6>{{$couple['telephones']->marque}}</h6>
+                                        </div>
+                                        <div class="">
+                                            @if($couple['telephones']->per_solde > 0)
+                                            <p class="price"><del class="">{{$couple['telephones']->prix}}DH</del><strong class="bloc_left_price">{{$couple['telephones']->per_solde}}DH</strong></p>
+                                            @else 
+                                                <p class="price">{{$couple['telephones']->prix}}DH</p>
+                                            @endif
+                                            <p><i class="fas fa-camera"> {{count($couple['imgs'])}}</i></p>
+                                        </div>
+                                    </div>
+                                </div>
                              </div>
-                             
-                          </div>
-                          <div class="card-inner">
-                            <div class="header">
-                              <h2>{{$couple['telephones']->nom}}</h2></a>
-                              <h6>{{$couple['telephones']->marque}}</h6>
-                          </div>
-                          <div class="content">
-                            @if($couple['telephones']->per_solde > 0)
-                            <p><del>{{$couple['telephones']->prix}}DH</del><strong class="bloc_left_price">{{$couple['telephones']->per_solde}}DH</strong></p>
-                            @else 
-                            
-                                <p>{{$couple['telephones']->prix}}DH</p>
-                            @endif
-                          </div>
-                            </div>
                         </div>
                       </div>
+                      @php
+                          $cmt++;
+                      @endphp  
                     @endforeach
+                    
 
             </div>
         </div>
@@ -118,7 +105,12 @@
 
     </div>
 @endsection
-
+@section('contentJs')
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script> 
+@endsection
 
 
 

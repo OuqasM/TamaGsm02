@@ -4,12 +4,9 @@
                             body {
                 font-family: 'open sans';
                 overflow-x: hidden; 
-                background: #e8cbc0;
-                    background: -webkit-linear-gradient(to right, #e8cbc0, #636fa4);
-                    background: linear-gradient(to right, #e8cbc0, #636fa4);
-                    min-height: 100vh;
+                min-height: 100vh;
                     }
-
+                
                 img {
                 max-width: 100%; }
 
@@ -69,8 +66,8 @@
 
 @section('content')
 		<div class="card">
-				<div class="wrapper row">
-					<div class="preview col-md-6">
+				<div class="wrapper row pr-0 pl-0">
+					<div class="col-md-6">
 						<div class="carousel slide my-4" id="carouselExampleIndicators" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 @foreach($allimg as $key => $slider)
@@ -97,17 +94,17 @@
                             </a>
                         </div>
 					</div>
-					<div class="details col-md-6">
+					<div class="col-md-6">
 						<h3 class="product-title">{{$tele->nom}}</h3>
 						
 						<p class="product-description">{{$tele->description}}</p>
 					
-                            <table class="table table-striped">
+                            <table class="table table-striped px-0">
                             
                                 <tbody>
                                   <tr>
                                     <th scope="row">Ram</th>
-                                    <td><span class="price" data-toggle="tooltip" title="small">{{$tele->ram ? : 6}}</span> </td>
+                                    <td><span class="price" data-toggle="tooltip" title="small">{{ floor($tele->ram) ? : 6}}</span> </td>
                                     <td><img src="{{ asset('images/ram.png') }}"
                                         width="30" height="30" /></td>
                                   </tr>
@@ -119,20 +116,20 @@
                                   </tr>
                                   <tr>
                                     <th scope="row">Batterie</th>
-                                    <td><span class="price" data-toggle="tooltip" title="small">{{$tele->ram ? : 6}}</span>
+                                    <td><span class="price" data-toggle="tooltip" title="small">{{$tele->batterie ? : 6}}</span>
                                     </td>
                                     <td><img src="{{ asset('images/battery.png') }}"
                                         width="30" height="30" /></td>
                                   </tr>
                                   <tr>
                                     <th scope="row">Caméra</th>
-                                    <td><span class="price" data-toggle="tooltip" title="small">{{$tele->back_cam_reslolution ? : 40}}</span> Mp
+                                    <td><span class="price" data-toggle="tooltip" title="small">{{floor($tele->back_cam_reslolution) ? : 40}}</span> Mp
                                     </td>
                                     <td><img src="{{ asset('images/mobile-camera.png') }}"
                                         width="30" height="30" /></td>
                                   </tr>
                                     <th scope="row">Caméra Selfy</th>
-                                    <td><span class="price" data-toggle="tooltip" title="small">{{$tele->selfy_cam_resolution ? : 14}}</span> Mp
+                                    <td><span class="price" data-toggle="tooltip" title="small">{{floor($tele->selfy_cam_resolution) ? : 14}}</span> Mp
                                     </td>
                                     <td><img src="{{ asset('images/selfie.png') }}"
                                         width="30" height="30" /></td>

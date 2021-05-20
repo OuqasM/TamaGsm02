@@ -11,17 +11,19 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-     <!-- FilePond -->
-     <link href="{{ asset('css/filepond-plugin-image-preview.min.css') }}" rel="stylesheet">
-     <link href="{{ asset('css/filepond-plugin-media-preview.min.css') }}" rel="stylesheet">
-     <link href="{{ asset('css/filepond-plugin-pdf-preview.min.css') }}" rel="stylesheet">
-     <link href="{{ asset('css/filepond.min.css') }}" rel="stylesheet">
-    <!-- Styles -->
+    <!-- Styles --> 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" rel="stylesheet"/>
     <style>
 
-
+            body{
+                padding-top: 85px;
+                background-image: url('http://127.0.0.1:8000/images/brown.jpg');
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                display:block;
+                background-size: cover;
+                }
             #myBtn {
             display: none; /* Hidden by default */
             position: fixed; /* Fixed/sticky position */
@@ -83,36 +85,22 @@
         position: fixed;
         top: 0;
         width: 100%;
-        } body {
-        padding-top: 85px;
-        background-image: url('images/bgi.jpg');
-        background-repeat: no-repeat;
-        background-size: cover; /* Resize the background image to cover the entire container */
-
-     }
+        } 
     </style>
     @yield('contenetCss')
 </head>
 <body>
-    <div id="wrapper">
         @include('telephone.layouts.partials.Header')
         
-        <div class="content">
             <!-- Content -->
                 <div class="container">
                     @yield('content')
                 </div>
             <!-- content -->
-        </div>
-    </div><br><br>
+   <br><br>
     @include('telephone.layouts.partials.Footer')
-    <!-- FilePond Js -->
-    <script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
-    <script src="{{ asset('js/filepond-plugin-file-validate-type.min.js') }}"></script>
-    <script src="{{ asset('js/filepond-plugin-image-preview.min.js') }}"></script>
-    <script src="{{ asset('js/filepond-plugin-media-preview.min.js') }}"></script>
-    <script src="{{ asset('js/filepond-plugin-pdf-preview.min.js') }}"></script>
-    <script src="{{ asset('js/filepond.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
         // When the user scrolls the page, execute myFunction
         window.onscroll = function() {myFunction()};
@@ -154,7 +142,7 @@
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
 </script>
-  
 @yield('contentJs')
+
 </body>
 </html>
