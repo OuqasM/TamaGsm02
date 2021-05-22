@@ -22,7 +22,7 @@ class AccessoirSeeder extends Seeder
             'nbr_produit' => 5,
             'per_solde' => 0,
             'nbr_visite' => 0,
-            'admin_id' => 4,
+            'admin_id' => 1,
         ]);
         Accessoir::create([
             'nom' => 'casque bluetooth',
@@ -32,7 +32,7 @@ class AccessoirSeeder extends Seeder
             'nbr_produit' => 10,
             'per_solde' => 59,
             'nbr_visite' => 0,
-            'admin_id' => 4,
+            'admin_id' => 3,
         ]);
         Accessoir::create([
             'nom' => 'glass Huawei honor 7',
@@ -42,7 +42,7 @@ class AccessoirSeeder extends Seeder
             'nbr_produit' => 5,
             'per_solde' => 0,
             'nbr_visite' => 0,
-            'admin_id' => 5,
+            'admin_id' => 2,
         ]);
 
         Accessoir::create([
@@ -53,7 +53,7 @@ class AccessoirSeeder extends Seeder
             'nbr_produit' => 5,
             'per_solde' => 0,
             'nbr_visite' => 0,
-            'admin_id' => 4,
+            'admin_id' => 3,
         ]);
         Accessoir::create([
             'nom' => 'pochette samsung s9',
@@ -63,7 +63,7 @@ class AccessoirSeeder extends Seeder
             'nbr_produit' => 5,
             'per_solde' => 29.99,
             'nbr_visite' => 0,
-            'admin_id' => 4,
+            'admin_id' => 3,
         ]);
         Accessoir::create([
             'nom' => 'ecouteur Redmi',
@@ -73,7 +73,7 @@ class AccessoirSeeder extends Seeder
             'nbr_produit' => 5,
             'per_solde' => 19,
             'nbr_visite' => 0,
-            'admin_id' => 6,
+            'admin_id' => 1,
         ]);   
     }
 }

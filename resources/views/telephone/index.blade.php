@@ -74,13 +74,13 @@
 @endsection
 @section('content')    
               <div class="card px-3">
-                      <form action="/CreateTelephone" class="contact-form" name="create" enctype="multipart/form-data" onsubmit = "return(validate());" method="POST">
+                    <form action="/CreateTelephone" class="contact-form" name="create" enctype="multipart/form-data" onsubmit = "return(validate());" method="POST">
                         {{ csrf_field() }}
-                      <div class="wrraper row">
+                        <div class="wrraper row">
                         <div class="col-md-6">                      
                             <!-- marque-->
                             <div class="form-group ">
-                                <select name="marque" id="catgroup" class="select form-control" required>
+                                <select name="marque" id="marque" class="select form-control" required>
                                     <option value="" disabled selected>Marque</option>
                                     <option style="background-color:#dcdcc3; font-weight: bold;" disabled value="1000">-- Telephones --</option>
                                     <option value="Huawei">Huawei</option>
@@ -101,16 +101,16 @@
                             </div>
                             <!-- nom de produit -->
                             <div class="form-group">
-                              <input type="text" name="nomproduit" pattern="[A-z0-9\s]+" required class="form-control" placeholder="Nom De Produit">
+                              <input type="text" name="nomproduit" id="nomproduit" pattern="[A-z0-9\s]+" required class="form-control" placeholder="Nom De Produit">
                             </div>
                             <!-- description -->
                             <div class="form-group">
-                              <textarea name="description" rows="5" class="form-control"
+                              <textarea name="description" id="description" rows="5" class="form-control"
                                aria-multiline="true"  placeholder="Description du produit" cols="50"></textarea>
-                              </div>
+                            </div>
                             <!-- prix -->
                             <div class="form-group">
-                              <input type="number" placeholder="Prix" class="form-control"  required  min="0.0" id="prix" name="prix" />DH
+                              <input type="number" placeholder="Prix" class="form-control"  required  min="0.0" id="prix" name="prix" id="prixprix" />DH
                             </div>
                             <!-- solde -->
                             <div class="form-group">
@@ -122,14 +122,15 @@
                           <table class="table table-striped">
                             
                             <tbody>
+                              <!-- ram -->
                               <tr>
                                 <th scope="row">Ram</th>
                                 <td class="px-0"><img src="{{ asset('images/ram.png') }}"
                                   width="30" height="30" /></td>
                                 <td><span class="price " data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" class="w-50" min="0.0" id="ram" name="ram" /></span> Gb</td>
-                                
+                                <input type="number" class="form-control" class="w-50" min="0.0" id="ram" name="ram" /></span> Gb</td>
                               </tr>
+                              <!-- stockage -->
                               <tr>
                                 <th scope="row">Stockage</th>
                                 <td class="px-0"><img src="{{ asset('images/storage.png') }}"
@@ -138,6 +139,7 @@
                                   <input type="number" class="form-control" class="w-50" min="0.0" id="stockage" name="stockage"/>
                                 </span> Gb</td>
                               </tr>
+                              <!-- batterie -->
                               <tr>
                                 <th scope="row">Batterie</th>
                                 <td class="px-0"><img src="{{ asset('images/battery.png') }}"
@@ -146,6 +148,7 @@
                                   <input type="number" class="form-control" class="w-50" min="0.0" id="batterie" name="batterie"/>
                                 </span> mA</td>
                               </tr>
+                              <!-- camera -->
                               <tr>
                                 <th scope="row">Caméra</th>
                                 <td class="px-0"><img src="{{ asset('images/mobile-camera.png') }}"
@@ -154,6 +157,8 @@
                                   <input type="number" class="form-control" class="w-50" min="0.0" id="camera" name="camera"/>  
                                 </span> Mp</td>
                               </tr>
+                              <!-- selfie -->
+                              <tr>
                                 <th scope="row">Caméra Selfy</th>
                                 <td class="px-0"><img src="{{ asset('images/selfie.png') }}"
                                   width="30" height="30" /></td>
@@ -162,6 +167,7 @@
                                 </span> Mp
                                 </td>                                
                               </tr>                            
+                              <!-- ecran -->
                               <tr>
                                 <th scope="row">Ecran</th>
                                 <td class="px-0"><img src="{{ asset('images/icran.png') }}"
@@ -169,7 +175,7 @@
                                 <td><span class="price" data-toggle="tooltip" title="small">
                                   <input type="number" class="form-control"  class="w-50" min="0.0" id="ecran" name="ecran"/>
                                 </span> P
-                              <small></small>
+                                <small></small>
                               </td>
                               </tr>
                             </tbody>
@@ -182,7 +188,7 @@
                               <button class="btn btn-default" type="submit" value="upload">Publier l'annonce</button>
                           </div>
                         </div>      
-                      </div>  
+                        </div>  
                     </form>                      
               </div>
   @endsection
@@ -199,7 +205,7 @@
             FilePondPluginFileValidateType,
             FilePondPluginImagePreview,
         );        
-            FilePond.create(document.getElementById('images'), {
+          FilePond.create(document.getElementById('images'), {
             name: 'images[]',
             labelIdle: 'Faire glisser ou choisir les images du Telephone',
             allowFileTypeValidation: true,
@@ -213,6 +219,47 @@
             
         });
       
+        let marque = $('#marque').val();
+        let nomproduit = $('#nomproduit').val();
+        let description = $('#description').val();
+        let prix = $('#prix').val();
+        let ram = $('#ram').val();
+        let stockage = $('#stockage').val();
+        let camera = $('#camera').val();
+        let selfie = $('#selfie').val();
+        let ecran = $('#ecran').val();
+        let batterie = $('#batterie').val();
+        let images = $('#images').val();
+        let solde = $('#solde').val();
+        function ChangeStatus(ID,NS){
+        $.ajax({
+            type : "POST",
+            url : '/telephone/CreateTelephone',
+            headers: {
+                'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+            },
+            data:{
+            marque:marque,
+            nomproduit:nomproduit,
+            description:description,
+            prix:prix,
+            solde:solde,
+            ram:ram,
+            stockage:stockage,
+            camera:camera,
+            selfie:selfie,
+            ecran:ecran,
+            batterie:batterie,
+            images:images
+          },
+          success:function(response){
+            console.log(response);
+          },
+            async : false
+
+        });
+       }
+       
       const form = document.getElementById("form");
       const prix = document.getElementById("username");
       const solde = document.getElementById("email");

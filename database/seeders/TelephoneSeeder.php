@@ -22,7 +22,7 @@ class TelephoneSeeder extends Seeder
             'nbr_produit' => 5,
             'per_solde' => 0,
             'nbr_visite' => 0,
-            'admin_id' => 4,
+            'admin_id' => 1,
         ]);
         Telephone::create([
             'nom' => 'Huawei honor 7',
@@ -32,7 +32,7 @@ class TelephoneSeeder extends Seeder
             'nbr_produit' => 5,
             'per_solde' => 0,
             'nbr_visite' => 0,
-            'admin_id' => 5,
+            'admin_id' => 2,
         ]);
 
         Telephone::create([
@@ -43,7 +43,7 @@ class TelephoneSeeder extends Seeder
             'nbr_produit' => 5,
             'per_solde' => 0,
             'nbr_visite' => 0,
-            'admin_id' => 4,
+            'admin_id' => 1,
         ]);
         Telephone::create([
             'nom' => 'Samsung note 20',
@@ -53,7 +53,7 @@ class TelephoneSeeder extends Seeder
             'nbr_produit' => 5,
             'per_solde' => 0,
             'nbr_visite' => 0,
-            'admin_id' => 4,
+            'admin_id' => 2,
         ]);
         Telephone::create([
             'nom' => 'Redmi not 10Mi',
@@ -63,7 +63,7 @@ class TelephoneSeeder extends Seeder
             'nbr_produit' => 5,
             'per_solde' => 0,
             'nbr_visite' => 0,
-            'admin_id' => 6,
+            'admin_id' => 3,
         ]);   
 }
 }

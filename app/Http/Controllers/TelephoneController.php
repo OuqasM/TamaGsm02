@@ -20,7 +20,7 @@ class TelephoneController extends Controller
         $t->marque = $request->marque;
         $t->nbr_produit = 5;
         $t->nbr_visite = 0;
-        $t->admin_id = 4;
+        $t->admin_id = 3;
         $t->per_solde = $request->solde;
         $t->ram = $request->ram;
         $t->stockage = $request->stockage;
@@ -29,6 +29,7 @@ class TelephoneController extends Controller
         $t->taille_ecron = $request->ecran;
         $t->battery = $request->batterie;
         $t->save();
+
         
         $tid = Telephone::where('id_tele','=',$t->id)->first();
         if ($request->has('images')) {
@@ -36,15 +37,24 @@ class TelephoneController extends Controller
            
             foreach($imgs as $img){
                 $ti = new Telephone_img();
-                $name = time() . '_' .$img->getClientOriginalName();
-                $img->storeAs('public/images/'.$tid->marque.'/', $name);
+                $decodedimage = json_decode($img);
+                $name = time() . '_' . $decodedimage->name;
+                
+                    
+                Storage::put('public/images/telephones/'.$tid->marque.'/'. $name, base64_decode($decodedimage->data));
                 $ti->path = 'images/'. $tid->marque.'/' . $name;
                 $ti->tele_id = $tid->id_tele;
                 $ti->save();
+                return redirect('/createTI')->with('success','Telephone bien crée');
+
             }
         }else{
-                dd('imag makayanash');
-            }
+            $ti = new Telephone_img();
+            $ti->path = 'images/no-image.png';
+            $ti->tele_id = $tid->id_tele;
+            $ti->save();
+            return redirect('/createTI')->with('success','Telephone bien crée sans images');
+        }
     }
  
     public function showPhones()
@@ -55,7 +65,8 @@ class TelephoneController extends Controller
         foreach($al as $t){
             $allimg = Telephone_img::where('tele_id','=',$t->id_tele)->get();
             $collect->push([
-                'imgs' => $allimg , 'telephones' => $t
+                'imgs' => $allimg, 
+                'telephones' => $t
             ]);
         }
        /*foreach($collect as $col){
