@@ -137,11 +137,14 @@
                             <div class="form-group">
                               <input type="number" placeholder="Solde" class="form-control"  min="0.0" id="solde" name="solde" />DH
                             </div>
+                            <!--file-->                
+                            <div class="form-group">
+                              <input type="file" class="images" id="images" name="images[]" accept="image/png,image/jpeg" multiple>  
+                            </div>
                         </div>
                         <div class="col-md-6" >                      
                           <!-- configuration -->
-                          <table class="table table-striped">
-                            
+                          <table class="table table-striped form-group">                      
                             <tbody>
                               <tr>
                                 <th scope="row">Ram</th>
@@ -195,9 +198,6 @@
                               </tr>
                             </tbody>
                           </table>
-                          <!--file-->                
-                          <div class="form-group">
-                            <input type="file" class="images" id="images" name="images[]" accept="image/png,image/jpeg" multiple>                          </div>
                           <!-- Upload button -->
                           <div class="form-group">
                               <button class="btn btn-secondary" type="submit" value="upload">Publier le telephone</button>
