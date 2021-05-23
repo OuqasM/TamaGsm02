@@ -31,7 +31,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <ul class="navbar-nav ml-auto">
         <li><a data-text="Home" href="#">Home</a></li>
-    <li><a data-text="About" href="#">About</a></li>
+    <li><a data-text="About" href="{{ route('getallphones') }}">About</a></li>
     <li><a data-text="Secvices" href="#">Secvices</a></li>
     <li><a data-text="Contact Us" href="#">Contact Us</a></li>
     <form class="form-inline my-2 my-lg-0">

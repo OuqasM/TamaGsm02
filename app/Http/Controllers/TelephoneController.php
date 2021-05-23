@@ -6,6 +6,7 @@ use Faker\Provider\Image;
 use Illuminate\Http\Request;
 
 use App\Models\Telephone_img;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 class TelephoneController extends Controller
@@ -18,7 +19,6 @@ class TelephoneController extends Controller
         $t->description = $request->description;
         $t->prix = $request->prix;
         $t->marque = $request->marque;
-        $t->nbr_produit = 5;
         $t->nbr_visite = 0;
         $t->admin_id = 3;
         $t->per_solde = $request->solde;
@@ -42,7 +42,7 @@ class TelephoneController extends Controller
                 
                     
                 Storage::put('public/images/telephones/'.$tid->marque.'/'. $name, base64_decode($decodedimage->data));
-                $ti->path = 'images/'. $tid->marque.'/' . $name;
+                $ti->path = 'images/telephones/'. $tid->marque.'/' . $name;
                 $ti->tele_id = $tid->id_tele;
                 $ti->save();
                 return redirect('/createTI')->with('success','Telephone bien crée');
@@ -50,10 +50,10 @@ class TelephoneController extends Controller
             }
         }else{
             $ti = new Telephone_img();
-            $ti->path = 'images/no-image.png';
+            $ti->path = '../images/no-image.png';
             $ti->tele_id = $tid->id_tele;
             $ti->save();
-            return redirect('/createTI')->with('success','Telephone bien crée sans images');
+            return redirect('/createTI')->with('failed','Telephone bien crée sans images');
         }
     }
  
@@ -69,14 +69,10 @@ class TelephoneController extends Controller
                 'telephones' => $t
             ]);
         }
-       /*foreach($collect as $col){
 
-            dd($col['imgs'][0]->path);
-        }*/
        return view('home', compact('collect'));
 
     }
-
     public function showPhone($id)
     {
         
@@ -86,5 +82,26 @@ class TelephoneController extends Controller
         return view('telephone.showphone', compact('tele','allimg'));
 
     }
+    public function editphones()
+    {
+        $al = Telephone::all();
+
+        $collect = collect();
+
+        foreach($al as $t){
+            $allimg = Telephone_img::where('tele_id','=',$t->id_tele)->get();
+            $user = User::where('id','=',$t->admin_id)->first();
+            $collect->push([
+                'imgs' => $allimg, 
+                'telephones' => $t,
+                'user' =>$user
+            ]);
+        }
+        
+       
+       return view('telephone.edit', compact('collect'));
+
+    }
+
 
 }

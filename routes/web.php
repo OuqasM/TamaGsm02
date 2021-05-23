@@ -21,8 +21,9 @@ Route::get('/createTI', function () {
 });
 Auth::routes();
 Route::group(['prefix' => 'telephone'], function () {
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/showAll/{id}', [App\Http\Controllers\TelephoneController::class, 'showAllImg'])->name('showAll');
-Route::post('/CreateTelephone', [App\Http\Controllers\TelephoneController::class, 'createtelephone'])->name('createtelephone');
-Route::get('/show/{id}', [App\Http\Controllers\TelephoneController::class, 'showphone'])->name('showphone');
+Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('CreateTelephone', [App\Http\Controllers\TelephoneController::class, 'createtelephone'])->name('createtelephone');
+Route::get('show/{id}', [App\Http\Controllers\TelephoneController::class, 'showphone'])->name('showphone');
+Route::get('GetAllPhones', [App\Http\Controllers\TelephoneController::class, 'editphones'])->name('getallphones');
+
 });
