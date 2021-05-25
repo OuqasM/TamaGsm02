@@ -178,7 +178,9 @@
             <!-- content -->
         </div>
     </div>
+    @if (request()->route()->getName() === 'index')        
     @include('layouts.partials.Footer')
+    @endif
     @yield('contentJs')
     <script>
         // When the user scrolls the page, execute myFunction

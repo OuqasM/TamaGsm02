@@ -39,21 +39,19 @@ class TelephoneController extends Controller
                 $ti = new Telephone_img();
                 $decodedimage = json_decode($img);
                 $name = time() . '_' . $decodedimage->name;
-                
-                    
                 Storage::put('public/images/telephones/'.$tid->marque.'/'. $name, base64_decode($decodedimage->data));
                 $ti->path = 'images/telephones/'. $tid->marque.'/' . $name;
                 $ti->tele_id = $tid->id_tele;
                 $ti->save();
-                return redirect('/createTI')->with('success','Telephone bien crée');
-
             }
+            return redirect()->route('createphoneview')->with('success','Telephone bien crée'.count($imgs));
+
         }else{
             $ti = new Telephone_img();
             $ti->path = '../images/no-image.png';
             $ti->tele_id = $tid->id_tele;
             $ti->save();
-            return redirect('/createTI')->with('failed','Telephone bien crée sans images');
+            return redirect()->route('createphoneview')->with('failed','Telephone bien crée sans images');
         }
     }
  
@@ -75,7 +73,7 @@ class TelephoneController extends Controller
     }
     public function showPhone($id)
     {
-        
+            
             $tele = Telephone::where('id_tele','=',$id)->first();
             $allimg = Telephone_img::where('tele_id','=',$tele->id_tele)->get();
 
@@ -99,9 +97,28 @@ class TelephoneController extends Controller
         }
         
        
-       return view('telephone.edit', compact('collect'));
+       return view('telephone.manage', compact('collect'));
 
     }
+    public function deletephone($id){
+        $allimg = Telephone_img::where('tele_id','=',$id)->get();
+        foreach($allimg as $img){
+            $image_path = public_path().'/storage/'.$img->path;
+            if($img->path != '../images/no-image.png' && Storage::disk('public')->exists($img->path)){
+                unlink($image_path);
+            } 
+        }
+        $allimg = Telephone_img::where('tele_id','=',$id)->delete();
 
+        Telephone::where('id_tele','=',$id)->delete();
+        return redirect()->route('getallphones')->with('failed','Telephone bien crée sans images');
+
+    }
+    public function editphone($id){
+        $tele = Telephone::where('id_tele','=',$id)->first();
+        $allimg = Telephone_img::where('tele_id','=',$tele->id_tele)->get();
+        return view('telephone.edit', compact('tele','allimg'));
+
+    }
 
 }

@@ -73,7 +73,8 @@
   </style> 
 @endsection
 @section('content')    
-              <div class="card px-3">
+      <div class="container-fluid">  
+        <div class="card px-3">
             @if(Session::has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ Session::get('success') }}
@@ -95,7 +96,7 @@
                     </button>
                 </div>
             @endif
-                      <form action="{{route('createtelephone')}}" class="contact-form" name="create" enctype="multipart/form-data" onsubmit = "return(validate());" method="POST">
+                    <form action="{{route('createtelephone')}}" class="contact-form" name="create" enctype="multipart/form-data" onsubmit = "return(validate());" method="POST">
                         {{ csrf_field() }}
                       <div class="wrraper row">
                         <div class="col-md-6">                      
@@ -206,6 +207,7 @@
                       </div>  
                     </form>                      
               </div>
+      </div>
   @endsection
 @section('contentJs')
       <!-- FilePond Js -->

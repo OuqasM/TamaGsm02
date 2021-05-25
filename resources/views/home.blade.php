@@ -50,7 +50,7 @@
                         <div class="card">
                             <div class="row">
                                 <div class="image col-md-5">
-                                        <a class="link" href="show/{{$couple['telephones']->id_tele}}">
+                                        <a class="link" href="telephone/show/{{$couple['telephones']->id_tele}}">
                                         @if($couple['imgs']->get(0)!=null)
                                         <img src="{{asset('storage/'.$couple['imgs']->get(0)['path'].'')}}" class="rounded" width="80" height="200" />
                                         @else

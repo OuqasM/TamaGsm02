@@ -1,8 +1,7 @@
 <!-- Footer -->
-<footer class="bg-dark text-center text-white">
+<footer class="bg-darbk text-center text-white ">
     <!-- Grid container -->
-    <div class="container">
-        <div class="row">
+        <div class="">
             <section class="">
                 <!--Grid row-->
                 <div class="row">
@@ -35,12 +34,11 @@
 
             </section>
             <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-
         </div>
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
       © 2021 Copyright:
-      <a class="text-white" href="#ma facebook">Tama Gsm Virtuel Market</a>
+      <a class="text-white" href="#ma facebook">TamaGsm degital Market</a>
     </div>
 
     <!-- Copyright -->
