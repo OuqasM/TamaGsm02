@@ -10,6 +10,7 @@ class Telephone_img extends Model
     use HasFactory;
 
     protected $table = 'telephone_imgs';
+    protected $primaryKey = 'id';
 
     public function telephone()
     {

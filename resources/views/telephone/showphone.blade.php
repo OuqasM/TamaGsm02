@@ -65,7 +65,7 @@
 @endsection
 
 @section('content')
-        <div class="container-fluid">
+        <div class="container">
 		<div class="card">
 				<div class="wrapper row pr-0 pl-0">
 					<div class="col-md-6">

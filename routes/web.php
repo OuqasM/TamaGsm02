@@ -25,9 +25,24 @@ Route::group(['prefix' => 'telephone'], function () {
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('CreateTelephone', [App\Http\Controllers\TelephoneController::class, 'createtelephone'])->name('createtelephone');
 Route::get('show/{id}', [App\Http\Controllers\TelephoneController::class, 'showphone'])->name('showphone');
-Route::get('delete/{id}', [App\Http\Controllers\TelephoneController::class, 'deletephone'])->name('deletephone');
+Route::post('delete', [App\Http\Controllers\TelephoneController::class, 'deletephone'])->name('deletephone');
 Route::get('GetAllPhones', [App\Http\Controllers\TelephoneController::class, 'editphones'])->name('getallphones');
 Route::get('createTI', function () { return view('telephone.create');})->name('createphoneview');
 Route::get('edit/{id}', [App\Http\Controllers\TelephoneController::class, 'editphone'])->name('editphone');
-
+Route::post('deleteImage', [App\Http\Controllers\TelephoneController::class, 'deleteimage'])->name('deleteImage');
+Route::post('updatetelephone', [App\Http\Controllers\TelephoneController::class, 'Updatetelephone'])->name('updatetelephone');
 });
+
+
+Route::group(['prefix' => 'accessoir'], function () {
+    
+    Route::post('CreateAcs', [App\Http\Controllers\AccessoirController::class, 'createAcs'])->name('createacs');
+    //Route::get('show/{id}', [App\Http\Controllers\TelephoneController::class, 'showphone'])->name('showphone');
+    //Route::post('delete', [App\Http\Controllers\TelephoneController::class, 'deletephone'])->name('deletephone');
+    Route::get('GetAllAcs', [App\Http\Controllers\AccessoirController::class, 'editAcss'])->name('getallacs');
+    Route::get('createAcs', function () { return view('Accessoire.create');})->name('createacsview');
+    Route::get('edit/{id}', [App\Http\Controllers\AccessoirController::class, 'editAcs'])->name('editacs');
+    //Route::post('deleteImage', [App\Http\Controllers\TelephoneController::class, 'deleteimage'])->name('deleteImage');
+    Route::post('updateacs', [App\Http\Controllers\AccessoirController::class, 'UpdateAcs'])->name('updateacs');
+    
+    });

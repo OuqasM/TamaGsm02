@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Accessoir extends Model
 {
     use HasFactory;
+    protected $table = 'accessoirs';
+    protected $primaryKey = 'id_acces';
+
+
+    public function accessoir_img()
+    {
+        return $this->belongsTo(Accessoir_img::class);
+    }
 }

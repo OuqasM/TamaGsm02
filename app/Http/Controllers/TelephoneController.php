@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Models\Telephone;
-use Faker\Provider\Image;
 use Illuminate\Http\Request;
 
 use App\Models\Telephone_img;
@@ -31,7 +30,7 @@ class TelephoneController extends Controller
         $t->save();
 
         
-        $tid = Telephone::where('id_tele','=',$t->id)->first();
+        $tid = Telephone::where('id_tele','=',$t->id_tele)->first();
         if ($request->has('images')) {
             $imgs = $request->images;
            
@@ -44,7 +43,7 @@ class TelephoneController extends Controller
                 $ti->tele_id = $tid->id_tele;
                 $ti->save();
             }
-            return redirect()->route('createphoneview')->with('success','Telephone bien crée'.count($imgs));
+            return redirect()->route('createphoneview')->with('success','Telephone bien crée');
 
         }else{
             $ti = new Telephone_img();
@@ -100,18 +99,18 @@ class TelephoneController extends Controller
        return view('telephone.manage', compact('collect'));
 
     }
-    public function deletephone($id){
-        $allimg = Telephone_img::where('tele_id','=',$id)->get();
+    public function deletephone(Request $request){
+        $allimg = Telephone_img::where('tele_id','=',$request->id)->get();
         foreach($allimg as $img){
             $image_path = public_path().'/storage/'.$img->path;
             if($img->path != '../images/no-image.png' && Storage::disk('public')->exists($img->path)){
                 unlink($image_path);
             } 
         }
-        $allimg = Telephone_img::where('tele_id','=',$id)->delete();
+        $allimg = Telephone_img::where('tele_id','=',$request->id)->delete();
 
-        Telephone::where('id_tele','=',$id)->delete();
-        return redirect()->route('getallphones')->with('failed','Telephone bien crée sans images');
+        Telephone::where('id_tele','=',$request->id)->delete();
+        return redirect()->route('getallphones')->with('success','Telephone bien suprimée');
 
     }
     public function editphone($id){
@@ -120,5 +119,67 @@ class TelephoneController extends Controller
         return view('telephone.edit', compact('tele','allimg'));
 
     }
+    public function deleteimage(Request $request){
 
+        $img = Telephone_img::where('id','=',$request->id)->first();
+        $image_path = public_path().'/storage/'.$img->path;
+            if($img->path != '../images/no-image.png' && Storage::disk('public')->exists($img->path)){
+                unlink($image_path);
+            }
+            Telephone_img::where('id','=',$request->id)->delete();
+            return response('done');
+    }
+    public function Updatetelephone(Request $request){
+
+    
+        $t = Telephone::where('id_tele','=',$request->idphone)->first();
+        $t->nom = $request->nomproduit;
+        $t->description = $request->description;
+        $t->prix = $request->prix;
+        $t->marque = $request->marque;
+        $t->nbr_visite = 0;
+        $t->admin_id = 3;
+        $t->per_solde = $request->solde;
+        $t->ram = $request->ram;
+        $t->stockage = $request->stockage;
+        $t->back_cam_reslolution = $request->camera;
+        $t->selfy_cam_resolution = $request->selfie;
+        $t->taille_ecron = $request->ecran;
+        $t->battery = $request->batterie;
+        $t->save();
+
+        if ($request->has('images')) {
+            $imgs = $request->images;
+           
+            foreach($imgs as $img){
+                $ti = new Telephone_img();
+                $decodedimage = json_decode($img);
+                $name = time() . '_' . $decodedimage->name;
+                Storage::put('public/images/telephones/'.$t->marque.'/'. $name, base64_decode($decodedimage->data));
+                $ti->path = 'images/telephones/'. $t->marque.'/' . $name;
+                $ti->tele_id = $t->id_tele;
+                $ti->save();
+            }
+            $imgs = Telephone_img::where('tele_id','=',$t->id_tele)->get();
+            foreach($imgs as $img){
+                if($img->path == '../images/no-image.png'){
+                    $rqs = new Request();
+                    $rqs->id =$img->id;
+                    $this->deleteimage($rqs);
+                }
+            }
+            return redirect()->route('editphone',$t->id_tele)->with('success','Telephone bien modifiée');
+        }
+        $imgs = Telephone_img::where('tele_id','=',$t->id_tele)->get();
+        if($imgs->count()>0){ 
+            return redirect()->route('editphone',$t->id_tele)->with('failed','Telephone Modifié avec sans image ajoutéé');
+        }else{
+            $ti = new Telephone_img();
+            $ti->path = '../images/no-image.png';
+            $ti->tele_id = $t->id_tele;
+            $ti->save();
+            return redirect()->route('editphone',$t->id_tele)->with('success','Telephone bien modifiée');
+
+        }
+    }
 }

@@ -1,9 +1,5 @@
 @extends('telephone.layouts.TelephoneLayouts')
 @section('contenetCss')
-  <!-- FilePond -->
-  <link href="{{ asset('css/filepond-plugin-image-preview.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/filepond.min.css') }}" rel="stylesheet">
-
   <style>
             input[type=number]::-webkit-inner-spin-button, 
             input[type=number]::-webkit-outer-spin-button { 
@@ -13,13 +9,11 @@
                 margin: 0; 
             }
             input:focus {
-
             outline-color: rgb(233, 0, 0);
-            }
+            }  
             img {
-            max-width: 100%; }
-
-
+            max-width: 100%; 
+          }
             .tab-content {
             overflow: hidden; }
             .tab-content img {
@@ -40,40 +34,31 @@
             display: -webkit-box;
             display: -webkit-flex;
             display: -ms-flexbox;
-            display: flex; } }
-
-
+            display: flex; } 
+          }
             .colors {
             -webkit-box-flex: 1;
             -webkit-flex-grow: 1;
             -ms-flex-positive: 1;
-            flex-grow: 1; }
-
+            flex-grow: 1; 
+            }
             .product-title, .price, .sizes, .colors {
             text-transform: UPPERCASE;
-
-
-
-            font-weight: bold; }
-
+            font-weight: bold; 
+          }
             .checked, .price span {
             color: #ff9f1a; }
-
-
             .product-title {
             margin-top: 0; }
-
             .size {
             margin-right: 10px; }
             .size:first-of-type {
             margin-left: 40px; }
-
-
             /*# sourceMappingURL=style.css.map */
   </style> 
 @endsection
 @section('content')    
-      <div class="container-fluid">  
+      <div class="container">  
         <div class="card px-3">
             @if(Session::has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -96,7 +81,7 @@
                     </button>
                 </div>
             @endif
-                    <form action="{{route('createtelephone')}}" class="contact-form" name="create" enctype="multipart/form-data" onsubmit = "return(validate());" method="POST">
+                    <form action="{{route('updatetelephone')}}" class="contact-form" name="createForm" id="createForm" enctype="multipart/form-data"  method="POST">
                         {{ csrf_field() }}
                       <div class="wrraper row">
                         <div class="col-md-6">                      
@@ -121,6 +106,7 @@
                                     <option value="AutresT"  {!! ($tele->marque == 'AutresT') ? 'selected': '' !!}>Autres</option>
                                 </select>
                             </div>
+                            <input type="text" value="{{$tele->id_tele}}" hidden name="idphone">
                             <!-- nom de produit -->
                             <div class="form-group">
                               <input type="text" name="nomproduit" value="{{$tele->nom ?: '' }}"  pattern="[A-z0-9\s]+" required class="form-control" placeholder="Nom De Produit">
@@ -128,15 +114,15 @@
                             <!-- description -->
                             <div class="form-group">
                               <textarea name="description" rows="5" class="form-control" 
-                               aria-multiline="true"  placeholder="{{$tele->description ?: '' }}" cols="50"></textarea>
+                               aria-multiline="true" cols="50">{{$tele->description ?: '' }}</textarea>
                               </div>
                             <!-- prix -->
                             <div class="form-group">
-                              <input type="number" placeholder="Prix" class="form-control" value="{{$tele->prix ?: '' }}" required  min="0.0" id="prix" name="prix" />DH
+                              <input type="number" placeholder="Prix" class="form-control" value="{{$tele->prix ?: '' }}" required  min="0.0" step="0.1" id="prix" name="prix" />DH
                             </div>
                             <!-- solde -->
                             <div class="form-group">
-                              <input type="number" placeholder="Solde" class="form-control" value="{{$tele->solde ?: 0 }}" min="0.0" id="solde" name="solde" />DH
+                              <input type="number" placeholder="Solde" class="form-control" value="{{$tele->per_solde }}" min="0.0" step="0.1" id="solde" name="solde" />DH
                             </div>
                             <!--file-->                
                             <div class="form-group">
@@ -144,9 +130,16 @@
                             </div>
                             <div class="form-group">
                             @foreach ($allimg as $img)
-                            <a href="{{asset('storage/'.$img->path)}}" download><img src="{{asset('storage/'.$img->path)}}" class="rounded" width="60" height="60" /><i class="fa fa-download"></i>Telecharger<br></a>
+                            <div class="row" id="img{{$img->id}}" >
+                            <div class="col">
+                            <img src="{{asset('storage/'.$img->path)}}" class="rounded" width="60" height="60" />
+                            </div>
+                            <div class="col">
+                              <div class="row"><a onclick="deleteImage({{$img->id}})" href="#"><i class="fa fa-trash" aria-hidden="true" >Supprimer</i></a></div>
+                              <div class="row"><a href="{{asset('storage/'.$img->path)}}" download><i class="fa fa-download"></i>Telecharger<br></a></div>
+                            </div>
+                          </div>
                             @endforeach
-                            Si tu n'a pas uploader aucun image.. banli nzid delete b request ajax l kulla image
                             </div>
                         </div>
                         <div class="col-md-6" >                      
@@ -155,10 +148,10 @@
                             <tbody>
                               <tr>
                                 <th scope="row">Ram</th>
-                                <td class="px-0"><img src="{{ asset('images/ram.png') }}"
-                                  width="30" height="30" /></td>
+                                <td class="px-0"><img src="{{ asset('images/ram.png') }}" width="30" height="30"/></td>
                                 <td><span class="price " data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" class="w-50" min="0.0" id="ram" value="{{$tele->ram ?: '' }}" name="ram" /></span> Gb</td>
+                                  <input type="number" class="form-control" class="w-50" min="0.0" step="0.1" id="ram" value="{{$tele->ram ?: '' }}" name="ram" /></span>
+                                  Gb</td>
                                 
                               </tr>
                               <tr>
@@ -166,7 +159,7 @@
                                 <td class="px-0"><img src="{{ asset('images/storage.png') }}"
                                   width="30" height="30" /></td>
                                 <td><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" class="w-50" min="0.0" id="stockage" value="{{$tele->stockage ?: '' }}" name="stockage"/>
+                                  <input type="number" class="form-control" class="w-50" min="0.0" step="0.1" id="stockage" value="{{$tele->stockage ?: '' }}" name="stockage"/>
                                 </span> Gb</td>
                               </tr>
                               <tr>
@@ -174,7 +167,7 @@
                                 <td class="px-0"><img src="{{ asset('images/battery.png') }}"
                                   width="30" height="30" /></td>
                                 <td><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" class="w-50" min="0.0" id="batterie" value="{{$tele->battery ?: '' }}" name="batterie"/>
+                                  <input type="number" class="form-control" class="w-50" min="0.0" step="0.1" id="batterie" value="{{$tele->battery ?: '' }}" name="batterie"/>
                                 </span> mA</td>
                               </tr>
                               <tr>
@@ -182,15 +175,15 @@
                                 <td class="px-0"><img src="{{ asset('images/mobile-camera.png') }}"
                                   width="30" height="30" /></td>
                                 <td ><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" class="w-50" min="0.0" id="camera" value="{{$tele->back_cam_reslolution ?: '' }}" name="camera"/>  
-                                </span> Mp</td>
+                                  <input type="number" class="form-control" class="w-50" min="0.0" step="0.1" id="camera" value="{{$tele->back_cam_reslolution ?: '' }}" name="camera"/>  
+                                  </span> Mp</td>
                               </tr>
                                 <th scope="row">Caméra Selfy</th>
                                 <td class="px-0"><img src="{{ asset('images/selfie.png') }}"
                                   width="30" height="30" /></td>
                                 <td><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" class="w-50" min="0.0"  id="selfie" value="{{$tele->selfy_cam_resolution ?: '' }}" name="selfie"/>
-                                </span> Mp
+                                  <input type="number" class="form-control" class="w-50" min="0.0" step="0.1"  id="selfie" value="{{$tele->selfy_cam_resolution ?: '' }}" name="selfie"/>
+                                  </span> Mp
                                 </td>                                
                               </tr>                            
                               <tr>
@@ -198,16 +191,16 @@
                                 <td class="px-0"><img src="{{ asset('images/icran.png') }}"
                                   width="30"  height="30" /></td>
                                 <td><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control"  class="w-50" min="0.0" id="ecran" value="{{$tele->taille_ecron ?: '' }}" name="ecran"/>
+                                  <input type="number" class="form-control"  class="w-50" min="0.0" step="0.1" id="ecran" value="{{$tele->taille_ecron ?: '' }}" name="ecran"/>
                                 </span> P
-                              <small></small>
+                                
                               </td>
                               </tr>
                             </tbody>
                           </table>
                           <!-- Upload button -->
                           <div class="form-group">
-                              <button class="btn btn-secondary" type="submit" value="upload">Publier le telephone</button>
+                              <button class="btn btn-secondary" type="submit" value="upload">Enregistre</button>
                           </div>
                         </div>      
                       </div>  
@@ -216,20 +209,16 @@
       </div>
   @endsection
 @section('contentJs')
-      <!-- FilePond Js -->
-      <script src="{{ asset('js/filepond-plugin-file-validate-type.min.js') }}"></script>
-      <script src="{{ asset('js/filepond-plugin-image-preview.min.js') }}"></script>
-      <script src="{{ asset('js/filepond-plugin-file-encode.js') }}"></script>
-      <script src="{{ asset('js/filepond.min.js') }}"></script>
+
 <script type="text/javascript">
-            FilePond.registerPlugin(
+        FilePond.registerPlugin(
             FilePondPluginFileEncode,
             FilePondPluginFileValidateType,
             FilePondPluginImagePreview,
         );        
-            FilePond.create(document.getElementById('images'), {
+        FilePond.create(document.getElementById('images'), {
             name: 'images[]',
-            labelIdle: 'Faire glisser ou choisir les images du Telephone',
+            labelIdle: 'Ajouter des images',
             allowFileTypeValidation: true,
             acceptedFileTypes: ['.png', '.jpeg', '.jpg'],
             labelFileTypeNotAllowed: 'Le type du fichier est invalide vous devez choisir une image',
@@ -241,31 +230,51 @@
             
         });
       
-      const form = document.getElementById("form");
-      const prix = document.getElementById("username");
-      const solde = document.getElementById("email");
-      const ram = document.getElementById("ram");
-      const stockage = document.getElementById("stockage");
-      const batterie = document.getElementById("batterie");
-      const camera = document.getElementById("camera");
-      const selfie = document.getElementById("selfie");
-      const ecran = document.getElementById("ecran");
+      function deleteImage(IdImage){
+        $.ajax({
+            type : "POST",
+            url : '/telephone/deleteImage',
+            headers: {
+                'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+            },
+            data : {
+                id : IdImage
+            },
+            success: function (message) {
+                document.getElementById('img'+IdImage).style.display ='none';
+            },
+            error: function(message){
+                // alert('Les codes ne sont pas les memes essayer a nouveau ou renvoyer l\'email aprée 2 minutes !');
+                // disableBtnTimeOut(120);
+            },
+            async : false
 
-
-
-      function ShowError(input, message) {
-      const formControl = input.parentElement;
-      formControl.className = "form-control error";
-      const small = formControl.querySelector('small');
-      small.innerText = message;
-      //Show input success
-      function ShowSuccess(input) {
-      const formControl = input.parentElement;
-      formControl.className = "form-control success";
+        });
       }
+       var form = document.getElementById("createForm");
+      // const prix = document.getElementById("username");
+      var solde = document.getElementById("solde");
+      var ram = document.getElementById("ram");
+      var stockage = document.getElementById("stockage");
+      var batterie = document.getElementById("batterie");
+      var camera = document.getElementById("camera");
+      var selfie = document.getElementById("selfie");
+      var ecran = document.getElementById("ecran");
 
 
-    }
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      var arr = [ram,solde, stockage, batterie, camera, selfie, ecran ];
+      arr.forEach(element => {
+        if(element.value.trim() === ""){
+          element.value = "0";
+          console.log(element.value);
+        }
+      });
+      form.submit();
+      });
+    
 </script>
 
 @endsection

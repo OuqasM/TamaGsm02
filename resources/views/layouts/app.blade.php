@@ -134,11 +134,10 @@
                 background-image: url('images/facebook-logo.png');
                 background-repeat: no-repeat;
                 display:block;
-            }
-           
+            } 
             body {
                 padding-top: 85px;
-                background-image: url('images/brown.jpg');
+                background-image: url('images/white.jpg');
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 display:block;

@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Accessoir_img extends Model
 {
-    use HasFactory;
+    use HasFactory; 
+    protected $table = 'accessoir_imgs';
+    protected $primaryKey = 'id';
+
+    public function accessoir()
+    {
+        return $this->belongsTo(Accessoir::class);
+    }
 }

@@ -33,7 +33,7 @@
                     </button>
                 </div>
             @endif
-                  <table id="telephone" class="table table-striped dt-responsive nowrap">
+                  <table id="acs" class="table table-striped dt-responsive nowrap">
                       <thead>
                           <tr>
                               <th>Nom de produit</th>
@@ -47,28 +47,23 @@
                       </thead>
                       <tbody>
                           @foreach ($collect->all() as $couple)
-                              <tr id="tele{{$couple['telephones']->id_tele}}">
-                                <th>{{$couple['telephones']->nom}}</th>
-                                <td>{{$couple['telephones']->prix}}/{{$couple['telephones']->solde ?:0}}</td>
-                                <td>{{$couple['telephones']->nbr_visite}}</td>
-                                <td>{{$couple['telephones']->created_at}} par {{$couple['user']->name}}</td>
-                                <td>
-                                <img @if(count($couple['imgs'])>0) src="{{asset('storage/'.$couple['imgs']->get(0)['path'].'')}}"
-                                 @endif class="rounded" width="30" height="30" />
-                                <i class="fas fa-camera"> {{count($couple['imgs'])}}</i></td>
-                                <td>
-                                <a  style="float:right;" href="{{ route('editphone',$couple['telephones']->id_tele) }}"><button class="btn btn-primary rounded-circle"><i class="fas fa-pencil-alt"></i></button></a>                               
-                                <form style="float:left;" action="{{route('deletephone')}}" onsubmit="return confirm('Vous êtes sûr de supprimer {{$couple['telephones']->nom}}?');" id="formDelete" method="POST">
+                              <tr id="tele{{$couple['acss']->id_acces}}">
+                                <th>{{$couple['acss']->nom}}</th>
+                                <td>{{$couple['acss']->prix}}/{{$couple['acss']->solde ?:0}}</td>
+                                <td>{{$couple['acss']->nbr_visite}}</td>
+                                <td>{{$couple['acss']->created_at}} par {{$couple['user']->name}}</td>
+                                <td><img @if(count($couple['imgs'])>0) src="{{asset('storage/'.$couple['imgs']->get(0)['path'].'')}}" @endif class="rounded" width="30" height="30" /> <i class="fas fa-camera"> {{count($couple['imgs'])}}</i><td>
+                                <td><a href="{{ route('editacs',$couple['acss']->id_acces) }}"><button class="btn btn-primary rounded-circle"><i class="fas fa-pencil-alt"></i></button></a>
+                                <form style="float:left;" onsubmit="return confirm('Vous êtes sûr de supprimer {{$couple['acss']->nom}}?');" id="formDelete" method="POST">
                                     @csrf
-                                    <input type="text" name="id" value="{{$couple['telephones']->id_tele}}" hidden>
+                                    <input type="text" name="id" value="{{$couple['acss']->id_acces}}" hidden>
                                     <button type="submit"  class="btn btn-primary rounded-circle"><i class="fa fa-trash"></i></button>
-                                </form>    
+                                </form> 
                                 </td>
-                                <td></td>
                               </tr>
                           @endforeach
                       </tbody>
-                </table>
+                  </table>
               </div> <!-- end card body-->
           </div> <!-- end card -->
       </div><!-- end col-->
@@ -85,10 +80,11 @@
       <script src="{{ asset('js/dataTables.buttons.min.js') }}"></script>
       <script src="{{ asset('js/dataTables.init.js') }}"></script>
       <script>
-        $('#telephone').dataTable( {
+        $('#acs').dataTable( {
         "pageLength" : 6,
         "lengthChange": true,
 
         });
+
     </script>   
 @endsection

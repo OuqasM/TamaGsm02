@@ -17,7 +17,7 @@
      <!-- FilePond -->
     <link href="{{ asset('css/filepond-plugin-image-preview.min.css') }}" rel="stylesheet">
       <link href="{{ asset('css/filepond.min.css') }}" rel="stylesheet">
- <style>
+    <style>
 
             body{
                 padding-top: 85px;
@@ -96,10 +96,10 @@
             }
 
     </style>
-    @yield('contenetCss')
+    @yield('contentCss')
 </head>
 <body>
-        @include('telephone.layouts.partials.Header')
+        @include('accessoire.layouts.partials.Header')
         
             <!-- Content -->
                 <div>
@@ -108,9 +108,8 @@
             <!-- content -->
    <br><br>
    @if(request()->route()->getName()==='showphone')        
-   @include('telephone.layouts.partials.Footer')
+   @include('accessoire.layouts.partials.Footer')
    @endif
-   
                <!-- FilePond Js -->
                <script src="{{ asset('js/filepond-plugin-file-validate-type.min.js') }}"></script>
                <script src="{{ asset('js/filepond-plugin-image-preview.min.js') }}"></script>

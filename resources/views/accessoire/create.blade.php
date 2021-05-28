@@ -1,6 +1,5 @@
-@extends('telephone.layouts.TelephoneLayouts')
-@section('contenetCss')
-
+@extends('accessoire.layouts.AccessoirLayout')
+@section('contentCss')
   <style>
             input[type=number]::-webkit-inner-spin-button, 
             input[type=number]::-webkit-outer-spin-button { 
@@ -93,13 +92,14 @@
                     </button>
                 </div>
             @endif
-                    <form action="{{route('createtelephone')}}" class="contact-form" name="createForm" id="createForm" enctype="multipart/form-data" onsubmit = "return(validate());" method="POST">
+                    <h3 style="text-align: center;">Ajouter des accessoir</h3>
+                    <form action="{{route('createacs')}}" class="contact-form" name="createForm" id="createForm" enctype="multipart/form-data" method="POST">
                         {{ csrf_field() }}
                       <div class="wrraper row">
-                        <div class="col-md-6">                      
-                            <!-- marque-->
+                        <div class="col-md-12 col-sm-12">                      
+                            <!-- Type-->
                             <div class="form-group ">
-                                <select name="marque" id="catgroup" class="select form-control" required>
+                                <select name="type" id="catgroup" class="select form-control" required>
                                     <option value="" disabled selected>Marque</option>
                                     <option style="background-color:#dcdcc3; font-weight: bold;" disabled value="1000">-- Telephones --</option>
                                     <option value="Huawei">Huawei</option>
@@ -120,7 +120,7 @@
                             </div>
                             <!-- nom de produit -->
                             <div class="form-group">
-                              <input type="text" name="nomproduit" pattern="[A-z0-9\s]+" required class="form-control" placeholder="Nom De Produit">
+                              <input type="text" name="nom" pattern="[A-z0-9\s]+" required class="form-control" placeholder="Nom De Produit">
                             </div>
                             <!-- description -->
                             <div class="form-group">
@@ -139,67 +139,11 @@
                             <div class="form-group">
                               <input type="file" class="images" id="images" name="images[]" accept="image/png,image/jpeg" multiple>  
                             </div>
-                        </div>
-                        <div class="col-md-6" >                      
-                          <!-- configuration -->
-                          <table class="table table-striped form-group">                      
-                            <tbody>
-                              <tr>
-                                <th scope="row">Ram</th>
-                                <td class="px-0"><img src="{{ asset('images/ram.png') }}"
-                                  width="30" height="30" /></td>
-                                <td><span class="price " data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" class="w-50" min="0.0" step="0.1" id="ram" name="ram" /></span> Gb</td>
-                                
-                              </tr>
-                              <tr>
-                                <th scope="row">Stockage</th>
-                                <td class="px-0"><img src="{{ asset('images/storage.png') }}"
-                                  width="30" height="30" /></td>
-                                <td><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" step="0.1" class="form-control" class="w-50" min="0.0" id="stockage" name="stockage"/>
-                                </span> Gb</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">Batterie</th>
-                                <td class="px-0"><img src="{{ asset('images/battery.png') }}"
-                                  width="30" height="30" /></td>
-                                <td><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" class="w-50" min="0.0" step="0.1" id="batterie" name="batterie"/>
-                                </span> mA</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">Caméra</th>
-                                <td class="px-0"><img src="{{ asset('images/mobile-camera.png') }}"
-                                  width="30" height="30" /></td>
-                                <td ><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" step="0.1" class="w-50" min="0.0" id="camera" name="camera"/>  
-                                </span> Mp</td>
-                              </tr>
-                                <th scope="row">Caméra Selfy</th>
-                                <td class="px-0"><img src="{{ asset('images/selfie.png') }}"
-                                  width="30" height="30" /></td>
-                                <td><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" class="w-50" min="0.0" step="0.1" id="selfie" name="selfie"/>
-                                </span> Mp
-                                </td>                                
-                              </tr>                            
-                              <tr>
-                                <th scope="row">Ecran</th>
-                                <td class="px-0"><img src="{{ asset('images/icran.png') }}"
-                                  width="30"  height="30" /></td>
-                                <td><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" step="0.1"  class="w-50" min="0.0" id="ecran" name="ecran"/>
-                                </span> P
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <!-- Upload button -->
-                          <div class="form-group">
+                            <!-- Upload button -->
+                            <div class="form-group">
                               <button class="btn btn-secondary" type="submit" value="upload">Publier le telephone</button>
-                          </div>
-                        </div>      
+                            </div>
+                          </div>    
                       </div>  
                     </form>                      
               </div>
@@ -229,25 +173,18 @@
       
         var form = document.getElementById("createForm");
       var solde = document.getElementById("solde");
-      var ram = document.getElementById("ram");
-      var stockage = document.getElementById("stockage");
-      var batterie = document.getElementById("batterie");
-      var camera = document.getElementById("camera");
-      var selfie = document.getElementById("selfie");
-      var ecran = document.getElementById("ecran");
+ 
 
 
     form.addEventListener('submit', function(e){
       e.preventDefault();
 
-      var arr = [ram,solde, stockage, batterie, camera, selfie, ecran ];
-      arr.forEach(element => {
-        if(element.value.trim() === ""){
-          element.value = "0";
-          console.log(element.value);
+    
+        if(solde.value.trim() === ""){
+            solde.value = "0";
+          console.log(solde.value);
         }
-      });
-      form.submit();
+        form.submit();
       });
       
 

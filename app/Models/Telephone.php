@@ -9,8 +9,10 @@ class Telephone extends Model
 {
     use HasFactory;
     protected $table = 'telephones';
+    protected $primaryKey = 'id_tele';
 
-    public function telephone()
+
+    public function telephone_img()
     {
         return $this->belongsTo(Telephone_img::class);
     }
