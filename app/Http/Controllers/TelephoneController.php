@@ -53,23 +53,6 @@ class TelephoneController extends Controller
             return redirect()->route('createphoneview')->with('failed','Telephone bien crée sans images');
         }
     }
- 
-    public function showPhones()
-    {
-        $al = Telephone::all();
-        $collect = collect();
-
-        foreach($al as $t){
-            $allimg = Telephone_img::where('tele_id','=',$t->id_tele)->get();
-            $collect->push([
-                'imgs' => $allimg, 
-                'telephones' => $t
-            ]);
-        }
-
-       return view('home', compact('collect'));
-
-    }
     public function showPhone($id)
     {
             

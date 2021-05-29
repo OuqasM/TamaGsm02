@@ -153,8 +153,6 @@
                               @endif
                               <p><i class="fas fa-map-marked-alt"></i> Mrirt, Rue El Farah Qrt 2 appt 101</p>
                               <p><i class="fas fa-phone"></i> 0635666101</p>
-                      
-
 					</div>
 				</div>
 		</div>

@@ -69,7 +69,66 @@ class AccessoirController extends Controller
         $allimg = Accessoir_img::where('acces_id','=',$acss->id_acces)->get();
         return view('accessoire.edit', compact('acss','allimg'));
     }
-    public function deletephone(Request $request){
+  
+    public function UpdateAcs(Request $request){
+
+    
+        $a = Accessoir::where('id_acces','=',$request->idAcs)->first();
+        $a->nom = $request->nomproduit;
+        $a->description = $request->description;
+        $a->prix = $request->prix;
+        $a->type = $request->type;
+        $a->nbr_visite = 0;
+        $a->admin_id = 3;
+        $a->per_solde = $request->solde;
+        $a->save();
+
+        if ($request->has('images')) {
+            $imgs = $request->images;
+           
+            foreach($imgs as $img){
+                $ai = new Accessoir_img();
+                $decodedimage = json_decode($img);
+                $name = time() . '_' . $decodedimage->name;
+                Storage::put('public/images/acs/'.$a->type.'/'. $name, base64_decode($decodedimage->data));
+                $ai->path = 'images/acs/'. $a->type.'/' . $name;
+                $ai->acces_id = $a->id_acces;
+                $ai->save();
+            }
+            $imgs = Accessoir_img::where('acces_id','=',$a->id_acces)->get();
+            foreach($imgs as $img){
+                if($img->path == '../images/no-image.png'){
+                    $rqs = new Request();
+                    $rqs->id =$img->id;
+                    $this->deleteimage($rqs);
+                }
+            }
+            return redirect()->route('editacs',$a->id_acces)->with('success','Accessoire bien modifiée');
+        }
+        $imgs = Accessoir_img::where('acces_id','=',$a->id_acces)->get();
+        if($imgs->count()>0){ 
+            return redirect()->route('editacs',$a->id_acces)->with('failed','Accessoire Modifié sans image ajoutéé');
+        }else{
+            $ai = new Accessoir_img();
+            $ai->path = '../images/no-image.png';
+            $ai->acces_id = $a->id_acces;
+            $ai->save();
+            return redirect()->route('editacs',$a->id_acces)->with('success','Accessoire bien modifiée');
+
+        }
+    }
+    public function deleteimage(Request $request){
+
+        $img = Accessoir_img::where('id','=',$request->id)->first();
+        $image_path = public_path().'/storage/'.$img->path;
+            if($img->path != '../images/no-image.png' && Storage::disk('public')->exists($img->path)){
+                unlink($image_path);
+            }
+            Accessoir_img::where('id','=',$request->id)->delete();
+            return response('done');
+    }
+    
+    public function deleteAcs(Request $request){
         $allimg = Accessoir_img::where('acces_id','=',$request->id)->get();
         foreach($allimg as $img){
             $image_path = public_path().'/storage/'.$img->path;
@@ -80,7 +139,7 @@ class AccessoirController extends Controller
         $allimg = Accessoir_img::where('acces_id','=',$request->id)->delete();
 
         Accessoir::where('id_acces','=',$request->id)->delete();
-        return redirect()->route('getallphones')->with('success','Telephone bien suprimée');
+        return redirect()->route('getallacs')->with('success','Accessoire bien suprimée');
 
     }
 }

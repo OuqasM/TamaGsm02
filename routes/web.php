@@ -14,15 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/index', [App\Http\Controllers\TelephoneController::class, 'showPhones'])->name('index');
+Route::get('/index', [App\Http\Controllers\HomeController::class, 'showAll'])->name('index');
 
 Route::get('/createTI', function () {
     return view('telephone.index');
 });
 Auth::routes();
+Route::get('home', [App\Http\Controllers\HomeController::class, 'showAll'])->name('home');
+
 Route::group(['prefix' => 'telephone'], function () {
-    
-Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::post('CreateTelephone', [App\Http\Controllers\TelephoneController::class, 'createtelephone'])->name('createtelephone');
 Route::get('show/{id}', [App\Http\Controllers\TelephoneController::class, 'showphone'])->name('showphone');
 Route::post('delete', [App\Http\Controllers\TelephoneController::class, 'deletephone'])->name('deletephone');
@@ -38,11 +39,11 @@ Route::group(['prefix' => 'accessoir'], function () {
     
     Route::post('CreateAcs', [App\Http\Controllers\AccessoirController::class, 'createAcs'])->name('createacs');
     //Route::get('show/{id}', [App\Http\Controllers\TelephoneController::class, 'showphone'])->name('showphone');
-    //Route::post('delete', [App\Http\Controllers\TelephoneController::class, 'deletephone'])->name('deletephone');
+    Route::post('deleteAcs', [App\Http\Controllers\AccessoirController::class, 'deleteAcs'])->name('deleteacs');
     Route::get('GetAllAcs', [App\Http\Controllers\AccessoirController::class, 'editAcss'])->name('getallacs');
     Route::get('createAcs', function () { return view('Accessoire.create');})->name('createacsview');
     Route::get('edit/{id}', [App\Http\Controllers\AccessoirController::class, 'editAcs'])->name('editacs');
-    //Route::post('deleteImage', [App\Http\Controllers\TelephoneController::class, 'deleteimage'])->name('deleteImage');
+    Route::post('deleteAcsImage', [App\Http\Controllers\AccessoirController::class, 'deleteimage'])->name('deleteAcsImage');
     Route::post('updateacs', [App\Http\Controllers\AccessoirController::class, 'UpdateAcs'])->name('updateacs');
     
     });

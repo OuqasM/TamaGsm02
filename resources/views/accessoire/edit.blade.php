@@ -85,31 +85,25 @@
                         {{ csrf_field() }}
                       <div class="wrraper row">
                         <div class="col-md-12 col-sm-12">                      
-                            <!-- marque-->
+                            <!-- type-->
                             <div class="form-group ">
                                 <select name="type"  id="catgroup" class="select form-control"  required>
-                                    <option value="" disabled >Marque</option>
-                                    <option style="background-color:#dcdcc3; font-weight: bold;" disabled value="1000">-- Telephones --</option>
-                                    <option value="Huawei" {!! ($acss->type == 'Huawei') ? 'selected': '' !!} >Huawei</option>
-                                    <option value="Samsung"  {!! ($acss->type == 'Samsung') ? 'selected': '' !!}>Samsung</option>
-                                    <option value="Apple"  {!! ($acss->type == 'Apple') ? 'selected': '' !!}>Apple</option>
-                                    <option value="Xiaomi" {!! ($acss->type == 'Xiaomi') ? 'selected': '' !!}>Xiaomi</option>
-                                    <option value="Oppo"  {!! ($acss->type == 'Oppo') ? 'selected': '' !!}>Oppo</option>
-                                    <option value="OnePlus"  {!! ($acss->type == 'OnePlus') ? 'selected': '' !!}>OnePlus</option>
-                                    <option value="Motorola"  {!! ($acss->type == 'Motorola') ? 'selected': '' !!}>Motorola</option>
-                                    <option value="Sony"  {!! ($acss->type == 'Sony') ? 'selected': '' !!}>Sony</option>
-                                    <option value="Autres"  {!! ($acss->type == 'Autres') ? 'selected': '' !!}>Autres</option>
-                                    <option style="background-color:#dcdcc3; font-weight: bold;" disabled value="2000">-- Tablettes et Autres --</option>
-                                    <option value="HuaweiT"  {!! ($acss->type == 'HuaweiT') ? 'selected': '' !!}>Huawei</option>
-                                    <option value="SamsungT"  {!! ($acss->type == 'SamsungT') ? 'selected': '' !!}>Samsung</option>
-                                    <option value="AppleT"  {!! ($acss->type == 'AppleT') ? 'selected': '' !!}>Apple</option>
-                                    <option value="AutresT"  {!! ($acss->type == 'AutresT') ? 'selected': '' !!}>Autres</option>
+                                    <option style="background-color:#dcdcc3; font-weight: bold;" disabled >-- Accessoires Téléphone et Tablette --</option>
+                                    <option value="PTT"  {!! ($acss->type == 'PTT') ? 'selected': '' !!}>Protection téléphone et tablette</option>
+                                    <option value="CTT"  {!! ($acss->type == 'CTT') ? 'selected': '' !!}>Chargeur téléphone et tablette</option>
+                                    <option value="CEE"  {!! ($acss->type == 'CEE') ? 'selected': '' !!}>Casque, écouteurs et enceinte</option>
+                                    <option value="STP" {!! ($acss->type == 'STP') ? 'selected': '' !!}>Support téléphone portable</option>
+                                    <option value="PDT"  {!! ($acss->type == 'PDT') ? 'selected': '' !!}>Pièces détachées téléphone</option>
+                                    <option value="CAT"  {!! ($acss->type == 'CAT') ? 'selected': '' !!}>Cables & adaptateurs téléphone</option>
+                                    <option value="AP"  {!! ($acss->type == 'AP') ? 'selected': '' !!}>Accessoires Photo</option>
+                                    <option value="CTP"  {!! ($acss->type == 'CTP') ? 'selected': '' !!}>Connectique TV / PC</option>
+                                    <option value="AS"  {!! ($acss->type == 'AS') ? 'selected': '' !!}>Accessoires de sport</option>
                                 </select>
                             </div>
-                            <input type="text" value="{{$acss->id_acces}}" hidden name="idphone">
+                            <input type="text" value="{{$acss->id_acces}}" hidden name="idAcs">
                             <!-- nom de produit -->
                             <div class="form-group">
-                              <input type="text" name="nomproduit" value="{{$acss->nom ?: '' }}"  pattern="[A-z0-9\s]+" required class="form-control" placeholder="Nom De Produit">
+                              <input type="text" name="nomproduit" value="{{$acss->nom ?: '' }}"  pattern="[A-z0-9\s]+" required class="form-control" placeholder="Nom">
                             </div>
                             <!-- description -->
                             <div class="form-group">
@@ -176,7 +170,7 @@
       function deleteImage(IdImage){
         $.ajax({
             type : "POST",
-            url : '/telephone/deleteImage',
+            url : '/accessoir/deleteAcsImage',
             headers: {
                 'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
             },
@@ -194,7 +188,21 @@
 
         });
       }
+
+      var form = document.getElementById("createForm");
+      var solde = document.getElementById("solde");
  
+      form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+    
+        if(solde.value.trim() === ""){
+            solde.value = "0";
+          console.log(solde.value);
+        }
+        form.submit();
+      });
+      
 </script>
 
 @endsection

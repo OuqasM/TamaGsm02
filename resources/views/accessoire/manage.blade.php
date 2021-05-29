@@ -54,7 +54,7 @@
                                 <td>{{$couple['acss']->created_at}} par {{$couple['user']->name}}</td>
                                 <td><img @if(count($couple['imgs'])>0) src="{{asset('storage/'.$couple['imgs']->get(0)['path'].'')}}" @endif class="rounded" width="30" height="30" /> <i class="fas fa-camera"> {{count($couple['imgs'])}}</i><td>
                                 <td><a href="{{ route('editacs',$couple['acss']->id_acces) }}"><button class="btn btn-primary rounded-circle"><i class="fas fa-pencil-alt"></i></button></a>
-                                <form style="float:left;" onsubmit="return confirm('Vous êtes sûr de supprimer {{$couple['acss']->nom}}?');" id="formDelete" method="POST">
+                                <form style="float:left;" action="{{route('deleteacs')}}" onsubmit="return confirm('Vous êtes sûr de supprimer {{$couple['acss']->nom}}?');" id="formDelete" method="POST">
                                     @csrf
                                     <input type="text" name="id" value="{{$couple['acss']->id_acces}}" hidden>
                                     <button type="submit"  class="btn btn-primary rounded-circle"><i class="fa fa-trash"></i></button>
