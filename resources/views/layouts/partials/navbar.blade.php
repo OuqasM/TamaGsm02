@@ -1,23 +1,3 @@
-<div class="col-md-12 carousel slide" id="carouselExampleIndicators" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li class="active" data-target="#carouselExampleIndicators" data-slide-to="0"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active"><img class="d-block img-fluid" src="images/islamic.jpg" width="350" height="900" alt="First slide" /></div>
-            <div class="carousel-item"><img class="d-block img-fluid" src="images/islamic.jpg"  width="350" height="900" alt="Second slide" /></div>
-            <div class="carousel-item"><img class="d-block img-fluid" src="images/islamic.jpg"  width="350" height="900" alt="Third slide" /></div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div> 
 <nav class=" navbar navbar-expand-lg sticky-top navbar-default">
   <a class="navbar-brand" href="#">
     <img src="{{ asset('images/logot.png') }}" alt="" height="30" />
@@ -31,9 +11,20 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <ul class="navbar-nav ml-auto">
         <li><a data-text="Home" href="#">Home</a></li>
-    <li><a data-text="About" href="{{ route('getallphones') }}">About</a></li>
-    <li><a data-text="Secvices" href="#">Secvices</a></li>
-    <li><a data-text="Contact Us" href="#">Contact Us</a></li>
+    <li class="nav-item"><a data-text="About" href="{{ route('getallphones') }}">About</a></li>
+    <li class="nav-item"><a data-text="Secvices" href="#">Secvices</a></li>
+    <li class="nav-item" ><a data-text="Contact Us" href="#">Contact Us</a></li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> More</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Foods and Drink</a>
+        <a class="dropdown-item" href="#">Home interior</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Category 1</a>
+        <a class="dropdown-item" href="#">Category 2</a>
+        <a class="dropdown-item" href="#">Category 3</a>
+      </div>
+    </li>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

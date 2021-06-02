@@ -19,8 +19,13 @@ class CreateTelephonesTable extends Migration
             $table->text('description')->nullable();
             $table->string('marque');
             $table->double('prix')->nullable();
-            $table->decimal('nbr_produit');
             $table->decimal('nbr_visite');
+            $table->decimal('ram')->nullable();
+            $table->double('stockage')->nullable();
+            $table->decimal('selfy_cam_resolution')->nullable();
+            $table->decimal('back_cam_reslolution')->nullable();
+            $table->double('taille_ecron')->nullable();
+            $table->decimal('battery')->nullable();
             $table->decimal('per_solde')->default(0);
             $table->bigInteger('admin_id')->unsigned();
             $table->foreign('admin_id')->references('id')->on('users');

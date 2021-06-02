@@ -25,6 +25,7 @@
     "dependencies": {
         "aos": "^2.3.4",
         "bootstrap-icons": "^1.4.1",
-        "filepond": "^4.27.1"
+        "filepond": "^4.27.1",
+        "vue": "^2.6.12"
     }
 }

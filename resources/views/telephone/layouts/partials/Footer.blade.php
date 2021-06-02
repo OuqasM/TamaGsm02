@@ -33,7 +33,6 @@
                 </div>
 
             </section>
-            <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
         </div>
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">

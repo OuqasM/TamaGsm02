@@ -16,14 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/index', [App\Http\Controllers\HomeController::class, 'showAll'])->name('index');
 
-Route::get('/createTI', function () {
-    return view('telephone.index');
-});
 Auth::routes();
 Route::get('home', [App\Http\Controllers\HomeController::class, 'showAll'])->name('home');
 
 Route::group(['prefix' => 'telephone'], function () {
-
 Route::post('CreateTelephone', [App\Http\Controllers\TelephoneController::class, 'createtelephone'])->name('createtelephone');
 Route::get('show/{id}', [App\Http\Controllers\TelephoneController::class, 'showphone'])->name('showphone');
 Route::post('delete', [App\Http\Controllers\TelephoneController::class, 'deletephone'])->name('deletephone');

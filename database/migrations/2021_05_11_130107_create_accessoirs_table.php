@@ -19,7 +19,6 @@ class CreateAccessoirsTable extends Migration
             $table->text('description')->nullable();
             $table->string('type');
             $table->double('prix')->nullable();
-            $table->decimal('nbr_produit');
             $table->decimal('nbr_visite');
             $table->decimal('per_solde')->default(0);
             $table->bigInteger('admin_id')->unsigned();

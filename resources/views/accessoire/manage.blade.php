@@ -49,7 +49,7 @@
                           @foreach ($collect->all() as $couple)
                               <tr id="tele{{$couple['acss']->id_acces}}">
                                 <th>{{$couple['acss']->nom}}</th>
-                                <td>{{$couple['acss']->prix}}/{{$couple['acss']->solde ?:0}}</td>
+                                <td>{{$couple['acss']->prix}}/{{$couple['acss']->per_solde }}</td>
                                 <td>{{$couple['acss']->nbr_visite}}</td>
                                 <td>{{$couple['acss']->created_at}} par {{$couple['user']->name}}</td>
                                 <td><img @if(count($couple['imgs'])>0) src="{{asset('storage/'.$couple['imgs']->get(0)['path'].'')}}" @endif class="rounded" width="30" height="30" /> <i class="fas fa-camera"> {{count($couple['imgs'])}}</i><td>

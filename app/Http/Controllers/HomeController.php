@@ -12,13 +12,13 @@ class HomeController extends Controller
 {
     public function showAll()
     {
-        $al = Telephone::all();
+        $al = Telephone::orderBy('prix', 'DESC')->paginate(5);
         $collectA = collect();
         $collect = collect();
 
-        $ala = Accessoir::all();
+        $ala = Accessoir::orderBy('per_solde', 'DESC')->paginate(5);
         foreach($ala as $ai){
-            $allai = Accessoir_img::where('acces_id','=',$ai->id_acces);
+            $allai = Accessoir_img::where('acces_id','=',$ai->id_acces)->get();
             $collectA->push([
                 'aimgs'=> $allai,
                 'acss' => $ai
@@ -33,7 +33,7 @@ class HomeController extends Controller
             ]);
         }
 
-       return view('welcome', compact('collect'));
+       return view('welcome', compact('collect','collectA'));
 
     }
 }

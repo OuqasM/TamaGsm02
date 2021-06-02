@@ -49,7 +49,7 @@
                           @foreach ($collect->all() as $couple)
                               <tr id="tele{{$couple['telephones']->id_tele}}">
                                 <th>{{$couple['telephones']->nom}}</th>
-                                <td>{{$couple['telephones']->prix}}/{{$couple['telephones']->solde ?:0}}</td>
+                                <td>{{$couple['telephones']->prix}}/{{$couple['telephones']->per_solde}}</td>
                                 <td>{{$couple['telephones']->nbr_visite}}</td>
                                 <td>{{$couple['telephones']->created_at}} par {{$couple['user']->name}}</td>
                                 <td>
