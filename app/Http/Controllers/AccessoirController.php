@@ -142,4 +142,14 @@ class AccessoirController extends Controller
         return redirect()->route('getallacs')->with('success','Accessoire bien suprimée');
 
     }
+
+    public function showPhone($id)
+    {
+            
+            $acs = Accessoir::find($id);
+            $allimg = Accessoir_img::where('acces_id','=',$acs->id_acces)->get();
+
+        return view('accessoire.showaccessoir', compact('acs','allimg'));
+
+    }
 }

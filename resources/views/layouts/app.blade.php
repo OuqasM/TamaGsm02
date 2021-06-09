@@ -9,20 +9,34 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/commusn.js') }}" defer></script>
+    
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/vendors.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/apexcharts.css') }}">
+    <!-- END: Vendor CSS-->
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/bootstrap-extended.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/colors.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/components.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/dark-layout.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/semi-dark-layout.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/jquery.bootstrap-touchspin.css') }}">
+    <!-- END: Theme CSS-->
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/commun.css') }}" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" rel="stylesheet"/>
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/horizontal-menu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/boxicons.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/dashboard-ecommerce.css') }}">
+    <!-- END: Page CSS-->
+    <!-- FilePond -->
+    <link href="{{ asset('css/filepond-plugin-image-preview.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/filepond.min.css') }}" rel="stylesheet">
 
-    <!-- nabar style-->
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/style.css') }}">
+    <!-- END: Custom CSS-->
    
     @yield('contentCss')
      </head>
@@ -43,6 +57,35 @@
     @include('layouts.partials.Footer')
     @endif
     @yield('contentJs')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="{{ asset('newassets/js/vendors.min.js') }}"></script>
+    <script src="{{ asset('newassets/js/LivIconsEvo.tools.js') }}"></script>
+    <script src="{{ asset('newassets/js/LivIconsEvo.defaults.js') }}"></script>
+    <script src="{{ asset('newassets/js/LivIconsEvo.min.js') }}"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{{ asset('newassets/js/apexcharts.min.js') }}"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="{{ asset('newassets/js/horizontal-menu.js') }}"></script>
+    <script src="{{ asset('newassets/js/app-menu.js') }}"></script>
+    <script src="{{ asset('newassets/js/app.js') }}"></script>
+    <script src="{{ asset('newassets/js/components.js') }}"></script>
+    <script src="{{ asset('newassets/js/footer.min.js') }}"></script>
+    <script src="{{ asset('newassets/js/jquery.bootstrap-touchspin.js') }}"></script>
+    <!-- END: Theme JS-->
+
+    <!-- FilePond Js -->
+    <script src="{{ asset('js/filepond-plugin-file-encode.js') }}"></script>
+    <script src="{{ asset('js/filepond-plugin-file-validate-type.min.js') }}"></script>
+    <script src="{{ asset('js/filepond-plugin-image-preview.min.js') }}"></script>
+    <script src="{{ asset('js/filepond.min.js') }}"></script>
+    <!-- BEGIN: Page JS-->
+    <script src="{{ asset('newassets/js/dashboard-ecommerce.js') }}"></script>
+    <script src="{{ asset('newassets/js/chart-apex.min.js') }}"></script>
+    <script src="{{ asset('newassets/js/number-input.js') }}"></script>
     <script>
         // When the user scrolls the page, execute myFunction
         window.onscroll = function() {myFunction()};

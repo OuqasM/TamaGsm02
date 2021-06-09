@@ -56,9 +56,8 @@ class TelephoneController extends Controller
     public function showPhone($id)
     {
             
-            $tele = Telephone::where('id_tele','=',$id)->first();
+            $tele = Telephone::find($id);
             $allimg = Telephone_img::where('tele_id','=',$tele->id_tele)->get();
-
         return view('telephone.showphone', compact('tele','allimg'));
 
     }
@@ -97,7 +96,7 @@ class TelephoneController extends Controller
 
     }
     public function editphone($id){
-        $tele = Telephone::where('id_tele','=',$id)->first();
+        $tele = Telephone::find($id);
         $allimg = Telephone_img::where('tele_id','=',$tele->id_tele)->get();
         return view('telephone.edit', compact('tele','allimg'));
 

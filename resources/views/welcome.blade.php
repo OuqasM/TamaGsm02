@@ -1,20 +1,12 @@
 @extends('layouts.app')    
 @section('contentCss')
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/swiper.min.css') }}">
 
     <style>
              .price {
                     color: #ff9f1a; 
                 }               
-                .card {
-                height: 450px;
-                width: 300px;
-                transition: all 0.20s ease-in-out;  
-                }
-                .card:hover {
-                transition: 0.25s ease-out;
-                box-shadow: 0 5px 5px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-                }
+             
                 .swiper-container { 
                     width: 100%;
                     height: 100%;
@@ -39,7 +31,7 @@
 
                 div .cam{
                     position: absolute;
-                    top: 12px;
+                    bottom: 12px;
                     left: 12px;
                     color: black;
                     }
@@ -49,27 +41,29 @@
                         background-color: rgba(256, 256, 265, 1);
                         border-radius: 20px;
                         box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;                      }
-                .card-body img ,.swiper-slide img{
+                .card-body img {
                     height: 300px;
                     mix-blend-mode: multiply;
                     object-fit: cover;
+                    border-radius: 15px;
+                    margin: 1px;
 
                 }
                    
-</style>
+    </style>
 @endsection
 @section('content')
         <div class="container">
         {{-- <div class=" col-sm-9"> --}}
-            <div class="  containerP px-2 my-5 mx-2">    
-                <div class="row">
+            <div class="  card px-2 my-5 mx-2">    
+                <div class="row card-header">
                     <h2 class="col-9 card-title ml-3 ">Telephones et Tabletes</h2>
-                    <a href="#" class="btn btn-outline-primary col-2 pb-0">Voir Tous..</a>
+                    <a href="#" class="btn btn-outline-primary">Voir Tous..</a>
                 </div>
-                    <div class="swiper-container mySwiper">
+                    <div class="swiper-container mySwiper card-body">
                         <div class="swiper-wrapper">
                             @foreach ($collect as $item)
-                            <div class="swiper-slide pb-3 col-md-3 col">
+                            <div class="swiper-slide pb-3 col">
                                 <div class="card bg-light mb-3 ">
                                     <div class="card-body">
                                         <div><i class="fas fa-camera cam"> {{count($item['imgs'])}}</i>
@@ -105,7 +99,7 @@
                         <div class="swiper-wrapper">
                     
                             @foreach ($collectA as $item)
-                            <div class="swiper-slide col-md-3 pb-5 col">
+                            <div class="swiper-slide pb-5 col">
                                 <div class="card" style="width: 18rem;">
                                         <div><i class="fas fa-camera cam"> {{count($item['aimgs'])}}</i>
                                             @if($item['aimgs']->get(0)!=null)
@@ -152,7 +146,7 @@
         </div>
 @endsection
 @section('contentJs')   
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="{{ asset('newassets/js/swiper.min.js') }}"></script>
     <script>
         var swiper = new Swiper(".mySwiper", {
         effect: "coverflow",

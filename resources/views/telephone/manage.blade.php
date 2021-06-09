@@ -47,7 +47,7 @@
                       </thead>
                       <tbody>
                           @foreach ($collect->all() as $couple)
-                              <tr id="tele{{$couple['telephones']->id_tele}}">
+                              <tr>
                                 <th>{{$couple['telephones']->nom}}</th>
                                 <td>{{$couple['telephones']->prix}}/{{$couple['telephones']->per_solde}}</td>
                                 <td>{{$couple['telephones']->nbr_visite}}</td>

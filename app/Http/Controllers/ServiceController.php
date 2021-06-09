@@ -12,7 +12,7 @@ class ServiceController extends Controller
     
         $s = new Service();
         $s->nom = $request->nom;
-        $s->description = $request->description;
+        $s->desctiption = $request->description;
         $s->prix = $request->prix;
     
         if ($request->has('image')) {
@@ -49,7 +49,7 @@ class ServiceController extends Controller
 
     }
 
-    public function editphone($id){
+    public function editService($id){
         $service = Service::find($id);
         return view('service.edit', compact('services'));
 

@@ -69,7 +69,7 @@
   </style> 
 @endsection
 @section('content')    
-      <div class="container">  
+      <div class="container ">  
         <div class="card px-3">
             @if(Session::has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">

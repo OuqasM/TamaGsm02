@@ -47,13 +47,13 @@
                       </thead>
                       <tbody>
                           @foreach ($collect->all() as $couple)
-                              <tr id="tele{{$couple['acss']->id_acces}}">
+                              <tr>
                                 <th>{{$couple['acss']->nom}}</th>
                                 <td>{{$couple['acss']->prix}}/{{$couple['acss']->per_solde }}</td>
                                 <td>{{$couple['acss']->nbr_visite}}</td>
                                 <td>{{$couple['acss']->created_at}} par {{$couple['user']->name}}</td>
                                 <td><img @if(count($couple['imgs'])>0) src="{{asset('storage/'.$couple['imgs']->get(0)['path'].'')}}" @endif class="rounded" width="30" height="30" /> <i class="fas fa-camera"> {{count($couple['imgs'])}}</i><td>
-                                <td><a href="{{ route('editacs',$couple['acss']->id_acces) }}"><button class="btn btn-primary rounded-circle"><i class="fas fa-pencil-alt"></i></button></a>
+                                <td><a  href="{{ route('editacs',$couple['acss']->id_acces) }}"><button class="btn btn-primary rounded-circle"><i class="fas fa-pencil-alt"></i></button></a>
                                 <form style="float:left;" action="{{route('deleteacs')}}" onsubmit="return confirm('Vous êtes sûr de supprimer {{$couple['acss']->nom}}?');" id="formDelete" method="POST">
                                     @csrf
                                     <input type="text" name="id" value="{{$couple['acss']->id_acces}}" hidden>
