@@ -6,14 +6,18 @@
              .price {
                     color: #ff9f1a; 
                 }               
-             
+                .bloc_left_price {
+                color: #c01508;
+                text-align: center;
+                font-weight: bold;
+                font-size: 150%;
+                }
                 .swiper-container { 
                     width: 100%;
                     height: 100%;
                 }
                 .swiper-slide {
                     text-align: center;
-                    font-size: 18px;
                     /* Center slide text vertically */
                     display: -webkit-box;
                     display: -ms-flexbox;
@@ -27,26 +31,31 @@
                     -ms-flex-align: center;
                     -webkit-align-items: center;
                     align-items: center;
+                    padding: 0;
+
                 }
 
-                div .cam{
+                .card-body .ficon{
                     position: absolute;
                     bottom: 12px;
                     left: 12px;
-                    color: black;
+                    color: rgb(0, 0, 0);
                     }
-                    .containerP {
-                        padding-top: 20px;
-                        padding-bottom: 20px;
-                        background-color: rgba(256, 256, 265, 1);
-                        border-radius: 20px;
-                        box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;                      }
-                .card-body img {
-                    height: 300px;
+                    
+                .card img {
                     mix-blend-mode: multiply;
                     object-fit: cover;
+                    margin: 0px;
+                    width: 100%;
+                    height: 240px;
                     border-radius: 15px;
-                    margin: 1px;
+                }
+            
+                .cardC{
+                    height: 380px;
+                    width: 200px;
+                    border:solid 1px;
+                    border-radius: 15px;
 
                 }
                    
@@ -54,95 +63,143 @@
 @endsection
 @section('content')
         <div class="container">
-        {{-- <div class=" col-sm-9"> --}}
-            <div class="  card px-2 my-5 mx-2">    
-                <div class="row card-header">
-                    <h2 class="col-9 card-title ml-3 ">Telephones et Tabletes</h2>
-                    <a href="#" class="btn btn-outline-primary">Voir Tous..</a>
+            <section id="widgets-Statistics">
+                <div class="row">
+                    <div class="col-12 mt-1 mb-2">
+                        <h4>Statistics</h4>
+                        <hr>
+                    </div>
                 </div>
-                    <div class="swiper-container mySwiper card-body">
+                <div class="row">
+                    <div class="col-xl-3 col-md-4 col-sm-6">
+                        <div class="card text-center">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="badge-circle badge-circle-lg badge-circle-light-info mx-auto my-1">
+                                        <i class="bx bx-mobile-alt font-medium-5"></i>
+                                    </div>
+                                    <p class="text-muted mb-0 line-ellipsis">Telephone et Tablettes</p>
+                                    <h2 class="mb-0">48</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-4 col-sm-6">
+                        <div class="card text-center">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="badge-circle badge-circle-lg badge-circle-light-warning mx-auto my-1">
+                                        <i class="bx bx-usb font-medium-5"></i>
+                                    </div>
+                                    <p class="text-muted mb-0 line-ellipsis">Accsessoires</p>
+                                    <h2 class="mb-0">17</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-4 col-sm-6">
+                        <div class="card text-center">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto my-1">
+                                        <i class='bx bxs-briefcase-alt-2'></i>
+                                    </div>
+                                    <p class="text-muted mb-0 line-ellipsis">Services</p>
+                                    <h2 class="mb-0">29</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-4 col-sm-6">
+                        <div class="card text-center">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="badge-circle badge-circle-lg badge-circle-light-primary mx-auto my-1">
+                                        <i class='bx bxs-wrench' ></i>
+                                    </div>
+                                    <p class="text-muted mb-0 line-ellipsis">Piece de ..</p>
+                                    <h2 class="mb-0">72</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr>
+            <div class="card px-2">    
+                    <div class="card-header py-1">
+                        <h2 class="card-title float-left">Telephones et Tabletes</h2>
+                        <a href="#" class="card-title btn-outline-primary round px-1 float-right">Plus</a>
+                    </div>
+                    <div class="swiper-container  pb-3 mySwiper card-body">
                         <div class="swiper-wrapper">
                             @foreach ($collect as $item)
-                            <div class="swiper-slide pb-3 col">
-                                <div class="card bg-light mb-3 ">
-                                    <div class="card-body">
-                                        <div><i class="fas fa-camera cam"> {{count($item['imgs'])}}</i>
+                            <div class="swiper-slide px-2 col">
+                                <div class="card mb-0 cardC">
+                                        <div class="card-header p-0">
                                             @if($item['imgs']->get(0)!=null)
-                                            <img src="{{asset('storage/'.$item['imgs']->get(0)['path'].'')}}" class="card-img-top"/>
+                                                <img src="{{asset('storage/'.$item['imgs']->get(0)['path'].'')}}"/>
                                             @else
-                                            <img src="{{asset('images/no-image.png')}}" class="card-img-top"/>        
+                                                <img src="{{asset('images/no-image.png')}}"/>        
                                             @endif
-                                        </div>                                        <h5 class="card-title">{{$item['telephones']->nom}}</h5>
-                                        <div class="separator">Prix</div>
+                                        </div>
+                                        <div class="card-body p-1">
+                                            <a><h2 class="card-title">{{$item['telephones']->nom}}</h2></a>
+                                            <div class="card-footer"> 
+                                                                        @if($item['telephones']->per_solde > 0)
+                                                                        <small class="price"><del>{{$item['telephones']->prix}}<small >DH</small></del><strong class="bloc_left_price">{{$item['telephones']->per_solde}}</strong><small style="color: #c01508;">DH</small></small>
+                                                                        @else 
+                                                                            <p class="price">{{$item['telephones']->prix}}DH</p>
+                                                                        @endif
+                                            </div>
+                                            <i class="ficon bx bx-camera"> {{count($item['imgs'])}}</i>
+                                        </div>
+                                </div>
 
-                                                @if($item['telephones']->per_solde > 0)
-                                                <p class="price"><del>{{$item['telephones']->prix}}<small>dh</small></del><strong class="bloc_left_price">{{$item['telephones']->per_solde}}<small>dh</small></strong></p>
-                                                @else 
-                                                    <p class="price">{{$item['telephones']->prix}}<small>dh</small></p>
-                                                @endif
-                                    </div>
+
+
                                 </div>
-                            </div>
-                        @endforeach
-                            
-                    </div>
-                    <div class="swiper-pagination"></div>
-                    </div>
-            </div>
-            
-            <div class="containerP px-2 my-5 mx-2">    
-                <div class="row">
-                    <h2 class="col-9 card-title">Accessoires</h2>
-                    <a href="#" class="btn btn-outline-primary col-2">Voir Tous..</a>
-                </div>
-                    <div class="swiper-container mySwiper">
-                        <div class="swiper-wrapper">
-                    
-                            @foreach ($collectA as $item)
-                            <div class="swiper-slide pb-5 col">
-                                <div class="card" style="width: 18rem;">
-                                        <div><i class="fas fa-camera cam"> {{count($item['aimgs'])}}</i>
-                                            @if($item['aimgs']->get(0)!=null)
-                                            <img src="{{asset('storage/'.$item['aimgs']->get(0)['path'].'')}}" class="card-img-top"/>
-                                            @else
-                                            <img src="{{asset('images/no-image.png')}}" class="card-img-top"/>        
-                                            @endif
-                                        </div>
-                                        <div class="card-body">
-                                            <a><h2 class="">{{$item['acss']->nom}}</h2></a>
-                                                @if($item['acss']->per_solde > 0)
-                                                <p class="price"><del>{{$item['acss']->prix}}DH</del><strong class="bloc_left_price">{{$item['acss']->per_solde}}DH</strong></p>
-                                                @else 
-                                                    <p class="price">{{$item['acss']->prix}}DH</p>
-                                                @endif
-                                        </div>
-                                </div>
-                            </div>
                             @endforeach  
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
             </div>
-        {{-- </div> --}}
-        {{-- <div class="px-5 col-sm-3 ">
-            <div class="card bg-light mb-3">
-                <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
-                <ul class="list-group category_block">
-                    <li class="list-group-item"><a href="category.html">Telephones & Tablettes</a></li>
-                    <li class="list-group-item"><a href="category.html">Accessoires</a></li>
-                    <li class="list-group-item"><a href="category.html">Nos services</a></li>
-                </ul>
-            </div>
-            <div class="card bg-light mb-3">
-                <div class="card-header bg-success text-white text-uppercase">Les promotion d'aujourd'huit</div>
-                <div class="card-body">
-                    <img class="img-fluid" src="https://dummyimage.com/600x400/55595c/fff" />
-                    <h5 class="card-title">Product title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p class="bloc_left_price">99.00 $</p>
+            <hr>
+            <div class="card px-2">    
+                <div class="card-header py-1">
+                    <h2 class="card-title float-left">Accessoires</h2>
+                    <a href="#" class="card-title btn-outline-secondary round px-1 float-right">Plus</a>
                 </div>
+                    <div class="swiper-container pb-3 mySwiper card-body">
+                        <div class="swiper-wrapper">
+                            @foreach ($collectA as $item)
+                                <div class="swiper-slide px-2 col">
+                                    <div class="card mb-0 cardC">
+                                            <div class="card-header p-0">
+                                                @if($item['aimgs']->get(0)!=null)
+                                                <img src="{{asset('storage/'.$item['aimgs']->get(0)['path'].'')}}"/>
+                                                @else
+                                                <img src="{{asset('images/no-image.png')}}" />        
+                                                @endif
+                                            </div>
+                                            <div class="card-body p-1">
+                                                <a class="card-title">{{$item['acss']->nom}}</a>
+                                                <div class="card-footer">@if($item['acss']->per_solde > 0)
+                                                                        <small class="price"><del>{{$item['acss']->prix}}<small >DH</small></del><strong class="bloc_left_price">{{$item['acss']->per_solde}}</strong><small style="color: #c01508;">DH</small></small>
+                                                                        @else 
+                                                                            <p class="price">{{$item['acss']->prix}}DH</p>
+                                                                        @endif
+                                                </div>
+                                                <i class="ficon bx bx-camera">{{count($item['aimgs'])}}</i>
+                                            </div>
+                                    </div>
+                                </div>
+                            @endforeach  
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
             </div>
-        </div>  --}}
+        
         </div>
 @endsection
 @section('contentJs')   

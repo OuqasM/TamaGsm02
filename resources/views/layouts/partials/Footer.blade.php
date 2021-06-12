@@ -2,7 +2,7 @@
 <footer class="bg-dark text-center text-white footer">
     <!-- Grid container -->
     <div class="container">
-        <div class="row">
+        <di0v class="row">
             <section class="">
                 <!--Grid row-->
                 <div class="row">
