@@ -12,7 +12,7 @@ class ServiceController extends Controller
     
         $s = new Service();
         $s->nom = $request->nom;
-        $s->desctiption = $request->description;
+        $s->description = $request->description;
         $s->prix = $request->prix;
     
         if ($request->has('image')) {
@@ -30,31 +30,35 @@ class ServiceController extends Controller
             return redirect()->route('createsrvview')->with('failed','Service crée sans images');
         }
     }
+
     public function showService($id)
     {        
         $service = Service::find($id)->first();
         return view('service.showservice', compact('service'));
-
     }
 
-    public function editServices()
+    public function GetAllServices()
     {
        $services = Service::all();
        return view('service.manage', compact('services'));
     }
     public function deleteService(Request $request){
 
-        Service::find($request->id)->delete();
-        return redirect()->route('getallServices')->with('success','Service bien suprimée');
+        $service = Service::find($request->id);
+        $r = new Request();
+        $r->path = $service->image; 
+        $this->deleteimage($r);
+        $service->delete();
+        return redirect()->route('getallsrv')->with('success','Service bien suprimée');
 
     }
 
     public function editService($id){
         $service = Service::find($id);
-        return view('service.edit', compact('services'));
-
+        return view('service.edit', compact('service'));
     }
-    public function Updatetelephone(Request $request){
+
+    public function UpdateService(Request $request){
 
     
         $s = Service::find($request->id);
@@ -65,7 +69,7 @@ class ServiceController extends Controller
         if ($request->has('image')) {
                 
                 $r = new Request();
-                $r->path = $s->image; 
+                $r->path = $s->image;
                 $this->deleteimage($r);
 
                 $img = $request->image; 
@@ -75,20 +79,29 @@ class ServiceController extends Controller
                 $s->image = 'images/services/'. $name;
                 $s->save();
 
-                return redirect()->route('createsrvview')->with('success','Service bien crée ');
+                return redirect()->route('editsrv',$s->id)->with('success','Service bien Modifié ');
 
         }else{
             $s->image = '../images/no-image.png';
             $s->save();
-            return redirect()->route('createsrvview')->with('failed','Service crée sans images');
+            return redirect()->route('editsrv',$s->id)->with('failed','Service crée sans images');
         } 
     }
     public function deleteimage(Request $request){
-
-        $image_path = public_path().'/storage/'.$request->path;
+        if($request->path != '../images/no-image.png'){
+       
+            $image_path = public_path().'/storage/'.$request->path;
             if(Storage::disk('public')->exists($request->path)){
                 unlink($image_path);
             }
+            $service = Service::where('image','=',$request->path)->first();
+            $service->image = '';
+            $service->save();
             return response('done');
+        }
+        else {
+            return response('lla');
+
+        }
     }
 }

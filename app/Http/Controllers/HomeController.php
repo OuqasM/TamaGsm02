@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Telephone;
 use App\Models\Telephone_img;
 use App\Models\User;
+use App\Models\Service;
 use App\Models\Accessoir;
 use App\Models\Accessoir_img;
 class HomeController extends Controller
 {
     public function showAll()
     {
-        $al = Telephone::orderBy('prix', 'DESC')->paginate(5);
+        $al = Telephone::orderBy('per_solde', 'DESC')->paginate(5);
         $collectA = collect();
         $collect = collect();
 
@@ -24,6 +25,7 @@ class HomeController extends Controller
                 'acss' => $ai
             ]);
         }
+        $services = Service::orderBy('prix', 'DESC')->paginate(5);
 
         foreach($al as $t){
             $allimg = Telephone_img::where('tele_id','=',$t->id_tele)->get();
@@ -33,7 +35,7 @@ class HomeController extends Controller
             ]);
         }
 
-       return view('welcome', compact('collect','collectA'));
+       return view('welcome', compact('collect','collectA','services'));
 
     }
 }

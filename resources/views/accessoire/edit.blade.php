@@ -1,93 +1,56 @@
-@extends('telephone.layouts.TelephoneLayouts')
-@section('contenetCss')
-  <style>
-            input[type=number]::-webkit-inner-spin-button, 
-            input[type=number]::-webkit-outer-spin-button { 
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
-                margin: 0; 
-            }
-            input:focus {
-            outline-color: rgb(233, 0, 0);
-            }  
-            img {
-            max-width: 100%; 
-          }
-            .tab-content {
-            overflow: hidden; }
-            .tab-content img {
-            width: 100%;
-            -webkit-animation-name: opacity;
-              animation-name: opacity;
-            -webkit-animation-duration: .3s;
-              animation-duration: .3s; }
-
-            .card {
-            margin-top: 50px;
-            background: #eee;
-            padding: 3em;
-            line-height: 1.5em; }
-
-            @media screen and (min-width: 997px) {
-            .wrapper {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex; } 
-          }
-            .colors {
-            -webkit-box-flex: 1;
-            -webkit-flex-grow: 1;
-            -ms-flex-positive: 1;
-            flex-grow: 1; 
-            }
-            .product-title, .price, .sizes, .colors {
-            text-transform: UPPERCASE;
-            font-weight: bold; 
-          }
-            .checked, .price span {
-            color: #ff9f1a; }
-            .product-title {
-            margin-top: 0; }
-            .size {
-            margin-right: 10px; }
-            .size:first-of-type {
-            margin-left: 40px; }
-            /*# sourceMappingURL=style.css.map */
-  </style> 
+@extends('accessoire.layouts.AccessoirLayout')
+@section('Css')
+  <style></style>   
 @endsection
 @section('content')    
-      <div class="container">  
-        <div class="card px-3">
-            @if(Session::has('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ Session::get('success') }}
-                    @php
-                        Session::forget('success');
-                    @endphp
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 pt-5">
+      <div class="card ">
+          <div class="card-header">
+              <h4 class="card-title">Ajouter Un accessoire</h4>
+          </div>
+          <div class="card-content">
+              <div class="card-body">
+              @if(Session::has('success'))
+                <div class="alert border-primary alert-dismissible mb-2" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    <div class="d-flex align-items-center">
+                        <i class="bx bx-star"></i>
+                        <span>
+                            {{ Session::get('success') }}
+                            @php
+                                Session::forget('success');
+                            @endphp
+                        </span>
+                    </div>
                 </div>
-            @elseif(Session::has('failed'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ Session::get('failed') }}
-                    @php
-                        Session::forget('failed');
-                    @endphp
+              @elseif(Session::has('failed'))
+                <div class="alert border-warning alert-dismissible mb-2" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    <div class="d-flex align-items-center">
+                        <i class="bx bx-star"></i>
+                        <span>
+                            {{ Session::get('failed') }}
+                            @php
+                                Session::forget('failed');
+                            @endphp
+                        </span>
+                    </div>
                 </div>
-            @endif
-                    <form action="{{route('updateacs')}}" class="contact-form" name="createForm" id="createForm" enctype="multipart/form-data"  method="POST">
-                        {{ csrf_field() }}
-                      <div class="wrraper row">
-                        <div class="col-md-12 col-sm-12">                      
-                            <!-- type-->
-                            <div class="form-group ">
-                                <select name="type"  id="catgroup" class="select form-control"  required>
+              @endif
+                        <form action="{{route('updateacs')}}" class="form" name="createForm" id="createForm" enctype="multipart/form-data" method="POST">
+                            {{ csrf_field() }}
+                            <input type="text" value="{{$acss->id_acces}}" hidden name="idAcs">
+                          <div class="wrraper row">
+                            <div class="col-md-12 col-sm-12">                      
+                                <!-- Type-->
+                                <div class="form-group ">
+                                  <select name="type"  id="catgroup" class="select form-control"  required>
                                     <option style="background-color:#dcdcc3; font-weight: bold;" disabled >-- Accessoires Téléphone et Tablette --</option>
                                     <option value="PTT"  {!! ($acss->type == 'PTT') ? 'selected': '' !!}>Protection téléphone et tablette</option>
                                     <option value="CTT"  {!! ($acss->type == 'CTT') ? 'selected': '' !!}>Chargeur téléphone et tablette</option>
@@ -99,63 +62,78 @@
                                     <option value="CTP"  {!! ($acss->type == 'CTP') ? 'selected': '' !!}>Connectique TV / PC</option>
                                     <option value="AS"  {!! ($acss->type == 'AS') ? 'selected': '' !!}>Accessoires de sport</option>
                                 </select>
-                            </div>
-                            <input type="text" value="{{$acss->id_acces}}" hidden name="idAcs">
-                            <!-- nom de produit -->
-                            <div class="form-group">
-                              <input type="text" name="nomproduit" value="{{$acss->nom ?: '' }}"  pattern="[A-z0-9\s]+" required class="form-control" placeholder="Nom">
-                            </div>
-                            <!-- description -->
-                            <div class="form-group">
-                              <textarea name="description" rows="5" class="form-control" 
-                               aria-multiline="true" cols="50">{{$acss->description ?: '' }}</textarea>
-                              </div>
-                            <!-- prix -->
-                            <div class="form-group">
-                              <input type="number" placeholder="Prix" class="form-control" value="{{$acss->prix ?: '0' }}" required  min="0.0" step="0.1" id="prix" name="prix" />DH
-                            </div>
-                            <!-- solde -->
-                            <div class="form-group">
-                              <input type="number" placeholder="Solde" class="form-control" value="{{$acss->per_solde }}" min="0.0" step="0.1" id="solde" name="solde" />DH
-                            </div>
-                            <!--file-->                
-                            <div class="form-group">
-                              <input type="file" class="images" id="images" name="images[]" accept="image/png,image/jpeg" multiple>  
-                            </div>
-                            <div class="form-group">
-                            @foreach ($allimg as $img)
-                            <div class="row" id="img{{$img->id}}" >
-                            <div class="col">
-                            <img src="{{asset('storage/'.$img->path)}}" class="rounded" width="60" height="60" />
-                            </div>
-                            <div class="col">
-                              <div class="row"><a onclick="deleteImage({{$img->id}})" href="#"><i class="fa fa-trash" aria-hidden="true" >Supprimer</i></a></div>
-                              <div class="row"><a href="{{asset('storage/'.$img->path)}}" download><i class="fa fa-download"></i>Telecharger<br></a></div>
-                            </div>
-                          </div>
-                            @endforeach
-                            </div>
-                        </div>
-                        <!-- Upload button -->
-                        <div class="form-group">
-                            <button class="btn btn-secondary" type="submit" value="upload">Enregistre</button>
-                        </div>      
-                      </div>  
-                    </form>                      
+                                </div>
+                                <!-- nom de produit -->
+                                <div class="form-group">
+                                  <div class="form-label-group">
+                                    <input type="text" id="nom" name="nomproduit" value="{{$acss->nom ?: '' }}" pattern="[A-z0-9\s]+" required class="form-control" placeholder="Nom">
+                                    <label for="nom">Nom d'accessoire</label>
+                                </div>
+                                </div>
+                                <!-- description -->
+                                <div class="form-group">
+                                  <div class="form-label-group">
+                                    <textarea name="description" rows="5" class="form-control" placeholder="Description" aria-multiline="true" cols="50" id="description-floating">{{$acss->description ?: '' }}</textarea>                                 
+                                    <label for="description-floating">Description d'accessoire</label>
+                                </div>
+                                </div>
+                                <!-- prix -->
+                                <div class="form-group">
+                                  <div class="form-label-group">
+                                  <input type="number" placeholder="Prix" class="form-control" value="{{$acss->prix ?: '' }}" required step="0.1" min="0.0" id="prix" name="prix" />DH
+                                  <label for="prix">prix d'accessoir</label>  
+                                  </div>
+                                </div>
+                                <!-- solde -->
+                                <div class="form-group">
+                                  <div class="form-label-group">
+                                  <input type="number" placeholder="Solde" step="0.1" class="form-control" value="{{$acss->per_solde ?: '' }}" min="0.0" id="solde" name="solde" />DH
+                                  <label for="solde">Ajouter un solde</label>  
+                                  </div>
+                                </div>
+                                <!--file-->                
+                                <div class="form-group">
+                                  <input type="file" class="images" id="images" name="images[]" accept="image/png,image/jpeg" multiple>  
+                                </div>
+                                <div class="form-group">
+                                    @foreach ($allimg as $img)
+                                    <div class="row" id="img{{$img->id}}" >
+                                      <div class="col">
+                                        <img src="{{asset('storage/'.$img->path)}}" class="rounded" width="60" height="60" />
+                                      </div>
+                                      <div class="col">
+                                        <div class="row"><a onclick="deleteImage({{$img->id}})" href="#"><i class="bx bx-trash" aria-hidden="true" ></i></a></div>
+                                        <div class="row"><a href="{{asset('storage/'.$img->path)}}" download><i class="bx bx-download"></i><br></a></div>
+                                      </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <!-- Upload button -->
+                                <div class="col-12 px-0 d-flex justify-content-end">
+                                  <button type="submit" class="btn btn-primary mr-1 mb-1">Enregistrer</button>
+                                  <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Initialiser</button>
+                                </div>
+                              </div>    
+                          </div>  
+                        </form>                      
               </div>
+          </div> 
       </div>
-  @endsection
-@section('contentJs')
+    </div>  
+  </div>
+</div>
+@endsection
+@section('Js')
 
 <script type="text/javascript">
-        FilePond.registerPlugin(
+            FilePond.registerPlugin(
             FilePondPluginFileEncode,
             FilePondPluginFileValidateType,
             FilePondPluginImagePreview,
         );        
-        FilePond.create(document.getElementById('images'), {
+            FilePond.create(document.getElementById('images'), {
             name: 'images[]',
-            labelIdle: 'Ajouter des images',
+            labelIdle: 'Faire glisser ou choisir Une Image',
             allowFileTypeValidation: true,
             acceptedFileTypes: ['.png', '.jpeg', '.jpg'],
             labelFileTypeNotAllowed: 'Le type du fichier est invalide vous devez choisir une image',
@@ -163,11 +141,10 @@
             imagePreviewMaxHeight: 200,
             imageCropAspectRatio: '1:1',
             credits: null,
-            instantUpload: false,
+            instantUpload: false
             
         });
-      
-      function deleteImage(IdImage){
+        function deleteImage(IdImage){
         $.ajax({
             type : "POST",
             url : '/accessoir/deleteAcsImage',
@@ -202,7 +179,8 @@
         }
         form.submit();
       });
-      
+
+    
 </script>
 
 @endsection

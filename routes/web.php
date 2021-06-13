@@ -49,7 +49,7 @@ Route::group(['prefix' => 'service'], function () {
     Route::post('CreateArv', [App\Http\Controllers\ServiceController::class, 'createService'])->name('createsrv');
     //Route::get('show/{id}', [App\Http\Controllers\ServiceController::class, 'showphone'])->name('showphone');
     Route::post('deleteArv', [App\Http\Controllers\ServiceController::class, 'deleteService'])->name('deletesrv');
-    Route::get('GetAllSrv', [App\Http\Controllers\ServiceController::class, 'editServices'])->name('getallsrv');
+    Route::get('GetAllSrv', [App\Http\Controllers\ServiceController::class, 'GetAllServices'])->name('getallsrv');
     Route::get('createSrv', function () { return view('service.create');})->name('createsrvview');
     Route::get('edit/{id}', [App\Http\Controllers\ServiceController::class, 'editService'])->name('editsrv');
     Route::post('deleteSrvImage', [App\Http\Controllers\ServiceController::class, 'deleteimage'])->name('deletesrvImage');

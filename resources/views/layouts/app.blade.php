@@ -23,6 +23,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/dark-layout.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/semi-dark-layout.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/jquery.bootstrap-touchspin.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/swiper.min.css') }}">
+
     <!-- END: Theme CSS-->
 
     <!-- BEGIN: Page CSS-->
@@ -56,7 +58,6 @@
     @if (request()->route()->getName() === 'index')        
     @include('layouts.partials.Footer')
     @endif
-    @yield('contentJs')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{ asset('newassets/js/vendors.min.js') }}"></script>
     <script src="{{ asset('newassets/js/LivIconsEvo.tools.js') }}"></script>
@@ -65,7 +66,8 @@
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="{{ asset('newassets/js/apexcharts.min.js') }}"></script>
+    {{-- <script src="{{ asset('newassets/js/apexcharts.min.js') }}"></script> --}}
+    <script src="{{ asset('newassets/js/swiper.min.js') }}"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
@@ -84,7 +86,7 @@
     <script src="{{ asset('js/filepond.min.js') }}"></script>
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('newassets/js/dashboard-ecommerce.js') }}"></script>
-    <script src="{{ asset('newassets/js/chart-apex.min.js') }}"></script>
+    {{-- <script src="{{ asset('newassets/js/chart-apex.min.js') }}"></script> --}}
     <script src="{{ asset('newassets/js/number-input.js') }}"></script>
     <script>
         // When the user scrolls the page, execute myFunction
@@ -102,5 +104,6 @@
         }
         }
 </script>
+@yield('contentJs')
 </body>
 </html>

@@ -21,7 +21,7 @@
      <!-- FilePond -->
     <link href="{{ asset('css/filepond-plugin-image-preview.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/filepond.min.css') }}" rel="stylesheet">
- <style>
+    <style>
 
     </style>
     @yield('contenetCss')

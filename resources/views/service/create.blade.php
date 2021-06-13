@@ -1,130 +1,94 @@
-@extends('accessoire.layouts.AccessoirLayout')
-@section('contentCss')
+@extends('service.layouts.ServiceLayouts')
+@section('Css')
   <style>
-            input[type=number]::-webkit-inner-spin-button, 
-            input[type=number]::-webkit-outer-spin-button { 
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
-                margin: 0; 
+            .CentredDiv{
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%,-50%);
             }
-            input:focus {
-
-            outline-color: rgb(233, 0, 0);
-            }
-            img {
-            max-width: 100%; }
-
-
-            .tab-content {
-            overflow: hidden; }
-            .tab-content img {
-            width: 100%;
-            -webkit-animation-name: opacity;
-              animation-name: opacity;
-            -webkit-animation-duration: .3s;
-              animation-duration: .3s; }
-
-            .card {
-            margin-top: 50px;
-            background: #eee;
-            padding: 3em;
-            line-height: 1.5em; }
-
-            @media screen and (min-width: 997px) {
-            .wrapper {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex; } }
-
-
-            .colors {
-            -webkit-box-flex: 1;
-            -webkit-flex-grow: 1;
-            -ms-flex-positive: 1;
-            flex-grow: 1; }
-
-            .product-title, .price, .sizes, .colors {
-            text-transform: UPPERCASE;
-
-
-
-            font-weight: bold; }
-
-            .checked, .price span {
-            color: #ff9f1a; }
-
-
-            .product-title {
-            margin-top: 0; }
-
-            .size {
-            margin-right: 10px; }
-            .size:first-of-type {
-            margin-left: 40px; }
-
-
-            /*# sourceMappingURL=style.css.map */
   </style> 
 @endsection
 @section('content')    
-      <div class="container">  
-        <div class="card px-3">
-            @if(Session::has('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ Session::get('success') }}
-                    @php
-                        Session::forget('success');
-                    @endphp
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @elseif(Session::has('failed'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ Session::get('failed') }}
-                    @php
-                        Session::forget('failed');
-                    @endphp
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
-                    <h3 style="text-align: center;">Ajouter des Services</h3>
-                    <form action="{{route('createsrv')}}" class="contact-form" name="createForm" id="createForm" enctype="multipart/form-data" method="POST">
-                        {{ csrf_field() }}
-                      <div class="wrraper row">
-                        <div class="col-md-12 col-sm-12">                                             
-                            <!-- nom de service -->
-                            <div class="form-group">
-                              <input type="text" name="nom" pattern="[A-z0-9\s]+" required class="form-control" placeholder="Nom">
-                            </div>
-                            <!-- description -->
-                            <div class="form-group">
-                              <textarea name="description" rows="5" class="form-control"
-                               aria-multiline="true" cols="50">Description</textarea>
-                            </div>
-                            <!-- prix -->
-                            <div class="form-group">
-                              <input type="number" placeholder="Prix" class="form-control"  required step="0.1" min="0.0" id="prix" name="prix" />DH
-                            </div>
-                            <!--file-->                
-                            <div class="form-group">
-                              <input type="file" class="image" id="image" name="image" accept="image/png,image/jpeg">  
-                            </div>
-                            <!-- Upload button -->
-                            <div class="form-group">
-                              <button class="btn btn-secondary" type="submit" value="upload">Publier le telephone</button>
-                            </div>
-                          </div>    
-                      </div>  
-                    </form>                      
+        <div class="container">
+          <div class="card mt-5">
+              <div class="card-header">
+                  <h4 class="card-title">Ajouter Un Service</h4>
               </div>
-      </div>
-  @endsection
-@section('contentJs')
+              <div class="card-content">
+                  <div class="card-body">
+                  @if(Session::has('success'))
+                    <div class="alert border-primary alert-dismissible mb-2" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="d-flex align-items-center">
+                            <i class="bx bx-star"></i>
+                            <span>
+                                {{ Session::get('success') }}
+                                @php
+                                    Session::forget('success');
+                                @endphp
+                            </span>
+                        </div>
+                    </div>
+                  @elseif(Session::has('failed'))
+                    <div class="alert border-warning alert-dismissible mb-2" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="d-flex align-items-center">
+                            <i class="bx bx-star"></i>
+                            <span>
+                                {{ Session::get('failed') }}
+                                @php
+                                    Session::forget('failed');
+                                @endphp
+                            </span>
+                        </div>
+                    </div>
+                  @endif
+                      <form class="form" action="{{route('createsrv')}}"  name="createForm" id="createForm" enctype="multipart/form-data" method="POST">
+                        {{ csrf_field() }}  
+                        <div class="form-body">
+                              <div class="row">
+                                  <div class="col-12 px-0">
+                                      <div class="form-label-group">
+                                          <input type="text" name="nom" pattern="[A-z0-9\s]+" required  id="nom-service-floating" class="form-control" placeholder="Nom" >
+                                          <label for="nom-service-floating">Nom de service</label>
+                                      </div>
+                                  </div>
+                                  <div class="col-12 px-0">
+                                      <div class="form-label-group">
+                                          <textarea name="description" rows="5" class="form-control" placeholder="Description" aria-multiline="true" cols="50" id="description-floating"></textarea>                                 
+                                          <label for="description-floating">Description</label>
+                                      </div>
+                                  </div>
+                                  <div class="col-12 px-0">
+                                      <div class="form-label-group">
+                                          <input type="number" id="prix-floating" placeholder="Prix" class="form-control" required step="0.1" min="0.0" name="prix" >
+                                          <label for="prix-floating">Prix</label>
+                                      </div>
+                                  </div>
+                                  <div class="col-12 px-0">
+                                      <div class="form-label-group">
+                                          <input type="file" class="image" id="image" name="image" accept="image/png,image/jpeg">  
+                                          <label for="image">Ajouter Une image</label>
+                                      </div>
+                                  </div>
+                                  <div class="col-12 px-0 d-flex justify-content-end">
+                                      <button type="submit" class="btn btn-primary mr-1 mb-1">Ajouter</button>
+                                      <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Annuler</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+        </div>
+@endsection
+@section('Js')
 
 <script type="text/javascript">
             FilePond.registerPlugin(
@@ -134,7 +98,7 @@
         );        
             FilePond.create(document.getElementById('image'), {
             name: 'image',
-            labelIdle: 'Faire glisser ou choisir les image du Telephone',
+            labelIdle: 'Faire glisser ou choisir Une Image',
             allowFileTypeValidation: true,
             acceptedFileTypes: ['.png', '.jpeg', '.jpg'],
             labelFileTypeNotAllowed: 'Le type du fichier est invalide vous devez choisir une image',

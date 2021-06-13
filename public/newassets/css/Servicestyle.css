@@ -1,0 +1,8 @@
+body{
+    padding-top: 85px;
+    background-image: url('http://127.0.0.1:8000/images/brown.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display:block;
+    background-size: cover;
+    }

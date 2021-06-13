@@ -200,7 +200,7 @@
                           </table>
                           <!-- Upload button -->
                           <div class="form-group">
-                              <button class="btn btn-secondary" type="submit" value="upload">Enregistre</button>
+                              <button class="btn btn-secondary" type="submit" value="upload">Enregistrer</button>
                           </div>
                         </div>      
                       </div>  

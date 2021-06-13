@@ -55,9 +55,10 @@
                                 <td>
                                 <img @if(count($couple['imgs'])>0) src="{{asset('storage/'.$couple['imgs']->get(0)['path'].'')}}"
                                  @endif class="rounded" width="30" height="30" />
-                                <i class="fas fa-camera"> {{count($couple['imgs'])}}</i></td>
+                                <i class="fas fa-camera"> {{count($couple['imgs'])}}</i>
+                                </td>
                                 <td>
-                                <a  style="float:right;" href="{{ route('editphone',$couple['telephones']->id_tele) }}"><button class="btn btn-primary rounded-circle"><i class="fas fa-pencil-alt"></i></button></a>                               
+                                <a style="float:right;" href="{{ route('editphone',$couple['telephones']->id_tele) }}"><button class="btn btn-primary rounded-circle"><i class="fas fa-pencil-alt"></i></button></a>                               
                                 <form style="float:left;" action="{{route('deletephone')}}" onsubmit="return confirm('Vous êtes sûr de supprimer {{$couple['telephones']->nom}}?');" id="formDelete" method="POST">
                                     @csrf
                                     <input type="text" name="id" value="{{$couple['telephones']->id_tele}}" hidden>

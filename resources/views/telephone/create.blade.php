@@ -197,7 +197,7 @@
                           </table>
                           <!-- Upload button -->
                           <div class="form-group">
-                              <button class="btn btn-secondary" type="submit" value="upload">Publier le telephone</button>
+                              <button class="btn btn-secondary" type="submit" value="upload">Ajouter</button>
                           </div>
                         </div>      
                       </div>  

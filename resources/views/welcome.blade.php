@@ -1,7 +1,5 @@
 @extends('layouts.app')    
 @section('contentCss')
-<link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/swiper.min.css') }}">
-
     <style>
              .price {
                     color: #ff9f1a; 
@@ -101,8 +99,8 @@
                         <div class="card text-center">
                             <div class="card-content">
                                 <div class="card-body">
-                                    <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto my-1">
-                                        <i class='bx bxs-briefcase-alt-2'></i>
+                                    <div class="badge-circle badge-circle-lg badge-circle-light-primary mx-auto my-1">
+                                        <i class='bx bxs-wrench' ></i>
                                     </div>
                                     <p class="text-muted mb-0 line-ellipsis">Services</p>
                                     <h2 class="mb-0">29</h2>
@@ -114,8 +112,8 @@
                         <div class="card text-center">
                             <div class="card-content">
                                 <div class="card-body">
-                                    <div class="badge-circle badge-circle-lg badge-circle-light-primary mx-auto my-1">
-                                        <i class='bx bxs-wrench' ></i>
+                                    <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto my-1">
+                                        <i class='bx bxs-briefcase-alt-2'></i>
                                     </div>
                                     <p class="text-muted mb-0 line-ellipsis">Piece de ..</p>
                                     <h2 class="mb-0">72</h2>
@@ -199,11 +197,41 @@
                         <div class="swiper-pagination"></div>
                     </div>
             </div>
-        
+            <hr>
+            <div class="card px-2">    
+                <div class="card-header py-1">
+                    <h2 class="card-title float-left">Accessoires</h2>
+                    <a href="#" class="card-title btn-outline-secondary round px-1 float-right">Plus</a>
+                </div>
+                    <div class="swiper-container pb-3 mySwiper card-body">
+                        <div class="swiper-wrapper">
+                            @foreach ($services as $item)
+                                <div class="swiper-slide px-2 col">
+                                    <div class="card mb-0 cardC">
+                                            <div class="card-header p-0">
+                                                @if($item->image!=null)
+                                                <img src="{{asset('storage/'.$item->image)}}"/>
+                                                @else
+                                                <img src="{{asset('images/no-image.png')}}" />        
+                                                @endif
+                                            </div>
+                                            <div class="card-body p-1">
+                                                <a class="card-title">{{$item->nom}}</a>
+                                                <div class="card-footer"> 
+                                                    <p class="price">{{$item->prix}}DH</p>
+                                                </div>
+                                                <i class="ficon bx bx-camera">1</i>
+                                            </div>
+                                    </div>
+                                </div>
+                            @endforeach  
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+            </div>
         </div>
 @endsection
 @section('contentJs')   
-    <script src="{{ asset('newassets/js/swiper.min.js') }}"></script>
     <script>
         var swiper = new Swiper(".mySwiper", {
         effect: "coverflow",
