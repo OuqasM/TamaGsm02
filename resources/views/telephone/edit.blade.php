@@ -1,86 +1,95 @@
 @extends('telephone.layouts.TelephoneLayouts')
-@section('contenetCss')
+@section('Css')
   <style>
-            input[type=number]::-webkit-inner-spin-button, 
-            input[type=number]::-webkit-outer-spin-button { 
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
-                margin: 0; 
-            }
-            input:focus {
-            outline-color: rgb(233, 0, 0);
-            }  
-            img {
-            max-width: 100%; 
-          }
-            .tab-content {
-            overflow: hidden; }
-            .tab-content img {
-            width: 100%;
-            -webkit-animation-name: opacity;
-              animation-name: opacity;
-            -webkit-animation-duration: .3s;
-              animation-duration: .3s; }
+       .swiper-container {
+        width: 60%;
+        height: 60%;
+      }
 
-            .card {
-            margin-top: 50px;
-            background: #eee;
-            padding: 3em;
-            line-height: 1.5em; }
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
 
-            @media screen and (min-width: 997px) {
-            .wrapper {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex; } 
-          }
-            .colors {
-            -webkit-box-flex: 1;
-            -webkit-flex-grow: 1;
-            -ms-flex-positive: 1;
-            flex-grow: 1; 
-            }
-            .product-title, .price, .sizes, .colors {
-            text-transform: UPPERCASE;
-            font-weight: bold; 
-          }
-            .checked, .price span {
-            color: #ff9f1a; }
-            .product-title {
-            margin-top: 0; }
-            .size {
-            margin-right: 10px; }
-            .size:first-of-type {
-            margin-left: 40px; }
-            /*# sourceMappingURL=style.css.map */
-  </style> 
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .swiper-slide .btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      background-color: #555;
+      color: white;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      text-align: center;
+    }      
+  </style>
 @endsection
 @section('content')    
-      <div class="container">  
-        <div class="card px-3">
-            @if(Session::has('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ Session::get('success') }}
-                    @php
-                        Session::forget('success');
-                    @endphp
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 pt-5">
+      <div class="card ">
+      <div class="card-header">
+          <h4 class="card-title">Ajouter Un Telephone</h4>
+      </div>
+      <div class="card-content">
+          <div class="card-body">
+          @if(Session::has('success'))
+            <div class="alert border-primary alert-dismissible mb-2" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="d-flex align-items-center">
+                    <i class="bx bx-star"></i>
+                    <span>
+                        {{ Session::get('success') }}
+                        @php
+                            Session::forget('success');
+                        @endphp
+                    </span>
                 </div>
-            @elseif(Session::has('failed'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ Session::get('failed') }}
-                    @php
-                        Session::forget('failed');
-                    @endphp
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+            </div>
+          @elseif(Session::has('failed'))
+            <div class="alert border-warning alert-dismissible mb-2" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="d-flex align-items-center">
+                    <i class="bx bx-star"></i>
+                    <span>
+                        {{ Session::get('failed') }}
+                        @php
+                            Session::forget('failed');
+                        @endphp
+                    </span>
                 </div>
-            @endif
+            </div>
+          @endif
                     <form action="{{route('updatetelephone')}}" class="contact-form" name="createForm" id="createForm" enctype="multipart/form-data"  method="POST">
                         {{ csrf_field() }}
                       <div class="wrraper row">
@@ -129,18 +138,17 @@
                               <input type="file" class="images" id="images" name="images[]" accept="image/png,image/jpeg" multiple>  
                             </div>
                             <div class="form-group">
-                            @foreach ($allimg as $img)
-                            <div class="row" id="img{{$img->id}}" >
-                            <div class="col">
-                            <img src="{{asset('storage/'.$img->path)}}" class="rounded" width="60" height="60" />
+                            <div class="swiper-container mySwiper">
+                              <div class="swiper-wrapper">
+                                @foreach ($allimg as $img)
+                                <div class="swiper-slide">
+                                    <img src="{{asset('storage/'.$img->path)}}" height="60px" width="50px"/>
+                                    <a onclick="deleteImage({{$img->id}})" class="btn" href="#"><i class="bx bx-trash" aria-hidden="true" ></i></a>                                  </div>
+                                @endforeach
+                              </div>
+                              <div class="swiper-pagination"></div>
                             </div>
-                            <div class="col">
-                              <div class="row"><a onclick="deleteImage({{$img->id}})" href="#"><i class="fa fa-trash" aria-hidden="true" >Supprimer</i></a></div>
-                              <div class="row"><a href="{{asset('storage/'.$img->path)}}" download><i class="fa fa-download"></i>Telecharger<br></a></div>
-                            </div>
-                          </div>
-                            @endforeach
-                            </div>
+                        </div>
                         </div>
                         <div class="col-md-6" >                      
                           <!-- configuration -->
@@ -207,8 +215,12 @@
                     </form>                      
               </div>
       </div>
-  @endsection
-@section('contentJs')
+  </div> 
+</div>
+</div>
+</div>
+@endsection
+@section('Js')
 
 <script type="text/javascript">
         FilePond.registerPlugin(
@@ -229,7 +241,14 @@
             instantUpload: false,
             
         });
-      
+        var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
       function deleteImage(IdImage){
         $.ajax({
             type : "POST",
@@ -241,14 +260,17 @@
                 id : IdImage
             },
             success: function (message) {
-                document.getElementById('img'+IdImage).style.display ='none';
-            },
-            error: function(message){
-                // alert('Les codes ne sont pas les memes essayer a nouveau ou renvoyer l\'email aprée 2 minutes !');
-                // disableBtnTimeOut(120);
+              Swal.fire({
+                        title: 'Supprimée!',
+                        text: "Image suprimée!",
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            location.reload();     
+                        }) 
             },
             async : false
-
         });
       }
        var form = document.getElementById("createForm");
@@ -274,7 +296,8 @@
       });
       form.submit();
       });
-    
+      
+
 </script>
 
 @endsection

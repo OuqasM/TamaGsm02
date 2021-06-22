@@ -1,6 +1,52 @@
 @extends('accessoire.layouts.AccessoirLayout')
 @section('Css')
-  <style></style>   
+  <style>
+       .swiper-container {
+        width: 60%;
+        height: 60%;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .swiper-slide .btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      background-color: #555;
+      color: white;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      text-align: center;
+    }  </style>   
 @endsection
 @section('content')    
 <div class="container">
@@ -47,7 +93,7 @@
                             {{ csrf_field() }}
                             <input type="text" value="{{$acss->id_acces}}" hidden name="idAcs">
                           <div class="wrraper row">
-                            <div class="col-md-12 col-sm-12">                      
+                            <div class="col-md-6 col-sm-12">                      
                                 <!-- Type-->
                                 <div class="form-group ">
                                   <select name="type"  id="catgroup" class="select form-control"  required>
@@ -61,22 +107,24 @@
                                     <option value="AP"  {!! ($acss->type == 'AP') ? 'selected': '' !!}>Accessoires Photo</option>
                                     <option value="CTP"  {!! ($acss->type == 'CTP') ? 'selected': '' !!}>Connectique TV / PC</option>
                                     <option value="AS"  {!! ($acss->type == 'AS') ? 'selected': '' !!}>Accessoires de sport</option>
-                                </select>
+                                  </select>
                                 </div>
                                 <!-- nom de produit -->
                                 <div class="form-group">
                                   <div class="form-label-group">
                                     <input type="text" id="nom" name="nomproduit" value="{{$acss->nom ?: '' }}" pattern="[A-z0-9\s]+" required class="form-control" placeholder="Nom">
                                     <label for="nom">Nom d'accessoire</label>
-                                </div>
+                                 </div>
                                 </div>
                                 <!-- description -->
                                 <div class="form-group">
                                   <div class="form-label-group">
                                     <textarea name="description" rows="5" class="form-control" placeholder="Description" aria-multiline="true" cols="50" id="description-floating">{{$acss->description ?: '' }}</textarea>                                 
                                     <label for="description-floating">Description d'accessoire</label>
+                                  </div>
                                 </div>
-                                </div>
+                            </div>    
+                            <div class="col-md-6 col-sm-12">                      
                                 <!-- prix -->
                                 <div class="form-group">
                                   <div class="form-label-group">
@@ -96,19 +144,19 @@
                                   <input type="file" class="images" id="images" name="images[]" accept="image/png,image/jpeg" multiple>  
                                 </div>
                                 <div class="form-group">
-                                    @foreach ($allimg as $img)
-                                    <div class="row" id="img{{$img->id}}" >
-                                      <div class="col">
-                                        <img src="{{asset('storage/'.$img->path)}}" class="rounded" width="60" height="60" />
+                                    <div class="swiper-container mySwiper">
+                                      <div class="swiper-wrapper">
+                                        @foreach ($allimg as $img)
+                                        <div class="swiper-slide">
+                                            <img src="{{asset('storage/'.$img->path)}}" height="60px" width="50px"/>
+                                            <a onclick="deleteImage({{$img->id}})" class="btn" href="#"><i class="bx bx-trash" aria-hidden="true" ></i></a>                                  </div>
+                                        @endforeach
                                       </div>
-                                      <div class="col">
-                                        <div class="row"><a onclick="deleteImage({{$img->id}})" href="#"><i class="bx bx-trash" aria-hidden="true" ></i></a></div>
-                                        <div class="row"><a href="{{asset('storage/'.$img->path)}}" download><i class="bx bx-download"></i><br></a></div>
-                                      </div>
+                                      <div class="swiper-pagination"></div>
                                     </div>
-                                    @endforeach
                                 </div>
-                                <!-- Upload button -->
+                              </div>
+                              <!-- Upload button -->
                                 <div class="col-12 px-0 d-flex justify-content-end">
                                   <button type="submit" class="btn btn-primary mr-1 mb-1">Enregistrer</button>
                                   <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Initialiser</button>
@@ -144,6 +192,14 @@
             instantUpload: false
             
         });
+        var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
         function deleteImage(IdImage){
         $.ajax({
             type : "POST",
@@ -155,11 +211,15 @@
                 id : IdImage
             },
             success: function (message) {
-                document.getElementById('img'+IdImage).style.display ='none';
-            },
-            error: function(message){
-                // alert('Les codes ne sont pas les memes essayer a nouveau ou renvoyer l\'email aprée 2 minutes !');
-                // disableBtnTimeOut(120);
+              Swal.fire({
+                        title: 'Supprimée!',
+                        text: "Image suprimée!",
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            location.reload();     
+                        }) 
             },
             async : false
 
@@ -171,7 +231,6 @@
  
       form.addEventListener('submit', function(e){
       e.preventDefault();
-
     
         if(solde.value.trim() === ""){
             solde.value = "0";
@@ -179,8 +238,6 @@
         }
         form.submit();
       });
-
-    
 </script>
 
 @endsection

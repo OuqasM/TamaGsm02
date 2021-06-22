@@ -7,10 +7,27 @@
               left: 50%;
               transform: translate(-50%,-50%);
             }
+            .clas .btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      background-color: #555;
+      color: white;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      text-align: center;
+    } 
   </style> 
 @endsection
 @section('content')    
-        <div class="container">
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 pt-5">
           <div class="card mt-5">
               <div class="card-header">
                   <h4 class="card-title">Modifier Ce Cervice</h4>
@@ -77,15 +94,11 @@
                                       <label for="image">Ajouter Une image</label>
                                   </div>
                               </div>
-                              <div class="col-12 px-0" id="img" >
-                                    @if($service->image != '')
-                                    <img src="{{asset('storage/'.$service->image)}}" class="rounded" width="60" height="60" />
-                                    <div class="row">
-                                      <div class="col-1"><a onclick="deleteImage('{{$service->image}}')" href="#"><i class='bx bx-trash'></i></a></div>
-                                      <div class="col-1"><a href="{{asset('storage/'.$service->image)}}" download><i class='bx bx-download' ></i><br></a></div>
-                                    </div>
-                                    
-                                    @endif
+                              <div class="col-12 px-0 clas"  >
+                                    {{-- @if($service->image != '')
+                                      <img src="{{asset('storage/'.$service->image)}}" height="60px" width="50px"/>
+                                      <a onclick="deleteImage('{{$service->image}}')" href="#" class="btn"><i class='bx bx-trash'></i></a>
+                                    @endif --}}
                               </div>
                               <div class="col-12 px-0 d-flex justify-content-end">
                                   <button type="submit" class="btn btn-primary mr-1 mb-1">Enregistrer</button>
@@ -98,6 +111,8 @@
               </div>
           </div>
         </div>
+    </div>
+</div>
 @endsection
 @section('Js')
 
@@ -131,7 +146,7 @@
                 path : PATH
             },
             success: function (message) {
-                document.getElementById('img').style.display = 'none';
+             //   document.getElementById('img').style.display = 'none';
             },
             async : false
 

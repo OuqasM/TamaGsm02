@@ -77,7 +77,7 @@
                                         <i class="bx bx-mobile-alt font-medium-5"></i>
                                     </div>
                                     <p class="text-muted mb-0 line-ellipsis">Telephone et Tablettes</p>
-                                    <h2 class="mb-0">48</h2>
+                                    <h2 class="mb-0">{{count($collect)}}</h2>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                                         <i class="bx bx-usb font-medium-5"></i>
                                     </div>
                                     <p class="text-muted mb-0 line-ellipsis">Accsessoires</p>
-                                    <h2 class="mb-0">17</h2>
+                                    <h2 class="mb-0">{{count($collectA)}}</h2>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                                         <i class='bx bxs-wrench' ></i>
                                     </div>
                                     <p class="text-muted mb-0 line-ellipsis">Services</p>
-                                    <h2 class="mb-0">29</h2>
+                                    <h2 class="mb-0">{{count($services)}}</h2>
                                 </div>
                             </div>
                         </div>
@@ -200,7 +200,7 @@
             <hr>
             <div class="card px-2">    
                 <div class="card-header py-1">
-                    <h2 class="card-title float-left">Accessoires</h2>
+                    <h2 class="card-title float-left">Nos Services</h2>
                     <a href="#" class="card-title btn-outline-secondary round px-1 float-right">Plus</a>
                 </div>
                     <div class="swiper-container pb-3 mySwiper card-body">

@@ -46,7 +46,7 @@
                         <form action="{{route('createacs')}}" class="form" name="createForm" id="createForm" enctype="multipart/form-data" method="POST">
                             {{ csrf_field() }}
                           <div class="wrraper row">
-                            <div class="col-md-12 col-sm-12">                      
+                            <div class="col-md-6 col-sm-12">                      
                                 <!-- Type-->
                                 <div class="form-group ">
                                   <select name="type"  id="catgroup" class="select form-control"  required>
@@ -74,8 +74,10 @@
                                   <div class="form-label-group">
                                     <textarea name="description" rows="5" class="form-control" placeholder="Description" aria-multiline="true" cols="50" id="description-floating"></textarea>                                 
                                     <label for="description-floating">Description d'accessoire</label>
+                                  </div>
                                 </div>
-                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">                        
                                 <!-- prix -->
                                 <div class="form-group">
                                   <div class="form-label-group">
@@ -94,6 +96,7 @@
                                 <div class="form-group">
                                   <input type="file" class="images" id="images" name="images[]" accept="image/png,image/jpeg" multiple>  
                                 </div>
+                            </div>
                                 <!-- Upload button -->
                                 <div class="col-12 px-0 d-flex justify-content-end">
                                   <button type="submit" class="btn btn-primary mr-1 mb-1">Ajouter</button>

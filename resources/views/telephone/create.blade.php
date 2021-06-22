@@ -1,98 +1,48 @@
 @extends('telephone.layouts.TelephoneLayouts')
-@section('contenetCss')
+@section('Css')
 
-  <style>
-            input[type=number]::-webkit-inner-spin-button, 
-            input[type=number]::-webkit-outer-spin-button { 
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
-                margin: 0; 
-            }
-            input:focus {
-
-            outline-color: rgb(233, 0, 0);
-            }
-            img {
-            max-width: 100%; }
-
-
-            .tab-content {
-            overflow: hidden; }
-            .tab-content img {
-            width: 100%;
-            -webkit-animation-name: opacity;
-              animation-name: opacity;
-            -webkit-animation-duration: .3s;
-              animation-duration: .3s; }
-
-            .card {
-            margin-top: 50px;
-            background: #eee;
-            padding: 3em;
-            line-height: 1.5em; }
-
-            @media screen and (min-width: 997px) {
-            .wrapper {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex; } }
-
-
-            .colors {
-            -webkit-box-flex: 1;
-            -webkit-flex-grow: 1;
-            -ms-flex-positive: 1;
-            flex-grow: 1; }
-
-            .product-title, .price, .sizes, .colors {
-            text-transform: UPPERCASE;
-
-
-
-            font-weight: bold; }
-
-            .checked, .price span {
-            color: #ff9f1a; }
-
-
-            .product-title {
-            margin-top: 0; }
-
-            .size {
-            margin-right: 10px; }
-            .size:first-of-type {
-            margin-left: 40px; }
-
-
-            /*# sourceMappingURL=style.css.map */
-  </style> 
 @endsection
 @section('content')    
-      <div class="container">  
-        <div class="card px-3">
-            @if(Session::has('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ Session::get('success') }}
-                    @php
-                        Session::forget('success');
-                    @endphp
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 pt-5">
+      <div class="card ">
+      <div class="card-header">
+          <h4 class="card-title">Ajouter Un Telephone</h4>
+      </div>
+      <div class="card-content">
+          <div class="card-body">
+          @if(Session::has('success'))
+            <div class="alert border-primary alert-dismissible mb-2" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="d-flex align-items-center">
+                    <i class="bx bx-star"></i>
+                    <span>
+                        {{ Session::get('success') }}
+                        @php
+                            Session::forget('success');
+                        @endphp
+                    </span>
                 </div>
-            @elseif(Session::has('failed'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ Session::get('failed') }}
-                    @php
-                        Session::forget('failed');
-                    @endphp
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+            </div>
+          @elseif(Session::has('failed'))
+            <div class="alert border-warning alert-dismissible mb-2" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="d-flex align-items-center">
+                    <i class="bx bx-star"></i>
+                    <span>
+                        {{ Session::get('failed') }}
+                        @php
+                            Session::forget('failed');
+                        @endphp
+                    </span>
                 </div>
-            @endif
+            </div>
+          @endif
                     <form action="{{route('createtelephone')}}" class="contact-form" name="createForm" id="createForm" enctype="multipart/form-data" onsubmit = "return(validate());" method="POST">
                         {{ csrf_field() }}
                       <div class="wrraper row">
@@ -120,20 +70,32 @@
                             </div>
                             <!-- nom de produit -->
                             <div class="form-group">
-                              <input type="text" name="nomproduit" pattern="[A-z0-9\s]+" required class="form-control" placeholder="Nom De Produit">
+                                <div class="form-label-group">
+                                  <input type="text" name="nomproduit" id="nomproduit-floating" pattern="[A-z0-9\s]+" required class="form-control" placeholder="Nom">
+                                  <label for="nomproduit-floating">Nom de produit</label>
+                                </div>
                             </div>
                             <!-- description -->
                             <div class="form-group">
-                              <textarea name="description" rows="5" class="form-control"
-                               aria-multiline="true"  placeholder="Description du produit" cols="50"></textarea>
+                               <div class="form-label-group">
+                                <textarea name="description" id="description-floating" rows="5" class="form-control"
+                                aria-multiline="true"  placeholder="Description" cols="50"></textarea>      
+                                <label for="description-floating">Description du Telephone</label>
                               </div>
+                            </div>
                             <!-- prix -->
                             <div class="form-group">
-                              <input type="number" placeholder="Prix" class="form-control"  required step="0.1" min="0.0" id="prix" name="prix" />DH
+                              <div class="form-label-group">
+                                <input type="number" placeholder="Prix" class="form-control"  required step="0.1" min="0.0" id="prix-floating" name="prix" />
+                                <label for="prix-floating">prix du telephone en DH</label>
+                              </div>
                             </div>
                             <!-- solde -->
                             <div class="form-group">
-                              <input type="number" placeholder="Solde" step="0.1" class="form-control"  min="0.0" id="solde" name="solde" />DH
+                              <div class="form-label-group">
+                                <input type="number" placeholder="Solde" step="0.1" class="form-control"  min="0.0" id="solde-floating" name="solde" />
+                                <label for="solde-floating">solde du telephone en DH</label>
+                              </div>
                             </div>
                             <!--file-->                
                             <div class="form-group">
@@ -145,20 +107,25 @@
                           <table class="table table-striped form-group">                      
                             <tbody>
                               <tr>
-                                <th scope="row">Ram</th>
-                                <td class="px-0"><img src="{{ asset('images/ram.png') }}"
+                                <td class="pt-0 mr-1"><img src="{{ asset('images/ram.png') }}"
                                   width="30" height="30" /></td>
-                                <td><span class="price " data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" class="w-50" min="0.0" step="0.1" id="ram" name="ram" /></span> Gb</td>
-                                
+                                <td colspan="2" class="p-1">                   
+                                 <div class="form-label-group">
+                                  <input type="number" class="form-control" placeholder="La Ram" class="w-50" min="0.0" step="0.1" id="ram" name="ram" />
+                                  <label for="ram">Géga bytes</label>
+                                </div>
+                                </td>
                               </tr>
                               <tr>
                                 <th scope="row">Stockage</th>
                                 <td class="px-0"><img src="{{ asset('images/storage.png') }}"
                                   width="30" height="30" /></td>
-                                <td><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" step="0.1" class="form-control" class="w-50" min="0.0" id="stockage" name="stockage"/>
-                                </span> Gb</td>
+                                <td>
+                                  <div class="form-label-group">
+                                    <input type="number" step="0.1" class="form-control" placeholder="Le Stockage" class="w-50" min="0.0" id="stockage" name="stockage"/>
+                                    <label for="stockage">Géga bytes</label>
+                                  </div>
+                                </td>
                               </tr>
                               <tr>
                                 <th scope="row">Batterie</th>
@@ -166,7 +133,7 @@
                                   width="30" height="30" /></td>
                                 <td><span class="price" data-toggle="tooltip" title="small">
                                   <input type="number" class="form-control" class="w-50" min="0.0" step="0.1" id="batterie" name="batterie"/>
-                                </span> mA</td>
+                                </td>
                               </tr>
                               <tr>
                                 <th scope="row">Caméra</th>
@@ -202,10 +169,15 @@
                         </div>      
                       </div>  
                     </form>                      
-              </div>
+          </div>
+
       </div>
-  @endsection
-@section('contentJs')
+    </div>  
+  </div>
+</div>
+          </div>
+@endsection
+@section('Js')
 
 <script type="text/javascript">
             FilePond.registerPlugin(

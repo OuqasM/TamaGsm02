@@ -34,9 +34,9 @@ Route::post('updatetelephone', [App\Http\Controllers\TelephoneController::class,
 Route::group(['prefix' => 'accessoir'], function () {
     
     Route::post('CreateAcs', [App\Http\Controllers\AccessoirController::class, 'createAcs'])->name('createacs');
-    Route::get('show/{id}', [App\Http\Controllers\AccessoirController::class, 'showphone'])->name('showacs');
+    Route::get('show/{id}', [App\Http\Controllers\AccessoirController::class, 'showacss'])->name('showacs');
     Route::post('deleteAcs', [App\Http\Controllers\AccessoirController::class, 'deleteAcs'])->name('deleteacs');
-    Route::get('GetAllAcs', [App\Http\Controllers\AccessoirController::class, 'editAcss'])->name('getallacs');
+    Route::get('GetAllAcs', [App\Http\Controllers\AccessoirController::class, 'GetAllAcss'])->name('getallacs');
     Route::get('createAcs', function () { return view('Accessoire.create');})->name('createacsview');
     Route::get('edit/{id}', [App\Http\Controllers\AccessoirController::class, 'editAcs'])->name('editacs');
     Route::post('deleteAcsImage', [App\Http\Controllers\AccessoirController::class, 'deleteimage'])->name('deleteAcsImage');
@@ -48,7 +48,7 @@ Route::group(['prefix' => 'service'], function () {
     
     Route::post('CreateArv', [App\Http\Controllers\ServiceController::class, 'createService'])->name('createsrv');
     //Route::get('show/{id}', [App\Http\Controllers\ServiceController::class, 'showphone'])->name('showphone');
-    Route::post('deleteArv', [App\Http\Controllers\ServiceController::class, 'deleteService'])->name('deletesrv');
+    Route::post('deleteSrv', [App\Http\Controllers\ServiceController::class, 'deleteService'])->name('deletesrv');
     Route::get('GetAllSrv', [App\Http\Controllers\ServiceController::class, 'GetAllServices'])->name('getallsrv');
     Route::get('createSrv', function () { return view('service.create');})->name('createsrvview');
     Route::get('edit/{id}', [App\Http\Controllers\ServiceController::class, 'editService'])->name('editsrv');

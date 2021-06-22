@@ -12,7 +12,7 @@
     
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/vendors.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/apexcharts.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.css">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -35,7 +35,6 @@
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/horizontal-menu.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/boxicons.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/dashboard-ecommerce.css') }}">
     <!-- END: Page CSS-->
     <!-- FilePond -->
     <link href="{{ asset('css/filepond-plugin-image-preview.min.css') }}" rel="stylesheet">
@@ -73,6 +72,7 @@
     <!-- BEGIN: Page Vendor JS-->
     {{-- <script src="{{ asset('newassets/js/apexcharts.min.js') }}"></script> --}}
     <script src="{{ asset('newassets/js/swiper.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.js"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
@@ -96,25 +96,8 @@
     <script src="{{ asset('js/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('js/filepond.min.js') }}"></script>
     <!-- BEGIN: Page JS-->
-    <script src="{{ asset('newassets/js/dashboard-ecommerce.js') }}"></script>
     {{-- <script src="{{ asset('newassets/js/chart-apex.min.js') }}"></script> --}}
     <script src="{{ asset('newassets/js/number-input.js') }}"></script>
-    <script>
-        // When the user scrolls the page, execute myFunction
-        window.onscroll = function() {myFunction()};
-        // Get the navbar
-        var navbar = document.getElementById("navbarr");
-        // Get the offset position of the navbar
-        var sticky = navbar.offsetTop;
-        // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-        function myFunction() {
-        if (window.pageYOffset >= sticky) {
-            navbar.classList.add("sticky")
-        } else {
-            navbar.classList.remove("sticky");
-        }
-        }
-</script>
 @yield('Js')
 </body>
 </html>

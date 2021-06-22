@@ -10,7 +10,9 @@ class Accessoir extends Model
     use HasFactory;
     protected $table = 'accessoirs';
     protected $primaryKey = 'id_acces';
-
+    protected $fillable= [
+        'id_acces','nom','description','type','prix','nbr_visite','per_solde','admin_id'
+    ];
 
     public function accessoir_img()
     {

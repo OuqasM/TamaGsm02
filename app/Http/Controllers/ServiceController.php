@@ -49,7 +49,7 @@ class ServiceController extends Controller
         $r->path = $service->image; 
         $this->deleteimage($r);
         $service->delete();
-        return redirect()->route('getallsrv')->with('success','Service bien suprimée');
+        return response('done');
 
     }
 

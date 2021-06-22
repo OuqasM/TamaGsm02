@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Accessoir;
 use App\Models\Accessoir_img;
 use App\Models\User;
+use App\Queries\AccessoireQuery;
+use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Storage;
 class AccessoirController extends Controller
 {
@@ -47,7 +49,7 @@ class AccessoirController extends Controller
         }
     }
 
-    public function editAcss()
+    public function GetAllAcss()
     {
         $al = Accessoir::all();
 
@@ -64,6 +66,7 @@ class AccessoirController extends Controller
         }
        return view('accessoire.manage', compact('collect'));
     }
+    
     public function editAcs($id){
         $acss = Accessoir::where('id_acces','=',$id)->first();
         $allimg = Accessoir_img::where('acces_id','=',$acss->id_acces)->get();
@@ -139,11 +142,11 @@ class AccessoirController extends Controller
         $allimg = Accessoir_img::where('acces_id','=',$request->id)->delete();
 
         Accessoir::where('id_acces','=',$request->id)->delete();
-        return redirect()->route('getallacs')->with('success','Accessoire bien suprimée');
+        return response('done');
 
     }
 
-    public function showPhone($id)
+    public function showacss($id)
     {
             
             $acs = Accessoir::find($id);
