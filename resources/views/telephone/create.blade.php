@@ -71,30 +71,30 @@
                             <!-- nom de produit -->
                             <div class="form-group">
                                 <div class="form-label-group">
-                                  <input type="text" name="nomproduit" id="nomproduit-floating" pattern="[A-z0-9\s]+" required class="form-control" placeholder="Nom">
-                                  <label for="nomproduit-floating">Nom de produit</label>
+                                  <input type="text" name="nomproduit" id="nomproduit" pattern="[A-z0-9\s]+" required class="form-control" placeholder="Nom">
+                                  <label for="nomproduit">Nom de produit</label>
                                 </div>
                             </div>
                             <!-- description -->
                             <div class="form-group">
                                <div class="form-label-group">
-                                <textarea name="description" id="description-floating" rows="5" class="form-control"
+                                <textarea name="description" id="description" rows="5" class="form-control"
                                 aria-multiline="true"  placeholder="Description" cols="50"></textarea>      
-                                <label for="description-floating">Description du Telephone</label>
+                                <label for="description">Description du Telephone</label>
                               </div>
                             </div>
                             <!-- prix -->
                             <div class="form-group">
                               <div class="form-label-group">
-                                <input type="number" placeholder="Prix" class="form-control"  required step="0.1" min="0.0" id="prix-floating" name="prix" />
-                                <label for="prix-floating">prix du telephone en DH</label>
+                                <input type="number" placeholder="Prix" class="form-control"  required step="0.1" min="0.0" id="prix" name="prix" />
+                                <label for="prix">prix du telephone en DH</label>
                               </div>
                             </div>
                             <!-- solde -->
                             <div class="form-group">
                               <div class="form-label-group">
-                                <input type="number" placeholder="Solde" step="0.1" class="form-control"  min="0.0" id="solde-floating" name="solde" />
-                                <label for="solde-floating">solde du telephone en DH</label>
+                                <input type="number" placeholder="Solde" step="0.1" class="form-control"  min="0.0" id="solde" name="solde" />
+                                <label for="solde">solde du telephone en DH</label>
                               </div>
                             </div>
                             <!--file-->                
@@ -112,59 +112,63 @@
                                 <td colspan="2" class="p-1">                   
                                  <div class="form-label-group">
                                   <input type="number" class="form-control" placeholder="La Ram" class="w-50" min="0.0" step="0.1" id="ram" name="ram" />
-                                  <label for="ram">Géga bytes</label>
+                                  <label for="ram"><small>Géga bytes GB</small></label>
                                 </div>
                                 </td>
                               </tr>
                               <tr>
-                                <th scope="row">Stockage</th>
-                                <td class="px-0"><img src="{{ asset('images/storage.png') }}"
+                                <td class="pt-0 mr-1"><img src="{{ asset('images/storage.png') }}"
                                   width="30" height="30" /></td>
-                                <td>
+                                <td colspan="2" class="p-1">
                                   <div class="form-label-group">
                                     <input type="number" step="0.1" class="form-control" placeholder="Le Stockage" class="w-50" min="0.0" id="stockage" name="stockage"/>
-                                    <label for="stockage">Géga bytes</label>
+                                    <label for="stockage"><small>Géga bytes GB</small></label>
                                   </div>
                                 </td>
                               </tr>
                               <tr>
-                                <th scope="row">Batterie</th>
-                                <td class="px-0"><img src="{{ asset('images/battery.png') }}"
+                                <td class="pt-0 mr-1"><img src="{{ asset('images/battery.png') }}"
                                   width="30" height="30" /></td>
-                                <td><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" class="w-50" min="0.0" step="0.1" id="batterie" name="batterie"/>
+                                <td colspan="2" class="p-1">
+                                  <div class="form-label-group">
+                                  <input type="number" class="form-control" class="w-50" min="0"  placeholder="Batterie" id="batterie" name="batterie"/>
+                                  <label for="batterie"><small>MilliAmpère MA</small></label>
+                                  </div>
                                 </td>
                               </tr>
                               <tr>
-                                <th scope="row">Caméra</th>
-                                <td class="px-0"><img src="{{ asset('images/mobile-camera.png') }}"
+                                <td class="pt-0 mr-1"><img src="{{ asset('images/mobile-camera.png') }}"
                                   width="30" height="30" /></td>
-                                <td ><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" step="0.1" class="w-50" min="0.0" id="camera" name="camera"/>  
-                                </span> Mp</td>
+                                <td colspan="2" class="p-1">
+                                  <div class="form-label-group">
+                                  <input type="number" class="form-control" step="0.1" class="w-50" min="0.0" id="camera" placeholder="Camera" name="camera"/>  
+                                  <label for="camera"><small>MegaPixel MP</small></label>
+                                  </div>
                               </tr>
-                                <th scope="row">Caméra Selfy</th>
-                                <td class="px-0"><img src="{{ asset('images/selfie.png') }}"
+                                <td class="pt-0 mr-1"><img src="{{ asset('images/selfie.png') }}"
                                   width="30" height="30" /></td>
-                                <td><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" class="w-50" min="0.0" step="0.1" id="selfie" name="selfie"/>
-                                </span> Mp
+                                <td colspan="2" class="p-1">
+                                  <div class="form-label-group">
+                                  <input type="number" class="form-control" placeholder="Camera Selfy" class="w-50" min="0.0" step="0.1" id="selfie" name="selfie"/>
+                                  <label for="selfie"><small>MegaPixel MP</small></label> 
+                                </div>
                                 </td>                                
                               </tr>                            
                               <tr>
-                                <th scope="row">Ecran</th>
-                                <td class="px-0"><img src="{{ asset('images/icran.png') }}"
+                                <td class="pt-0 mr-1"><img src="{{ asset('images/icran.png') }}"
                                   width="30"  height="30" /></td>
-                                <td><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" step="0.1"  class="w-50" min="0.0" id="ecran" name="ecran"/>
-                                </span> P
+                                <td colspan="2" class="p-1">
+                                  <div class="form-label-group">
+                                  <input type="number" class="form-control" step="0.1" placeholder="Taille écran" class="w-50" min="0.0" id="ecran" name="ecran"/>
+                                    <label for="ecran"><small>Pouces</small></label>
+                                  </div>  
                                 </td>
                               </tr>
                             </tbody>
                           </table>
                           <!-- Upload button -->
                           <div class="form-group">
-                              <button class="btn btn-secondary" type="submit" value="upload">Ajouter</button>
+                              <button class="btn btn-primary" type="submit" value="upload">Ajouter</button>
                           </div>
                         </div>      
                       </div>  
@@ -200,6 +204,7 @@
         });
       
         var form = document.getElementById("createForm");
+      // const prix = document.getElementById("username");
       var solde = document.getElementById("solde");
       var ram = document.getElementById("ram");
       var stockage = document.getElementById("stockage");
@@ -221,7 +226,6 @@
       });
       form.submit();
       });
-      
 
 
     

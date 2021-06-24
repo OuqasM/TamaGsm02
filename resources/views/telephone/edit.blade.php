@@ -155,60 +155,68 @@
                           <table class="table table-striped form-group">                      
                             <tbody>
                               <tr>
-                                <th scope="row">Ram</th>
-                                <td class="px-0"><img src="{{ asset('images/ram.png') }}" width="30" height="30"/></td>
-                                <td><span class="price " data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" class="w-50" min="0.0" step="0.1" id="ram" value="{{$tele->ram ?: '' }}" name="ram" /></span>
-                                  Gb</td>
-                                
+                                <td class="pt-0 mr-1"><img src="{{ asset('images/ram.png') }}"
+                                  width="30" height="30" /></td>
+                                <td colspan="2" class="p-1">                   
+                                 <div class="form-label-group">
+                                  <input type="number" class="form-control" placeholder="La Ram" value="{{$tele->ram ?: '' }}" class="w-50" min="0.0" step="0.1" id="ram" name="ram" />
+                                  <label for="ram"><small>Géga bytes GB</small></label>
+                                </div>
+                                </td>
                               </tr>
                               <tr>
-                                <th scope="row">Stockage</th>
-                                <td class="px-0"><img src="{{ asset('images/storage.png') }}"
+                                <td class="pt-0 mr-1"><img src="{{ asset('images/storage.png') }}"
                                   width="30" height="30" /></td>
-                                <td><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" class="w-50" min="0.0" step="0.1" id="stockage" value="{{$tele->stockage ?: '' }}" name="stockage"/>
-                                </span> Gb</td>
+                                <td colspan="2" class="p-1">
+                                  <div class="form-label-group">
+                                    <input type="number" class="form-control" placeholder="Le Stockage" class="w-50" min="0.0" step="0.1"  id="stockage" name="stockage" value="{{$tele->stockage }}"/>
+                                    <label for="stockage"><small>Géga bytes GB</small></label>
+                                  </div>
+                                </td>
                               </tr>
                               <tr>
-                                <th scope="row">Batterie</th>
-                                <td class="px-0"><img src="{{ asset('images/battery.png') }}"
+                                <td class="pt-0 mr-1"><img src="{{ asset('images/battery.png') }}"
                                   width="30" height="30" /></td>
-                                <td><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" class="w-50" min="0.0" step="0.1" id="batterie" value="{{$tele->battery ?: '' }}" name="batterie"/>
-                                </span> mA</td>
+                                <td colspan="2" class="p-1">
+                                  <div class="form-label-group">
+                                  <input type="number" class="form-control" class="w-50" min="0"  placeholder="Batterie" id="batterie" name="batterie"  value="{{$tele->battery ?: '' }}"/>
+                                  <label for="batterie"><small>MilliAmpère MA</small></label>
+                                  </div>
+                                </td>
                               </tr>
                               <tr>
-                                <th scope="row">Caméra</th>
-                                <td class="px-0"><img src="{{ asset('images/mobile-camera.png') }}"
+                                <td class="pt-0 mr-1"><img src="{{ asset('images/mobile-camera.png') }}"
                                   width="30" height="30" /></td>
-                                <td ><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" class="w-50" min="0.0" step="0.1" id="camera" value="{{$tele->back_cam_reslolution ?: '' }}" name="camera"/>  
-                                  </span> Mp</td>
+                                <td colspan="2" class="p-1">
+                                  <div class="form-label-group">
+                                  <input type="number" class="form-control" step="0.1" class="w-50" min="0.0" id="camera" placeholder="Camera" name="camera" value="{{$tele->back_cam_reslolution ?: '' }}"/>  
+                                  <label for="camera"><small>MegaPixel MP</small></label>
+                                  </div>
                               </tr>
-                                <th scope="row">Caméra Selfy</th>
-                                <td class="px-0"><img src="{{ asset('images/selfie.png') }}"
+                                <td class="pt-0 mr-1"><img src="{{ asset('images/selfie.png') }}"
                                   width="30" height="30" /></td>
-                                <td><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control" class="w-50" min="0.0" step="0.1"  id="selfie" value="{{$tele->selfy_cam_resolution ?: '' }}" name="selfie"/>
-                                  </span> Mp
+                                <td colspan="2" class="p-1">
+                                  <div class="form-label-group">
+                                  <input type="number" class="form-control" placeholder="Camera Selfy" class="w-50" min="0.0" step="0.1" id="selfie" name="selfie" value="{{$tele->selfy_cam_resolution ?: '' }}"/>
+                                  <label for="selfie"><small>MegaPixel MP</small></label> 
+                                </div>
                                 </td>                                
                               </tr>                            
                               <tr>
-                                <th scope="row">Ecran</th>
-                                <td class="px-0"><img src="{{ asset('images/icran.png') }}"
+                                <td class="pt-0 mr-1"><img src="{{ asset('images/icran.png') }}"
                                   width="30"  height="30" /></td>
-                                <td><span class="price" data-toggle="tooltip" title="small">
-                                  <input type="number" class="form-control"  class="w-50" min="0.0" step="0.1" id="ecran" value="{{$tele->taille_ecron ?: '' }}" name="ecran"/>
-                                </span> P
-                                
-                              </td>
+                                <td colspan="2" class="p-1">
+                                  <div class="form-label-group">
+                                  <input type="number" class="form-control" step="0.1" placeholder="Taille écran" class="w-50" min="0.0" id="ecran" name="ecran" value="{{$tele->taille_ecron  }}"/>
+                                    <label for="ecran"><small>Pouces</small></label>
+                                  </div>  
+                                </td>
                               </tr>
                             </tbody>
                           </table>
                           <!-- Upload button -->
                           <div class="form-group">
-                              <button class="btn btn-secondary" type="submit" value="upload">Enregistrer</button>
+                              <button class="btn btn-primary " type="submit" value="upload">Enregistrer</button>
                           </div>
                         </div>      
                       </div>  
@@ -230,7 +238,7 @@
         );        
         FilePond.create(document.getElementById('images'), {
             name: 'images[]',
-            labelIdle: 'Ajouter des images',
+            labelIdle: 'Faire glisser ou choisir les images du Telephone',
             allowFileTypeValidation: true,
             acceptedFileTypes: ['.png', '.jpeg', '.jpg'],
             labelFileTypeNotAllowed: 'Le type du fichier est invalide vous devez choisir une image',

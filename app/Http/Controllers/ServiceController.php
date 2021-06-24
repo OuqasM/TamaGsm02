@@ -7,6 +7,13 @@ use App\Models\Service;
 
 class ServiceController extends Controller
 {
+    public function ShowAllServices(){
+        $al = Service::all();
+
+        return view('service.home', compact('al'));
+
+    }
+
     public function createService(Request $request){
 
     

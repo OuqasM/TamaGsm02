@@ -60,7 +60,7 @@
                                   </div>
                                   <div class="col-12 px-0">
                                       <div class="form-label-group">
-                                          <textarea name="description" rows="5" class="form-control" placeholder="Description" aria-multiline="true" cols="50" id="description-floating"></textarea>                                 
+                                          <textarea name="description" rows="5" class="form-control" placeholder="Description" aria-multiline="true" cols="50" id="description-floating" required></textarea>                                 
                                           <label for="description-floating">Description</label>
                                       </div>
                                   </div>

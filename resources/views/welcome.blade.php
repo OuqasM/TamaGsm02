@@ -127,7 +127,7 @@
             <div class="card px-2">    
                     <div class="card-header py-1">
                         <h2 class="card-title float-left">Telephones et Tabletes</h2>
-                        <a href="#" class="card-title btn-outline-primary round px-1 float-right">Plus</a>
+                        <a href="{{route('showallphones')}}" class="card-title btn-outline-primary round px-1 float-right">Plus</a>
                     </div>
                     <div class="swiper-container  pb-3 mySwiper card-body">
                         <div class="swiper-wrapper">
@@ -166,7 +166,7 @@
             <div class="card px-2">    
                 <div class="card-header py-1">
                     <h2 class="card-title float-left">Accessoires</h2>
-                    <a href="#" class="card-title btn-outline-secondary round px-1 float-right">Plus</a>
+                    <a href="{{ route('showallaccessoires') }}" class="card-title btn-outline-secondary round px-1 float-right">Plus</a>
                 </div>
                     <div class="swiper-container pb-3 mySwiper card-body">
                         <div class="swiper-wrapper">
@@ -201,7 +201,7 @@
             <div class="card px-2">    
                 <div class="card-header py-1">
                     <h2 class="card-title float-left">Nos Services</h2>
-                    <a href="#" class="card-title btn-outline-secondary round px-1 float-right">Plus</a>
+                    <a href="{{ route('showallservices') }}" class="card-title btn-outline-secondary round px-1 float-right">Plus</a>
                 </div>
                     <div class="swiper-container pb-3 mySwiper card-body">
                         <div class="swiper-wrapper">

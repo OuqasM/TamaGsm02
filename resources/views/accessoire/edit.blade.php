@@ -159,7 +159,6 @@
                               <!-- Upload button -->
                                 <div class="col-12 px-0 d-flex justify-content-end">
                                   <button type="submit" class="btn btn-primary mr-1 mb-1">Enregistrer</button>
-                                  <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Initialiser</button>
                                 </div>
                               </div>    
                           </div>  

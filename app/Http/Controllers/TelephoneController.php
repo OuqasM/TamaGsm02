@@ -10,6 +10,20 @@ use Illuminate\Support\Facades\Storage;
 
 class TelephoneController extends Controller
 {
+    public function ShowAllPhones(){
+        $al = Telephone::orderBy('per_solde', 'DESC')->get();
+        $collect = collect();
+
+        foreach($al as $t){
+            $allimg = Telephone_img::where('tele_id','=',$t->id_tele)->get();
+            $collect->push([
+                'imgs' => $allimg, 
+                'telephones' => $t
+            ]);
+        }
+        return view('telephone.home', compact('collect'));
+
+    }
     public function createtelephone(Request $request){
 
     
@@ -64,9 +78,7 @@ class TelephoneController extends Controller
     public function editphones()
     {
         $al = Telephone::all();
-
         $collect = collect();
-
         foreach($al as $t){
             $allimg = Telephone_img::where('tele_id','=',$t->id_tele)->get();
             $user = User::where('id','=',$t->admin_id)->first();
@@ -76,10 +88,7 @@ class TelephoneController extends Controller
                 'user' =>$user
             ]);
         }
-        
-       
        return view('telephone.manage', compact('collect'));
-
     }
     public function deletephone(Request $request){
         $allimg = Telephone_img::where('tele_id','=',$request->id)->get();
@@ -90,7 +99,6 @@ class TelephoneController extends Controller
             } 
         }
         $allimg = Telephone_img::where('tele_id','=',$request->id)->delete();
-
         Telephone::where('id_tele','=',$request->id)->delete();
         return redirect()->route('getallphones')->with('success','Telephone bien suprimée');
 

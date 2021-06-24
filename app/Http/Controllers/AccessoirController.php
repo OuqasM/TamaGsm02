@@ -11,6 +11,19 @@ use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Storage;
 class AccessoirController extends Controller
 {
+    public function ShowAllAccessoirs(){
+        $ala = Accessoir::all();
+        $collectA = collect();
+        foreach($ala as $ai){
+            $allai = Accessoir_img::where('acces_id','=',$ai->id_acces)->get();
+            $collectA->push([
+                'aimgs'=> $allai,
+                'acss' => $ai
+            ]);
+        }
+        return view('accessoire.home', compact('collectA'));
+    }
+
     public function createAcs(Request $request){
 
     

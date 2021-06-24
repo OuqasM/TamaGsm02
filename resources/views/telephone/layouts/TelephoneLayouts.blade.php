@@ -12,7 +12,6 @@
     
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/vendors.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/apexcharts.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.css">
 
     <!-- END: Vendor CSS-->
@@ -22,8 +21,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/bootstrap-extended.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/colors.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/components.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/dark-layout.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/semi-dark-layout.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/jquery.bootstrap-touchspin.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/swiper.min.css') }}">
     <!-- DataTables -->
@@ -35,9 +32,7 @@
     <!-- END: Theme CSS-->
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/horizontal-menu.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/boxicons.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/dashboard-ecommerce.css') }}">
     <!-- END: Page CSS-->
     <!-- FilePond -->
     <link href="{{ asset('css/filepond-plugin-image-preview.min.css') }}" rel="stylesheet">
@@ -79,7 +74,6 @@
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
-    <script src="{{ asset('newassets/js/horizontal-menu.js') }}"></script>
     <script src="{{ asset('newassets/js/app-menu.js') }}"></script>
     <script src="{{ asset('newassets/js/app.js') }}"></script>
     <script src="{{ asset('newassets/js/components.js') }}"></script>
@@ -87,7 +81,6 @@
     <script src="{{ asset('newassets/js/jquery.bootstrap-touchspin.js') }}"></script>
     <!-- END: Theme JS-->
     <!-- Datatable Assets -->
-    <script src="{{ asset('js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.responsive.min.js') }}"></script>
@@ -99,7 +92,6 @@
     <script src="{{ asset('js/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('js/filepond.min.js') }}"></script>
     <!-- BEGIN: Page JS-->
-    <script src="{{ asset('newassets/js/dashboard-ecommerce.js') }}"></script>
     {{-- <script src="{{ asset('newassets/js/chart-apex.min.js') }}"></script> --}}
     <script src="{{ asset('newassets/js/number-input.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.js"></script>

@@ -8,20 +8,20 @@
               transform: translate(-50%,-50%);
             }
             .clas .btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      background-color: #555;
-      color: white;
-      font-size: 16px;
-      padding: 12px 24px;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      text-align: center;
-    } 
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            background-color: #555;
+            color: white;
+            font-size: 16px;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            } 
   </style> 
 @endsection
 @section('content')    
@@ -95,14 +95,13 @@
                                   </div>
                               </div>
                               <div class="col-12 px-0 clas"  >
-                                    {{-- @if($service->image != '')
-                                      <img src="{{asset('storage/'.$service->image)}}" height="60px" width="50px"/>
+                                    @if($service->image != '')
+                                      <img src="{{asset('storage/'.$service->image)}}" height="100px" width="100px"/>
                                       <a onclick="deleteImage('{{$service->image}}')" href="#" class="btn"><i class='bx bx-trash'></i></a>
-                                    @endif --}}
+                                    @endif
                               </div>
                               <div class="col-12 px-0 d-flex justify-content-end">
                                   <button type="submit" class="btn btn-primary mr-1 mb-1">Enregistrer</button>
-                                  <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Initialiser</button>
                               </div>
                           </div>
                       </div>
@@ -146,7 +145,15 @@
                 path : PATH
             },
             success: function (message) {
-             //   document.getElementById('img').style.display = 'none';
+                Swal.fire({
+                        title: 'Supprimée!',
+                        text: "Image suprimée!",
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            location.reload();     
+                        }) 
             },
             async : false
 

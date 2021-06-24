@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/index', [App\Http\Controllers\HomeController::class, 'showAll'])->name('index');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'showAll'])->name('index');
 
 Auth::routes();
 Route::get('home', [App\Http\Controllers\HomeController::class, 'showAll'])->name('home');
@@ -28,6 +28,7 @@ Route::get('createTI', function () { return view('telephone.create');})->name('c
 Route::get('edit/{id}', [App\Http\Controllers\TelephoneController::class, 'editphone'])->name('editphone');
 Route::post('deleteImage', [App\Http\Controllers\TelephoneController::class, 'deleteimage'])->name('deleteImage');
 Route::post('updatetelephone', [App\Http\Controllers\TelephoneController::class, 'Updatetelephone'])->name('updatetelephone');
+Route::get('showallphones', [App\Http\Controllers\TelephoneController::class, 'ShowAllPhones'])->name('showallphones');
 });
 
 
@@ -41,6 +42,8 @@ Route::group(['prefix' => 'accessoir'], function () {
     Route::get('edit/{id}', [App\Http\Controllers\AccessoirController::class, 'editAcs'])->name('editacs');
     Route::post('deleteAcsImage', [App\Http\Controllers\AccessoirController::class, 'deleteimage'])->name('deleteAcsImage');
     Route::post('updateacs', [App\Http\Controllers\AccessoirController::class, 'UpdateAcs'])->name('updateacs');
+    Route::get('showallservices', [App\Http\Controllers\AccessoirController::class, 'ShowAllAccessoirs'])->name('showallaccessoires');
+
     
 });
 
@@ -54,5 +57,6 @@ Route::group(['prefix' => 'service'], function () {
     Route::get('edit/{id}', [App\Http\Controllers\ServiceController::class, 'editService'])->name('editsrv');
     Route::post('deleteSrvImage', [App\Http\Controllers\ServiceController::class, 'deleteimage'])->name('deletesrvImage');
     Route::post('updateSrv', [App\Http\Controllers\ServiceController::class, 'UpdateService'])->name('updatesrv');
-    
+    Route::get('showallservices', [App\Http\Controllers\ServiceController::class, 'ShowAllServices'])->name('showallservices');
+
 });
