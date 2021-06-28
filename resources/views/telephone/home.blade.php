@@ -8,14 +8,13 @@
                 .price {
                     color: #ff9f1a; 
                 }
-                
+                .bloc_left_price {
+                color: #c01508;
+                text-align: center;
+                font-weight: bold;
+                font-size: 150%;
+                }
                 .card {
-                padding:10px;
-                display: flex;
-                background-color:rgb(255, 255, 255);
-                border-radius: 5px;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-                margin: 5px; 
                 transition: all 0.20s ease-in-out;                
                 }
                 .card:hover {
@@ -33,15 +32,20 @@
 @section('content')
 
 <div class="container">
+    <section id="widgets-Statistics">
+        <div class="row">
+            <div class="col-12 mt-1 mb-2">
+            </div>
+        </div>
+    </section>
     <div class="row">
-                <div class="col-md-8 col-lg-8 col-sm-5">
-                   @php
-                       $cmt=0;
-                   @endphp  
-                    @foreach ($collect->all() as $couple)
-                      <!-- list group item-->
-                            <div  @if ($cmt%2==0) data-aos="zoom-in-right"   @else  data-aos="zoom-in-left"  @endif data-aos-duration="1500">
-                                <div {{--class="col-xl-4 col-sm-6 col-12"--}}>
+                <div class="col-md-9 col-lg-9 col-sm-7 col-12">
+                                    @php
+                                        $cmt=0;
+                                    @endphp  
+                    <div class="row">
+                                @foreach ($collect->all() as $couple)
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 col-12" @if ($cmt%2==0) data-aos="zoom-in-right"   @else  data-aos="zoom-in-left"  @endif data-aos-duration="1500">
                                         <div class="card">
                                             <div class="card-content">
                                                 <div class="row no-gutters">
@@ -74,45 +78,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                </div>
-                           
-                                    {{-- <div class="card">
-                                        <div class="row">
-                                            <div class="col-md-5 ">
-                                                    <a class="link" href="{{route('showphone',$couple['telephones']->id_tele)}}">
-                                                    @if($couple['imgs']->get(0)!=null)
-                                                    <img src="{{asset('storage/'.$couple['imgs']->get(0)['path'].'')}}" class="rounded" width="80" height="200" />
-                                                    @else
-                                                    <img src="{{asset('images/no-image.png')}}" class="rounded" width="80" height="200" />        
-                                                    @endif
-                                                    </a>
-                                                
-                                            </div>
-                                            <div class="col-md-7 ">
-                                                <div class="container">
-                                                    <div class="">
-                                                    <h2>{{$couple['telephones']->nom}}</h2></a>
-                                                    <h6>{{$couple['telephones']->marque}}</h6>
-                                                    </div>
-                                                    <div class="">
-                                                        @if($couple['telephones']->per_solde > 0)
-                                                        <p class="price"><del class="">{{$couple['telephones']->prix}}DH</del><strong class="bloc_left_price">{{$couple['telephones']->per_solde}}DH</strong></p>
-                                                        @else 
-                                                            <p class="price">{{$couple['telephones']->prix}}DH</p>
-                                                        @endif
-                                                        <p><i class="fas fa-camera"> {{count($couple['imgs'])}}</i></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
-                        </div>
-                        @php
-                            $cmt++;
-                        @endphp  
-                    @endforeach
+                            </div>
+                                    @php
+                                        $cmt++;
+                                    @endphp  
+                                @endforeach
+                    </div>
                 </div>
-                <div class="col-md-4 col-lg-4">
+                <div class="col-md-3 col-lg-3 col-sm-5">
                     <div class="card bg-light mb-3">
                         <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
                         <ul class="list-group category_block">
@@ -130,7 +103,7 @@
                             <p class="bloc_left_price">99.00 $</p>
                         </div>
                     </div>
-            </div>
+                </div>
     </div>
 </div>
 @endsection

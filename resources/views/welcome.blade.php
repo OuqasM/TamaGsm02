@@ -64,7 +64,6 @@
             <section id="widgets-Statistics">
                 <div class="row">
                     <div class="col-12 mt-1 mb-2">
-                        <h4>Statistics</h4>
                         <hr>
                     </div>
                 </div>
@@ -237,10 +236,10 @@
         effect: "coverflow",
         grabCursor: false,
         loop:true,
-        // autoplay: {
-        // delay: 4000,
-        // disableOnInteraction : false,
-        // },
+        autoplay: {
+        delay: 1500,
+        disableOnInteraction : true,
+        },
         pauseOnMouseEnter : true,
         centeredSlides: true,
         slidesPerView: "auto",

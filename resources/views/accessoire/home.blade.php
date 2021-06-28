@@ -8,14 +8,7 @@
                 .price {
                     color: #ff9f1a; 
                 }
-                
-                .card {
-                padding:10px;
-                display: flex;
-                background-color:rgb(255, 255, 255);
-                border-radius: 5px;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-                margin: 5px; 
+                .card { 
                 transition: all 0.20s ease-in-out;                
                 }
                 .card:hover {
@@ -33,39 +26,47 @@
 @section('content')
 
     <div class="container">
+        <section id="widgets-Statistics">
+            <div class="row">
+                <div class="col-12 mt-1 mb-2">
+                </div>
+            </div>
+        <section>
         <div class="row">
-        <div class="col-9">
-                   @php
+            <div class="col-md-9 col-lg-9 col-sm-7 col-12">
+                    @php
                        $cmt=0;
-                   @endphp  
+                    @endphp  
+                    <div class="row">
                     @foreach ($collectA->all() as $couple)
-                    <!-- list group item-->
-                        <div class="col-sm-12"  @if ($cmt%2==0) data-aos="zoom-in-right"   @else  data-aos="zoom-in-left"  @endif data-aos-duration="1500">
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 col-12" @if ($cmt%2==0) data-aos="zoom-in-right"   @else  data-aos="zoom-in-left"  @endif data-aos-duration="1500">
                             <div class="card">
-                                <div class="row">
-                                    <div class="image col-md-5">
+                                <div class="card-content">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-7 col-lg-5 col-xs-5">
                                             <a class="link" href="{{route('showacs',$couple['acss']->id_acces)}}">
-                                            @if($couple['aimgs']->get(0)!=null)
-                                            <img src="{{asset('storage/'.$couple['aimgs']->get(0)['path'].'')}}" class="rounded" width="80" height="200" />
-                                            @else
-                                            <img src="{{asset('images/no-image.png')}}" class="rounded" width="80" height="200" />        
-                                            @endif
-                                            </a>
-                                        
-                                    </div>
-                                    <div>
-                                        <div class="container">
-                                            <div class="">
-                                            <h2>{{$couple['acss']->nom}}</h2></a>
-                                            <h6>{{$couple['acss']->type}}</h6>
-                                            </div>
-                                            <div class="">
-                                                @if($couple['acss']->per_solde > 0)
-                                                <p class="price"><del class="">{{$couple['acss']->prix}}DH</del><strong class="bloc_left_price">{{$couple['acss']->per_solde}}DH</strong></p>
-                                                @else 
-                                                    <p class="price">{{$couple['acss']->prix}}DH</p>
+                                                @if($couple['aimgs']->get(0)!=null)
+                                                <img src="{{asset('storage/'.$couple['aimgs']->get(0)['path'].'')}}" alt="element 01" class="rounded-left" height="200px" width="200px">
+                                                @else
+                                                <img src="{{asset('images/no-image.png')}}" class="rounded-left" height="200px" width="200px"/>        
                                                 @endif
-                                                <p><i class="fas fa-camera"> {{count($couple['aimgs'])}}</i></p>
+                                                </a>
+                                        </div>
+                                        <div class="col-md-5 col-lg-7">
+                                            <div class="card-body">
+                                                <p class="card-title m-0">{{$couple['acss']->nom}}</p>
+                                                <p class="card-text text-ellipsis">
+                                                    Tiramisu dessert gingerbread topping tiramisu tart bonbon. Powder
+                                                    cotton candy sweet roll sugar plum donut jelly-o donut chocolate.
+                                                </p>
+                                                <span class="">
+                                                    @if($couple['acss']->per_solde > 0)
+                                                    <p class="price"><del class="">{{$couple['acss']->prix}}DH</del><strong class="bloc_left_price">{{$couple['acss']->per_solde}}DH</strong></p>
+                                                    @else 
+                                                        <p class="price">{{$couple['acss']->prix}}DH</p>
+                                                    @endif
+                                                </span>
+                                            <span><i class="bx bx-camera font-size-large align-middle mr-50"></i>{{count($couple['aimgs'])}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -76,8 +77,9 @@
                             $cmt++;
                         @endphp  
                     @endforeach
+                    </div>
         </div>
-        <div class="col-3 ">
+        <div class="col-md-3 col-lg-3 col-sm-5">
             <div class="card bg-light mb-3">
                 <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
                 <ul class="list-group category_block">

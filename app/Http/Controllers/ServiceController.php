@@ -72,9 +72,8 @@ class ServiceController extends Controller
         $s->nom = $request->nom;
         $s->description = $request->description;
         $s->prix = $request->prix;
-        
-        if ($request->has('image')) {
-                
+
+        if ($request->has('image')) {            
                 $r = new Request();
                 $r->path = $s->image;
                 $this->deleteimage($r);
@@ -85,13 +84,15 @@ class ServiceController extends Controller
                 Storage::put('public/images/services/'. $name, base64_decode($decodedimage->data));
                 $s->image = 'images/services/'. $name;
                 $s->save();
-
                 return redirect()->route('editsrv',$s->id)->with('success','Service bien Modifié ');
 
-        }else{
-            $s->image = '../images/no-image.png';
+        }else if($s->image !=''){
             $s->save();
-            return redirect()->route('editsrv',$s->id)->with('failed','Service crée sans images');
+            return redirect()->route('editsrv',$s->id)->with('success','Service bien Modifié sans image');
+        }else{
+                $s->image = '../images/no-image.png';
+                $s->save();
+                return redirect()->route('editsrv',$s->id)->with('failed','Service modifié avec l\'image par defaut');
         } 
     }
     public function deleteimage(Request $request){
