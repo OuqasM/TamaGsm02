@@ -56,8 +56,8 @@
                                             <div class="card-body">
                                                 <p class="card-title m-0">{{$couple['acss']->nom}}</p>
                                                 <p class="card-text text-ellipsis">
-                                                    Tiramisu dessert gingerbread topping tiramisu tart bonbon. Powder
-                                                    cotton candy sweet roll sugar plum donut jelly-o donut chocolate.
+                                                {{$couple['acss']->description}}
+
                                                 </p>
                                                 <span class="">
                                                     @if($couple['acss']->per_solde > 0)

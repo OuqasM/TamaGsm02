@@ -64,8 +64,7 @@
                                 <div class="carousel-inner" role="listbox">
                                     @foreach($allimg as $key => $slider)
                                     <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
-                                            <img class="d-block w-100" src="{{asset('storage/'.$slider->path)}}" height="400px" width="300px" /></div>
-                            
+                                            <img class="d-block w-100" src="{{asset('storage/'.$slider->path)}}" height="400px" width="200px" /></div>            
                                     @endforeach
                                 </div>
                                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -81,8 +80,9 @@
                         <div class="card-header">
                             <h3 class="card-title">{{$tele->nom}}</h3>
                             <p class="product-description">{{$tele->description}}</p>
-                            <button type="button" class="btn btn-icon rounded-circle btn-light-danger mr-1 mb-1">
-                                <i class="bx bx-like"></i></button>                        </div>
+                            <button type="button" class="btn btn-icon rounded-circle btn-light-danger mr-1 mb-1" onclick="LikePhone('{{ $tele->id_tele }}')">
+                                <i class="bx bx-heart"></i></button>      
+                      </div>
 					</div>
 					<div class="col-md-6">
                         <div class="">
@@ -160,6 +160,30 @@
     copyText.select();
     copyText.setSelectionRange(0, 99999); /* For mobile devices */
     document.execCommand("copy");
-    Swal.fire({ icon: 'success', title: 'Numéro de téléphone copié', showConfirmButton: false, timer: 1500 })    }
+    Swal.fire({ icon: 'success', title: 'Numéro de téléphone copié', showConfirmButton: false, timer: 1500 })
+    }
+
+        function LikePhone(ID){
+                $.ajax({
+                url: "/telephone/likephone",
+                type:"POST",
+                headers: {
+                        'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                },
+                data:{
+                id: ID
+                },
+                success:function(response){
+               
+                console.log(response);
+
+                },
+                error: function(error) {
+                //console.log(error);
+                }
+            });
+            console.log('dddd');
+        }
+
 </script>
 @endsection

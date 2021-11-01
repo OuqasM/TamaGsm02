@@ -62,8 +62,7 @@
                                                         <div class="card-body">
                                                             <p class="card-title m-0">{{$couple['telephones']->nom}}</p>
                                                             <p class="card-text text-ellipsis">
-                                                                Tiramisu dessert gingerbread topping tiramisu tart bonbon. Powder
-                                                                cotton candy sweet roll sugar plum donut jelly-o donut chocolate.
+                                                            {{$couple['telephones']->description}}
                                                             </p>
                                                             <span class="">
                                                                 @if($couple['telephones']->per_solde > 0)

@@ -172,4 +172,10 @@ class TelephoneController extends Controller
 
         }
     }
+    public function LikePhone(Request $request){
+        $t = Telephone::find($request->id);
+        $t->nbr_visite += 1;
+        $t->save();
+        return Response::json(['code'=>200, 'message'=>'meeesssaaagggee'], 200);
+    }
 }

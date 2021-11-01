@@ -29,6 +29,7 @@ Route::get('edit/{id}', [App\Http\Controllers\TelephoneController::class, 'editp
 Route::post('deleteImage', [App\Http\Controllers\TelephoneController::class, 'deleteimage'])->name('deleteImage');
 Route::post('updatetelephone', [App\Http\Controllers\TelephoneController::class, 'Updatetelephone'])->name('updatetelephone');
 Route::get('showallphones', [App\Http\Controllers\TelephoneController::class, 'ShowAllPhones'])->name('showallphones');
+Route::post('likephone', [App\Http\Controllers\TelephoneController::class, 'LikePhone'])->name('showallphones');
 });
 
 
@@ -42,7 +43,7 @@ Route::group(['prefix' => 'accessoir'], function () {
     Route::get('edit/{id}', [App\Http\Controllers\AccessoirController::class, 'editAcs'])->name('editacs');
     Route::post('deleteAcsImage', [App\Http\Controllers\AccessoirController::class, 'deleteimage'])->name('deleteAcsImage');
     Route::post('updateacs', [App\Http\Controllers\AccessoirController::class, 'UpdateAcs'])->name('updateacs');
-    Route::get('showallservices', [App\Http\Controllers\AccessoirController::class, 'ShowAllAccessoirs'])->name('showallaccessoires');
+    Route::get('showallacs', [App\Http\Controllers\AccessoirController::class, 'ShowAllAccessoirs'])->name('showallaccessoires');
 
     
 });
