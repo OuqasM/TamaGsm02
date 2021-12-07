@@ -42,7 +42,7 @@
                 font-size: 20px;
                 font-weight: 500;
                 }
-</style>
+    </style>
 @endsection
 
 @section('content')
@@ -51,7 +51,7 @@
         <a href="javascript:history.back()"><i class='bx bxs-left-arrow-circle back bx-md'></i></a>
         
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-lg-6 col-md-5 col-sm-12 col-12">
                         <div class="card-content">
                             <div class="carousel slide m-1" id="carouselExampleIndicators" data-ride="carousel">
                                 <ol class="carousel-indicators">
@@ -64,7 +64,7 @@
                                 <div class="carousel-inner" role="listbox">
                                     @foreach($allimg as $key => $slider)
                                     <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
-                                            <img class="d-block w-100" src="{{asset('storage/'.$slider->path)}}" height="400px" width="200px" /></div>            
+                                            <img class="d-block w-100" src="{{asset('storage/'.$slider->path)}}" height="400px" width="100%" /></div>            
                                     @endforeach
                                 </div>
                                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -84,49 +84,43 @@
                                 <i class="bx bx-heart"></i></button>      
                       </div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-lg-6 col-md-7 col-sm-12 col-12">
                         <div class="">
                             <table class="table table-striped">                           
                                 <tbody>
                                   <tr>
                                     <th scope="row">Ram</th>
                                     <td><span class="" data-toggle="tooltip" title="small">{{ floor($tele->ram) }}GB</span> </td>
-                                    <td><img src="{{ asset('images/ram.png') }}"
-                                        width="30" height="30" /></td>
+                                    <td><img src="{{ asset('images/ram.png') }}" width="30" height="30" /></td>
                                   </tr>
                                   <tr>
                                     <th scope="row">Stockage</th>
                                     <td><span class="" data-toggle="tooltip" title="small">{{floor($tele->stockage)}}GB</span> </td>
-                                    <td><img src="{{ asset('images/storage.png') }}"
-                                        width="30" height="30" /></td>
+                                    <td><img src="{{ asset('images/storage.png') }}" width="30" height="30" /></td>
                                   </tr>
                                   <tr>
                                     <th scope="row">Batterie</th>
                                     <td><span class="" data-toggle="tooltip" title="small">{{floor($tele->battery)}}mAh</span>
                                     </td>
-                                    <td><img src="{{ asset('images/battery.png') }}"
-                                        width="30" height="30" /></td>
+                                    <td><img src="{{ asset('images/battery.png') }}" width="30" height="30" /></td>
                                   </tr>
                                   <tr>
                                     <th scope="row">Caméra</th>
                                     <td><span class="" data-toggle="tooltip" title="small">{{floor($tele->back_cam_reslolution)}}MP</span> 
                                     </td>
-                                    <td><img src="{{ asset('images/mobile-camera.png') }}"
-                                        width="30" height="30" /></td>
+                                    <td><img src="{{ asset('images/mobile-camera.png') }}" width="30" height="30" /></td>
                                   </tr>
                                     <th scope="row">Caméra Selfy</th>
                                     <td><span class="" data-toggle="tooltip" title="small">{{floor($tele->selfy_cam_resolution)}}MP</span>
                                     </td>
-                                    <td><img src="{{ asset('images/selfie.png') }}"
-                                        width="30" height="30" /></td>
+                                    <td><img src="{{ asset('images/selfie.png') }}" width="30" height="30" /></td>
                                   </tr>
                                  
                                   <tr>
                                     <th scope="row">Ecran</th>
                                     <td><span class="" data-toggle="tooltip" title="small">{{$tele->taille_ecron ?: 6.8}}</span>
                                     </td>
-                                    <td><img src="{{ asset('images/icran.png') }}"
-                                        width="30" height="30" /></td>
+                                    <td><img src="{{ asset('images/icran.png') }}" width="30" height="30" /></td>
                                   </tr>
                                 </tbody>
                             </table>
@@ -163,27 +157,38 @@
     Swal.fire({ icon: 'success', title: 'Numéro de téléphone copié', showConfirmButton: false, timer: 1500 })
     }
 
-        function LikePhone(ID){
-                $.ajax({
+        async function LikePhone(ID){
+          Swal.fire("Here's the title!", "...and here's the text!");
+
+          const { value: email } = await Swal.fire({
+          title: 'Input email address',
+          input: 'email',
+          inputLabel: 'Your email address',
+          inputPlaceholder: 'Entrer vortr email'
+        })
+
+        if (email) {
+
+            $.ajax({
                 url: "/telephone/likephone",
                 type:"POST",
                 headers: {
                         'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
                 },
                 data:{
-                id: ID
+                    id: ID,
+                    email: email
                 },
                 success:function(response){
-               
-                console.log(response);
-
-                },
-                error: function(error) {
-                //console.log(error);
+                    Swal.fire(
+                    'Good job!',
+                    response,
+                    'success'
+                    )
                 }
             });
-            console.log('dddd');
-        }
+        }             
+    }
 
 </script>
 @endsection

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Telephone_img;
 use App\Models\User;
+use App\Models\Visiteur;
+use App\Models\Aime;
 use Illuminate\Support\Facades\Storage;
 
 class TelephoneController extends Controller
@@ -173,9 +175,49 @@ class TelephoneController extends Controller
         }
     }
     public function LikePhone(Request $request){
-        $t = Telephone::find($request->id);
-        $t->nbr_visite += 1;
-        $t->save();
-        return Response::json(['code'=>200, 'message'=>'meeesssaaagggee'], 200);
+        $exist = false;
+        $visiteurExist = false; 
+
+        $visiteur = Visiteur::where('email',$request->email)->first(); 
+
+        if(isset($visiteur)){
+            $a = Aime::where('id_visiteur',$visiteur->id)->where('id_produit',$request->id)
+            ->where('produit','telephone')->get();      
+                if($a->count()>0){
+                // deja aimée
+                return response('Merci pour votre réaction',200);
+                }
+                else {
+                    // visiteur exist mais pas encore aimer ce produit
+                    $t = Telephone::find($request->id);
+                    $t->nbr_visite += 1;
+                    $t->save();
+            
+                    $j = new Aime();
+                    $j->id_visiteur = $visiteur->id;
+                    $j->id_produit = $request->id;
+                    $j->produit = 'telephone';
+                    $j->save();
+                    return response('Merci pour votre réaction',200);
+                }
+        }
+        else{
+            // visiteur pour premier fois
+            $t = Telephone::find($request->id);
+            $t->nbr_visite += 1;
+            $t->save();
+          
+            $v = new Visiteur();
+            $v->email = $request->email;
+            $v->save();
+    
+            $j = new Aime();
+            $j->id_visiteur = $v->id;
+            $j->id_produit = $request->id;
+            $j->produit = 'telephone';
+            $j->save();
+            return response('Merci pour votre réaction',200);
+        }    
+       
     }
 }

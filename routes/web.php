@@ -29,7 +29,7 @@ Route::get('edit/{id}', [App\Http\Controllers\TelephoneController::class, 'editp
 Route::post('deleteImage', [App\Http\Controllers\TelephoneController::class, 'deleteimage'])->name('deleteImage');
 Route::post('updatetelephone', [App\Http\Controllers\TelephoneController::class, 'Updatetelephone'])->name('updatetelephone');
 Route::get('showallphones', [App\Http\Controllers\TelephoneController::class, 'ShowAllPhones'])->name('showallphones');
-Route::post('likephone', [App\Http\Controllers\TelephoneController::class, 'LikePhone'])->name('showallphones');
+Route::post('likephone', [App\Http\Controllers\TelephoneController::class, 'LikePhone'])->name('likephone');
 });
 
 
