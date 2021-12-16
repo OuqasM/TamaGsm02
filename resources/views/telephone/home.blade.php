@@ -1,10 +1,7 @@
 @extends('telephone.layouts.TelephoneLayouts')
 @section('Css')
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <style>
-                                    
-                /* E-commerce */
                 .price {
                     color: #ff9f1a; 
                 }
@@ -24,13 +21,36 @@
 
                 .card img{
                 width:100%;
-                margin-left: 1px;
-                margin-right: 1px;
+               }
+               @media all and (max-width : 765px) and (min-width: 250px){
+                .card img{
+                    max-height: 200px;
+                    display: block;
+                    margin-right: auto;
+                    margin-left: auto;
+                    width: 80%;
+                }
+                .card {
+                    max-width: 300px;
+                    display: block;
+                    margin-right: auto;
+                    margin-left: auto;
+                    width: 100%;
+                }
+               }
+
+               @media all and (max-width : 992px) and (min-width: 768px){
+                .card img{
+                    max-height: 200px;
+                    display: block;
+                    margin-right: auto;
+                    margin-left: auto;
+                    width: 70%;
+                }
                }
     </style>
 @endsection
 @section('content')
-
 <div class="container">
     <section id="widgets-Statistics">
         <div class="row">
@@ -39,26 +59,26 @@
         </div>
     </section>
     <div class="row">
-                <div class="col-md-9 col-lg-9 col-sm-7 col-12">
+                <div class="col-md-9 col-lg-9 col-sm-12 col-12">
                                     @php
                                         $cmt=0;
                                     @endphp  
                     <div class="row">
                                 @foreach ($collect->all() as $couple)
-                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 col-12" @if ($cmt%2==0) data-aos="zoom-in-right"   @else  data-aos="zoom-in-left"  @endif data-aos-duration="1500">
+                            <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12" @if ($cmt%2==0) data-aos="zoom-in-right"   @else  data-aos="zoom-in-left"  @endif data-aos-duration="1500">
                                         <div class="card">
                                             <div class="card-content">
                                                 <div class="row no-gutters">
-                                                    <div class="col-md-7 col-lg-5 col-xs-5">
+                                                    <div class="col-md-5 col-lg-5 col-xs-5">
                                                         <a class="link" href="{{route('showphone',$couple['telephones']->id_tele)}}">
                                                             @if($couple['imgs']->get(0)!=null)
-                                                            <img src="{{asset('storage/'.$couple['imgs']->get(0)['path'].'')}}" alt="element 01" class="rounded-left" height="200px" width="200px">
+                                                            <img src="{{asset('storage/'.$couple['imgs']->get(0)['path'].'')}}" class="rounded-left" height="200px" width="200px">
                                                             @else
                                                             <img src="{{asset('images/no-image.png')}}" class="rounded-left" height="200px" width="200px"/>        
                                                             @endif
                                                             </a>
                                                     </div>
-                                                    <div class="col-md-5 col-lg-7">
+                                                    <div class="col-md-7 col-lg-7">
                                                         <div class="card-body">
                                                             <p class="card-title m-0">{{$couple['telephones']->nom}}</p>
                                                             <p class="card-text text-ellipsis">
@@ -66,7 +86,7 @@
                                                             </p>
                                                             <span class="">
                                                                 @if($couple['telephones']->per_solde > 0)
-                                                                <p class="price"><del class="">{{$couple['telephones']->prix}}DH</del><strong class="bloc_left_price">{{$couple['telephones']->per_solde}}DH</strong></p>
+                                                                <p class="price"><del class="">{{$couple['telephones']->prix}}DH</del><br><strong class="bloc_left_price">{{$couple['telephones']->per_solde}}DH</strong></p>
                                                                 @else 
                                                                     <p class="price">{{$couple['telephones']->prix}}DH</p>
                                                                 @endif
@@ -84,7 +104,7 @@
                                 @endforeach
                     </div>
                 </div>
-                <div class="col-md-3 col-lg-3 col-sm-5">
+                <div class="col-md-3 col-lg-3 col-sm-12">
                     <div class="card bg-light mb-3">
                         <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
                         <ul class="list-group category_block">

@@ -44,6 +44,8 @@ Route::group(['prefix' => 'accessoir'], function () {
     Route::post('deleteAcsImage', [App\Http\Controllers\AccessoirController::class, 'deleteimage'])->name('deleteAcsImage');
     Route::post('updateacs', [App\Http\Controllers\AccessoirController::class, 'UpdateAcs'])->name('updateacs');
     Route::get('showallacs', [App\Http\Controllers\AccessoirController::class, 'ShowAllAccessoirs'])->name('showallaccessoires');
+    Route::post('likeAcs', [App\Http\Controllers\AccessoirController::class, 'LikeAcs'])->name('likeacs');
+
 
     
 });

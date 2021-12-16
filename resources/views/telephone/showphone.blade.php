@@ -1,6 +1,33 @@
 @extends('telephone.layouts.TelephoneLayouts')
 @section('Css')
     <style>
+                
+                .text-small {
+                font-size: 0.9rem;
+                }
+
+                footer a {
+                color: inherit;
+                text-decoration: none;
+                transition: all 0.3s;
+                }
+
+                footer a:hover, footer a:focus {
+                text-decoration: none;
+                }
+
+                footer .form-control {
+                background: #212529;
+                border-color: #545454;
+                }
+
+                footer .form-control:focus {
+                background: #212529;
+                }
+
+                footer {
+                background: #212529;
+                }
                 .price {
                 color: #ff9f1a;
                  }
@@ -16,12 +43,6 @@
                     left: 15px;
                     z-index: 5;
                 }
-                /* .love{
-                    position: relative;
-                    top: 10px;
-                    right: 10px;
-                    z-index: 1;
-                } */
                 .inputContainer i {
                 position: absolute;
                 }
@@ -82,66 +103,59 @@
                             <p class="product-description">{{$tele->description}}</p>
                             <button type="button" class="btn btn-icon rounded-circle btn-light-danger mr-1 mb-1" onclick="LikePhone('{{ $tele->id_tele }}')">
                                 <i class="bx bx-heart"></i></button>      
-                      </div>
+                        </div>
 					</div>
 					<div class="col-lg-6 col-md-7 col-sm-12 col-12">
                         <div class="">
-                            <table class="table table-striped">                           
+                            <table class="table table-striped" style="overflow-x: hidden">                           
                                 <tbody>
                                   <tr>
                                     <th scope="row">Ram</th>
-                                    <td><span class="" data-toggle="tooltip" title="small">{{ floor($tele->ram) }}GB</span> </td>
-                                    <td><img src="{{ asset('images/ram.png') }}" width="30" height="30" /></td>
+                                    <td><span class="" data-toggle="tooltip">{{ floor($tele->ram) }}GB</span> </td>
                                   </tr>
                                   <tr>
                                     <th scope="row">Stockage</th>
-                                    <td><span class="" data-toggle="tooltip" title="small">{{floor($tele->stockage)}}GB</span> </td>
-                                    <td><img src="{{ asset('images/storage.png') }}" width="30" height="30" /></td>
+                                    <td><span class="" data-toggle="tooltip">{{floor($tele->stockage)}}GB</span> </td>
                                   </tr>
                                   <tr>
                                     <th scope="row">Batterie</th>
-                                    <td><span class="" data-toggle="tooltip" title="small">{{floor($tele->battery)}}mAh</span>
+                                    <td><span class="" data-toggle="tooltip">{{floor($tele->battery)}}mAh</span>
                                     </td>
-                                    <td><img src="{{ asset('images/battery.png') }}" width="30" height="30" /></td>
                                   </tr>
                                   <tr>
                                     <th scope="row">Caméra</th>
-                                    <td><span class="" data-toggle="tooltip" title="small">{{floor($tele->back_cam_reslolution)}}MP</span> 
+                                    <td><span class="" data-toggle="tooltip">{{floor($tele->back_cam_reslolution)}}MP</span> 
                                     </td>
-                                    <td><img src="{{ asset('images/mobile-camera.png') }}" width="30" height="30" /></td>
                                   </tr>
                                     <th scope="row">Caméra Selfy</th>
-                                    <td><span class="" data-toggle="tooltip" title="small">{{floor($tele->selfy_cam_resolution)}}MP</span>
+                                    <td><span class="" data-toggle="tooltip">{{floor($tele->selfy_cam_resolution)}}MP</span>
                                     </td>
-                                    <td><img src="{{ asset('images/selfie.png') }}" width="30" height="30" /></td>
-                                  </tr>
-                                 
+                                  </tr>   
                                   <tr>
                                     <th scope="row">Ecran</th>
-                                    <td><span class="" data-toggle="tooltip" title="small">{{$tele->taille_ecron ?: 6.8}}</span>
+                                    <td><span class="" data-toggle="tooltip">{{$tele->taille_ecron ?: 6.8}}</span>
                                     </td>
-                                    <td><img src="{{ asset('images/icran.png') }}" width="30" height="30" /></td>
                                   </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="card-header">
                               @if($tele->per_solde > 0)
-                              <p><h4>Prix Actuel : <small class="price"><del>{{$tele->prix}}DH</del></small><strong class="bloc_left_price">{{$tele->per_solde}}DH</strong></h4>
+                              <p><h4>Prix Actuel : <small class="price"><del>{{$tele->prix}}DH</del></small><br><strong class="bloc_left_price">{{$tele->per_solde}}DH</strong></h4>
                               </p>
                               @else 
                               <h4 class="price">Prix : <span>{{$tele->prix}}DH</span></h4>
                               @endif
                             <div class="inputContainer">
                                 <a href="https://www.google.com/maps/place/33%C2%B009'57.7%22N+5%C2%B033'57.7%22W/@33.1660278,-5.566575,144m/data=!3m2!1e3!4b1!4m6!3m5!1s0x0:0x0!7e2!8m2!3d33.1660388!4d-5.5660235">
-                                <i class='bx bxl-periscope icon'></i></a>
-                                <input  value="Voir L'emplacement" class="form-control Field" readonly/>
+                                <i class='bx bxl-periscope icon'></i>
+                                <input  value="Voir L'emplacement" class="form-control Field" readonly/></a>
                             </div>
-                            <div class="inputContainer">
-                              <a href="#"><i class='bx bxs-phone icon' onclick="myFunction()"></i></a>
+                            <div class="inputContainer" onclick="myFunction()">
+                              <i class='bx bxs-phone icon'></i>
                               <input id="numero" value="0635666101" class="form-control Field" readonly/>
                             </div>
-                        </div>
+                        </div>                
                     </div>
 				</div>
 	</div>
@@ -157,7 +171,7 @@
     Swal.fire({ icon: 'success', title: 'Numéro de téléphone copié', showConfirmButton: false, timer: 1500 })
     }
 
-        async function LikePhone(ID){
+    async function LikePhone(ID){
           Swal.fire("Here's the title!", "...and here's the text!");
 
           const { value: email } = await Swal.fire({
@@ -165,10 +179,8 @@
           input: 'email',
           inputLabel: 'Your email address',
           inputPlaceholder: 'Entrer vortr email'
-        })
-
+         })
         if (email) {
-
             $.ajax({
                 url: "/telephone/likephone",
                 type:"POST",
@@ -189,6 +201,10 @@
             });
         }             
     }
-
+    $(document).ready(function(){
+      $('#newsletter').click(){
+        consol.log('hhhhhhh');
+      }
+    })
 </script>
 @endsection

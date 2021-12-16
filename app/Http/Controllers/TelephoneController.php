@@ -175,9 +175,7 @@ class TelephoneController extends Controller
         }
     }
     public function LikePhone(Request $request){
-        $exist = false;
-        $visiteurExist = false; 
-
+        
         $visiteur = Visiteur::where('email',$request->email)->first(); 
 
         if(isset($visiteur)){

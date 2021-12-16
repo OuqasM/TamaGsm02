@@ -19,8 +19,32 @@
 
                 .card img{
                 width:100%;
-                margin-left: 1px;
-                margin-right: 1px;
+               }
+               @media all and (max-width : 765px) and (min-width: 250px){
+                .card img{
+                    max-height: 200px;
+                    display: block;
+                    margin-right: auto;
+                    margin-left: auto;
+                    width: 100%;
+                }
+                .card {
+                    max-width: 300px;
+                    display: block;
+                    margin-right: auto;
+                    margin-left: auto;
+                    width: 100%;
+                }
+               }
+
+               @media all and (max-width : 992px) and (min-width: 768px){
+                .card img{
+                    max-height: 200px;
+                    display: block;
+                    margin-right: auto;
+                    margin-left: auto;
+                    width: 100%;
+                }
                }
                 /* The Modal (background) */
           .modal {
@@ -123,7 +147,7 @@
                                                     </p>
                                                     <span class="">
                                                         
-                                                            <p class="price">{{$couple->prix}}DH</p>
+                                                        A partir de<p class="price">{{$couple->prix}}DH</p>
                                                     </span>
                                                 </div>
                                             </div>
