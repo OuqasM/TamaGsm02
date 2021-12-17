@@ -39,7 +39,34 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/style.css') }}">
     <!-- END: Custom CSS-->
-   
+    <style>
+         .text-small {
+        font-size: 0.9rem;
+        }
+    
+        footer a {
+        color: inherit;
+        text-decoration: none;
+        transition: all 0.3s;
+        }
+    
+        footer a:hover, footer a:focus {
+        text-decoration: none;
+        }
+    
+        footer .form-control {
+        background: #212529;
+        border-color: #545454;
+        }
+    
+        footer .form-control:focus {
+        background: #212529;
+        }
+    
+        footer {
+        background: #212529;
+        }
+    </style>
     @yield('contentCss')
      </head>
 <body>

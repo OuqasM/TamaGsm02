@@ -45,11 +45,38 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/style.css') }}">
     <!-- END: Custom CSS-->
-   
+    <style>
+        .text-small {
+        font-size: 0.9rem;
+        }
+
+        footer a {
+        color: inherit;
+        text-decoration: none;
+        transition: all 0.3s;
+        }
+
+        footer a:hover, footer a:focus {
+        text-decoration: none;
+        }
+
+        footer .form-control {
+        background: #212529;
+        border-color: #545454;
+        }
+
+        footer .form-control:focus {
+        background: #212529;
+        }
+
+        footer {
+        background: #212529;
+        }
+    </style>
     @yield('Css')
      </head>
 <body>
-    @include('service.layouts.partials.header')
+    @include('layouts.partials.navbar')
     <div id="">
       <div class="">
             <!-- Content -->
@@ -61,8 +88,8 @@
             <!-- content -->
         </div>
     </div>
-    @if (request()->route()->getName() === 'showservice')        
-    @include('service.layouts.partials.Footer')
+    @if (request()->route()->getName() === 'showallservices')        
+    @include('layouts.partials.Footer')
     @endif
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{ asset('newassets/js/vendors.min.js') }}"></script>

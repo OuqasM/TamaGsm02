@@ -48,7 +48,11 @@
                     width: 70%;
                 }
                }
-
+               @media all and (max-width : 768px) and (min-width: 576px){
+                #tohide {
+                    display: none;
+                }
+               }
     </style>
 @endsection
 @section('content')
@@ -107,7 +111,7 @@
                     @endforeach
                     </div>
         </div>
-        <div class="col-md-3 col-lg-3 col-sm-12">
+        <div class="col-md-3 col-lg-3 col-sm-12" id="tohide">
             <div class="card bg-light mb-3">
                 <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
                 <ul class="list-group category_block">

@@ -46,6 +46,11 @@
                     width: 100%;
                 }
                }
+               @media all and (max-width : 768px) and (min-width: 576px){
+                #tohide {
+                    display: none;
+                }
+               }
                 /* The Modal (background) */
           .modal {
             display: none; /* Hidden by default */
@@ -118,14 +123,14 @@
         </div>
     <section>
     <div class="row">
-        <div class="col-md-9 col-lg-9 col-sm-7 col-12">
+        <div class="col-md-9 col-lg-9 col-sm-12 col-12">
                    @php
                        $cmt=0;
                    @endphp  
                     <div class="row">
                         @foreach ($al as $couple)
                     
-                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 col-12" @if ($cmt%2==0) data-aos="zoom-in-right"   @else  data-aos="zoom-in-left"  @endif data-aos-duration="1500">
+                            <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12" @if ($cmt%2==0) data-aos="zoom-in-right"   @else  data-aos="zoom-in-left"  @endif data-aos-duration="1500">
                                 <div class="card">
                                     <div class="card-content">
                                         <div class="row no-gutters">
@@ -161,7 +166,7 @@
                         @endforeach
                     </div>
         </div>
-        <div class="col-md-3 col-lg-3 col-sm-5">
+        <div class="col-md-3 col-lg-3 col-sm-12" id="tohide">
                 <div class="card bg-light mb-3">
                     <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
                     <ul class="list-group category_block">
