@@ -18,6 +18,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'showAll'])->name('
 
 Auth::routes();
 Route::get('home', [App\Http\Controllers\HomeController::class, 'showAll'])->name('home');
+Route::get('promos', [App\Http\Controllers\HomeController::class, 'AllPromos'])->name('promos');
 
 Route::group(['prefix' => 'telephone'], function () {
 Route::post('CreateTelephone', [App\Http\Controllers\TelephoneController::class, 'createtelephone'])->name('createtelephone');
@@ -61,5 +62,7 @@ Route::group(['prefix' => 'service'], function () {
     Route::post('deleteSrvImage', [App\Http\Controllers\ServiceController::class, 'deleteimage'])->name('deletesrvImage');
     Route::post('updateSrv', [App\Http\Controllers\ServiceController::class, 'UpdateService'])->name('updatesrv');
     Route::get('showallservices', [App\Http\Controllers\ServiceController::class, 'ShowAllServices'])->name('showallservices');
+    Route::post('likeSrv', [App\Http\Controllers\ServiceController::class, 'LikeSrv'])->name('likesrv');
+
 
 });

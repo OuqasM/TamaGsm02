@@ -8,6 +8,7 @@ use App\Models\Telephone_img;
 use App\Models\User;
 use App\Models\Visiteur;
 use App\Models\Aime;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class TelephoneController extends Controller
@@ -15,6 +16,12 @@ class TelephoneController extends Controller
     public function ShowAllPhones(){
         $al = Telephone::orderBy('per_solde', 'DESC')->get();
         $collect = collect();
+        $TopPromo = Telephone::orderBy('per_solde', 'DESC')->first();
+        $promocollect = collect();
+        $promoimg = Telephone_img::where('tele_id','=',$TopPromo->id_tele)->first();
+        $promocollect->push([
+            'telephone' => $TopPromo,
+            'imgs' => $promoimg]);
 
         foreach($al as $t){
             $allimg = Telephone_img::where('tele_id','=',$t->id_tele)->get();
@@ -23,7 +30,7 @@ class TelephoneController extends Controller
                 'telephones' => $t
             ]);
         }
-        return view('telephone.home', compact('collect'));
+        return view('telephone.home', compact('collect','promocollect'));
 
     }
     public function createtelephone(Request $request){

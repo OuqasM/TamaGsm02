@@ -38,7 +38,6 @@
     }
 </style>
 @endsection
-
 @section('content')
         <div class="container pt-5">
 		<div class="card">
@@ -46,20 +45,16 @@
 
 				<div class="row">
 					<div class="col-lg-6 col-md-5 col-sm-12 col-12">
-						<div class="carousel slide my-4" id="carouselExampleIndicators" data-ride="carousel">
+						<div class="carousel slide m-1" id="carouselExampleIndicators" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 @foreach($allimg as $key => $slider)
-
                                 <li class="{{$key == 0 ? 'active' : '' }}" data-target="#carouselExampleIndicators" data-slide-to="{{$key+1}}"></li>
                                 @endforeach
-
                             </ol>
                             <div class="carousel-inner" role="listbox">
-
                                 @foreach($allimg as $key => $slider)
                                 <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
-                                        <img class="d-block w-100" src="{{asset('storage/'.$slider->path)}}" /></div>
-                          
+                                        <img class="d-block w-100" src="{{asset('storage/'.$slider->path)}}" height="400px" width="100%" /></div>
                                 @endforeach
                              </div>
                             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -74,17 +69,17 @@
 					</div>
 					<div class="col-lg-6 col-md-5 col-sm-12 col-12">
                         <div class="card-header">
-                            <h3 class="product-title">{{$acs->nom}}</h3>				
+                            <h3 class="product-title">{{$acs->nom}}</h3>
                             <p class="product-description">{{$acs->description}}</p>
                             <button type="button" class="btn btn-icon rounded-circle btn-light-danger mr-1 mb-1" onclick="LikeAcs('{{ $acs->id_acces }}')">
-                                <i class="bx bx-heart"></i></button>   
+                                <i class="bx bx-heart"></i></button>
                         </div>
-                   
+
                               <div class="card-header">
                                 @if($acs->per_solde > 0)
                                 <p><h4>Prix Actuel : <small class="price"><del>{{$acs->prix}}DH</del></small><br><strong class="bloc_left_price">{{$acs->per_solde}}DH</strong></h4>
                                 </p>
-                                @else 
+                                @else
                                 <h4 class="price">Prix : <span>{{$acs->prix}}DH</span></h4>
                                 @endif
                               <div class="inputContainer">
@@ -96,7 +91,7 @@
                                 <i class='bx bxs-phone icon'></i>
                                 <input id="numero" value="0635666101" class="form-control Field" readonly/>
                               </div>
-                          </div>    
+                          </div>
 					</div>
 				</div>
 		</div>
@@ -112,10 +107,8 @@
     document.execCommand("copy");
     Swal.fire({ icon: 'success', title: 'Numéro de téléphone copié', showConfirmButton: false, timer: 1500 })
     }
-
  async function LikeAcs(ID){
           Swal.fire("Here's the title!", "...and here's the text!");
-
           const { value: email } = await Swal.fire({
           title: 'Input email address',
           input: 'email',
@@ -124,7 +117,7 @@
          })
         if (email) {
             $.ajax({
-                url: "/telephone/likephone",
+                url: "/accessoir/likeAcs",
                 type:"POST",
                 headers: {
                         'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
@@ -141,8 +134,7 @@
                     )
                 }
             });
-        }             
+        }
     }
-     
-  </script>     
+  </script>
   @endsection

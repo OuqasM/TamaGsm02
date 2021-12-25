@@ -3,7 +3,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
                   .price {
-                    color: #ff9f1a; 
+                    color: #ff9f1a;
                 }
                 .bloc_left_price {
                 color: #c01508;
@@ -12,7 +12,7 @@
                 font-size: 150%;
                 }
                 .card {
-                transition: all 0.20s ease-in-out;                
+                transition: all 0.20s ease-in-out;
                 }
                 .card:hover {
                 transition: 0.25s ease-out;
@@ -21,6 +21,7 @@
 
                 .card img{
                 width:100%;
+                height: 100%;
                }
                @media all and (max-width : 765px) and (min-width: 250px){
                 .card img{
@@ -28,24 +29,21 @@
                     display: block;
                     margin-right: auto;
                     margin-left: auto;
-                    width: 70%;
                 }
                 .card {
                     max-width: 300px;
                     display: block;
                     margin-right: auto;
                     margin-left: auto;
-                    width: 100%;
                 }
                }
 
                @media all and (max-width : 992px) and (min-width: 768px){
                 .card img{
-                    max-height: 200px;
+                    height: 100%;
                     display: block;
                     margin-right: auto;
                     margin-left: auto;
-                    width: 70%;
                 }
                }
                @media all and (max-width : 768px) and (min-width: 576px){
@@ -67,7 +65,7 @@
             <div class="col-md-9 col-lg-9 col-sm-12 col-12">
                     @php
                        $cmt=0;
-                    @endphp  
+                    @endphp
                     <div class="row">
                     @foreach ($collectA->all() as $couple)
                         <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12" @if ($cmt%2==0) data-aos="zoom-in-right"   @else  data-aos="zoom-in-left"  @endif data-aos-duration="1500">
@@ -79,7 +77,7 @@
                                                 @if($couple['aimgs']->get(0)!=null)
                                                 <img src="{{asset('storage/'.$couple['aimgs']->get(0)['path'].'')}}" alt="element 01" class="rounded-left" height="100%" width="100%">
                                                 @else
-                                                <img src="{{asset('images/no-image.png')}}" class="rounded-left" height="200px" width="200px"/>        
+                                                <img src="{{asset('images/no-image.png')}}" class="rounded-left" height="200px" width="200px"/>
                                                 @endif
                                                 </a>
                                         </div>
@@ -90,11 +88,11 @@
                                                 {{$couple['acss']->description}}
 
                                                 </p>
-                        
+
                                                 <span class="">
                                                     @if($couple['acss']->per_solde > 0)
                                                     <p class="price"><del class="">{{$couple['acss']->prix}}DH</del><br><strong class="bloc_left_price">{{$couple['acss']->per_solde}}DH</strong></p>
-                                                    @else 
+                                                    @else
                                                         <p class="price">{{$couple['acss']->prix}}DH</p>
                                                     @endif
                                                 </span>
@@ -107,29 +105,26 @@
                         </div>
                         @php
                             $cmt++;
-                        @endphp  
+                        @endphp
                     @endforeach
                     </div>
         </div>
-        <div class="col-md-3 col-lg-3 col-sm-12" id="tohide">
-            <div class="card bg-light mb-3">
-                <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
-                <ul class="list-group category_block">
-                    <li class="list-group-item"><a href="category.html">Telephones & Tablettes</a></li>
-                    <li class="list-group-item"><a href="category.html">Accessoires</a></li>
-                    <li class="list-group-item"><a href="category.html">Nos services</a></li>
-                </ul>
-            </div>
-            <div class="card bg-light mb-3">
-                <div class="card-header bg-success text-white text-uppercase">Les promotion d'aujourd'huit</div>
-                <div class="card-body">
-                    <img class="img-fluid" src="https://dummyimage.com/600x400/55595c/fff" />
-                    <h5 class="card-title">Product title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p class="bloc_left_price">99.00 $</p>
+            <div class="col-md-3 col-lg-3 col-sm-12" id="tohide">
+                <div class="card bg-light mb-3">
+                    <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
+                    <ul class="list-group category_block">
+                        <li class="list-group-item"><a href="http://127.0.0.1:8000/telephone/showallphones" disabled="true">Telephones & Tablettes</a></li>
+                        <li class="list-group-item"><a href="#">Accessoires</a></li>
+                        <li class="list-group-item"><a href="http://127.0.0.1:8000/service/showallservices">Nos services</a></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <img src="{{asset('/images/Promotion.PNG')}}" class="card-img-top" alt="Accroche HTML">
+                    <div class="card-footer bg-primary text-white text-uppercase">
+                        <a href="#" class="text-white promos" >Les promotion d'aujourd'huit</a>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 
     </div>
@@ -139,7 +134,7 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
-    </script> 
+    </script>
 @endsection
 
 

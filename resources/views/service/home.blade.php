@@ -1,24 +1,20 @@
 @extends('service.layouts.ServiceLayouts')
 @section('Css')
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <style>
-                                    
-                /* E-commerce */
                 .price {
-                    color: #ff9f1a; 
+                    color: #ff9f1a;
                 }
-                
-                .card { 
-                transition: all 0.20s ease-in-out;                
+                .card {
+                transition: all 0.20s ease-in-out;
                 }
                 .card:hover {
                 transition: 0.25s ease-out;
                 box-shadow: 0 5px 5px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
                 }
-
                 .card img{
                 width:100%;
+                height: 100%;
                }
                @media all and (max-width : 765px) and (min-width: 250px){
                 .card img{
@@ -26,7 +22,6 @@
                     display: block;
                     margin-right: auto;
                     margin-left: auto;
-                    width: 100%;
                 }
                 .card {
                     max-width: 300px;
@@ -36,14 +31,11 @@
                     width: 100%;
                 }
                }
-
                @media all and (max-width : 992px) and (min-width: 768px){
                 .card img{
-                    max-height: 200px;
                     display: block;
                     margin-right: auto;
                     margin-left: auto;
-                    width: 100%;
                 }
                }
                @media all and (max-width : 768px) and (min-width: 576px){
@@ -51,7 +43,6 @@
                     display: none;
                 }
                }
-                /* The Modal (background) */
           .modal {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
@@ -66,7 +57,7 @@
             background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
             z-index: 10;
             }
-            
+
 
             /* Modal Content */
             .modal-content {
@@ -76,7 +67,7 @@
             border: 1px solid #888;
             width: 70%;
             }
-        #Success .modal-content,  #failed .modal-content  {            
+        #Success .modal-content,  #failed .modal-content  {
             width: 50%;
             position: fixed;
                 top: 50%;
@@ -84,7 +75,7 @@
                 transform: translate(-50%,-50%);
             }
 
-            
+
             /* The Close Button */
             .close {
             color: #aaaaaa;
@@ -93,24 +84,44 @@
             font-weight: bold;
             }
 
-            .close:hover,
+                .close:hover,
             .close:focus {
             color: #000;
             text-decoration: none;
             cursor: pointer;
             }
-            .Conversion-Container{
+                .Conversion-Container{
                 position: relative;
                 left: 50%;
                 transform: translateX(-50%);
             }
-            #ImageAndDescritpion {
-                
+                #ImageAndDescritpion {
+
                 position: relative;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%,-50%);
             }
+                .inputContainer i {
+                    position: absolute;
+                }
+                .inputContainer {
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+                .icon {
+                    padding: 15px;
+                    color: rgb(49, 0, 128);
+                    width: 70px;
+                    text-align: left;
+                }
+                .Field {
+                    width: 100%;
+                    padding: 10px;
+                    text-align: center;
+                    font-size: 20px;
+                    font-weight: 500;
+                }
     </style>
 @endsection
 @section('content')
@@ -126,10 +137,10 @@
         <div class="col-md-9 col-lg-9 col-sm-12 col-12">
                    @php
                        $cmt=0;
-                   @endphp  
+                   @endphp
                     <div class="row">
                         @foreach ($al as $couple)
-                    
+
                             <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12" @if ($cmt%2==0) data-aos="zoom-in-right"   @else  data-aos="zoom-in-left"  @endif data-aos-duration="1500">
                                 <div class="card">
                                     <div class="card-content">
@@ -140,7 +151,7 @@
                                                     @if($couple->image!=null)
                                                     <img src="{{asset('storage/'.$couple->image)}}" alt="element 01" class="rounded-left" height="200px" width="200px">
                                                     @else
-                                                    <img src="{{asset('images/no-image.png')}}" class="rounded-left" height="200px" width="200px"/>        
+                                                    <img src="{{asset('images/no-image.png')}}" class="rounded-left" height="200px" width="200px"/>
                                                     @endif
                                                 </a>
                                             </div>
@@ -151,7 +162,7 @@
                                                         {{$couple->description}}
                                                     </p>
                                                     <span class="">
-                                                        
+
                                                         A partir de<p class="price">{{$couple->prix}}DH</p>
                                                     </span>
                                                 </div>
@@ -162,28 +173,25 @@
                             </div>
                             @php
                                 $cmt++;
-                            @endphp  
+                            @endphp
                         @endforeach
                     </div>
         </div>
         <div class="col-md-3 col-lg-3 col-sm-12" id="tohide">
-                <div class="card bg-light mb-3">
-                    <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
-                    <ul class="list-group category_block">
-                        <li class="list-group-item"><a href="category.html">Telephones & Tablettes</a></li>
-                        <li class="list-group-item"><a href="category.html">Accessoires</a></li>
-                        <li class="list-group-item"><a href="category.html">Nos services</a></li>
-                    </ul>
+            <div class="card bg-light mb-3">
+                <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
+                <ul class="list-group category_block">
+                    <li class="list-group-item"><a href="http://127.0.0.1:8000/telephone/showallphones" disabled="true">Telephones & Tablettes</a></li>
+                    <li class="list-group-item"><a href="http://127.0.0.1:8000/accessoir/showallacs">Accessoires</a></li>
+                    <li class="list-group-item"><a href="#">Nos services</a></li>
+                </ul>
+            </div>
+            <div class="card">
+                <img src="{{asset('/images/Promotion.PNG')}}" class="card-img-top" alt="Accroche HTML">
+                <div class="card-footer bg-primary text-white text-uppercase">
+                    <a href="#" class="text-white promos" >Les promotion d'aujourd'huit</a>
                 </div>
-                <div class="card bg-light mb-3">
-                    <div class="card-header bg-success text-white text-uppercase">Les promotion d'aujourd'huit</div>
-                    <div class="card-body">
-                        <img class="img-fluid" src="https://dummyimage.com/600x400/55595c/fff" />
-                        <h5 class="card-title">Product title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <p class="bloc_left_price">99.00 $</p>
-                    </div>
-                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -197,14 +205,14 @@
           $(".container").append(
             '<div id="ModalCard" class="modal">'+
                 '<!-- Modal content -->'+
-                '<div class="modal-content">'+ 
+                '<div class="modal-content">'+
                     '<h3 class="card-header text-center">'+
                     '<span class="close" id="closeModal">&times;</span>'+Title+'</h3>'+
                     '<div class=" row">'+
                         '<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">'+
                             '<div class="Conversion-Container">'+
                                 '<div class="row  m-0"  id="CardImage">'+
-                                '<img src="../storage/'+Image+'" height="100%" width="100%" />'+
+                                '<img src="../storage/'+Image+'" height="100%" class="rounded" width="100%" />'+
                                 '</div>'+
                             '</div>'+
                         '</div>'+
@@ -215,11 +223,17 @@
                                         Description+
                                     '</p></div>'+
                                '</div>'+
-                                '<div class="row mb-2">'+
-                                '<p>À Partir de </p> <strong class="price"> '+Prix+'DH</strong>'+
-                                '</div>'+
-                                '<div class="row mb-2">'+
-                                    'hna locaion'+
+                                '<div class="card-header">'+
+                                    '<h4 class="price">Prix : <span>'+Prix+'DH</span></h4>'+
+                                    '<div class="inputContainer">'+
+                                        '<a href="https://www.google.com/maps/place/33%C2%B009\'57.7%22N+5%C2%B033\'57.7%22W/@33.1660278,-5.566575,144m/data=!3m2!1e3!4b1!4m6!3m5!1s0x0:0x0!7e2!8m2!3d33.1660388!4d-5.5660235">'+
+                                        '<i class="bx bxl-periscope icon"></i>'+
+                                        '<input  value="Voir L\'emplacement" class="form-control Field" readonly/></a>'+
+                                    '</div>'+
+                                    '<div class="inputContainer" onclick="myFunction()">'+
+                                        '<i class="bx bxs-phone icon"></i>'+
+                                        '<input id="numero" value="0635666101" class="form-control Field" readonly/>'+
+                                    '</div>'+
                                 '</div>'+
                             '</div>'+
                         '</div>'+
@@ -227,7 +241,7 @@
                 '</div>'+
             '</div>');
             var span = document.getElementById("closeModal");
-            var modal = document.getElementById("ModalCard");      
+            var modal = document.getElementById("ModalCard");
             modal.style.display = "block";
             //When the user clicks on <span> (x), close the modal
             span.addEventListener('click', function() {
@@ -238,9 +252,9 @@
                     modal.style.display = "none";
                 }
             }
-            
+
         }
-    </script> 
+    </script>
 @endsection
 
 

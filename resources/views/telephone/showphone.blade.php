@@ -43,7 +43,7 @@
 <div class="container pt-5">
     <div class="card">
         <a href="javascript:history.back()"><i class='bx bxs-left-arrow-circle back bx-md'></i></a>
-        
+
 				<div class="row">
 					<div class="col-lg-6 col-md-5 col-sm-12 col-12">
                         <div class="card-content">
@@ -58,7 +58,7 @@
                                 <div class="carousel-inner" role="listbox">
                                     @foreach($allimg as $key => $slider)
                                     <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
-                                            <img class="d-block w-100" src="{{asset('storage/'.$slider->path)}}" height="400px" width="100%" /></div>            
+                                            <img class="d-block w-100" src="{{asset('storage/'.$slider->path)}}" height="400px" width="100%" /></div>
                                     @endforeach
                                 </div>
                                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -75,12 +75,12 @@
                             <h3 class="card-title">{{$tele->nom}}</h3>
                             <p class="product-description">{{$tele->description}}</p>
                             <button type="button" class="btn btn-icon rounded-circle btn-light-danger mr-1 mb-1" onclick="LikePhone('{{ $tele->id_tele }}')">
-                                <i class="bx bx-heart"></i></button>      
+                                <i class="bx bx-heart"></i></button>
                         </div>
 					</div>
 					<div class="col-lg-6 col-md-7 col-sm-12 col-12">
                         <div class="">
-                            <table class="table table-striped" style="overflow-x: hidden">                           
+                            <table class="table table-striped" style="overflow-x: hidden">
                                 <tbody>
                                   <tr>
                                     <th scope="row">Ram</th>
@@ -97,13 +97,14 @@
                                   </tr>
                                   <tr>
                                     <th scope="row">Caméra</th>
-                                    <td><span class="" data-toggle="tooltip">{{floor($tele->back_cam_reslolution)}}MP</span> 
+                                    <td><span class="" data-toggle="tooltip">{{floor($tele->back_cam_reslolution)}}MP</span>
                                     </td>
                                   </tr>
+                                  <tr>
                                     <th scope="row">Caméra Selfy</th>
                                     <td><span class="" data-toggle="tooltip">{{floor($tele->selfy_cam_resolution)}}MP</span>
                                     </td>
-                                  </tr>   
+                                  </tr>
                                   <tr>
                                     <th scope="row">Ecran</th>
                                     <td><span class="" data-toggle="tooltip">{{$tele->taille_ecron ?: 6.8}}</span>
@@ -116,7 +117,7 @@
                               @if($tele->per_solde > 0)
                               <p><h4>Prix Actuel : <small class="price"><del>{{$tele->prix}}DH</del></small><br><strong class="bloc_left_price">{{$tele->per_solde}}DH</strong></h4>
                               </p>
-                              @else 
+                              @else
                               <h4 class="price">Prix : <span>{{$tele->prix}}DH</span></h4>
                               @endif
                             <div class="inputContainer">
@@ -128,7 +129,7 @@
                               <i class='bx bxs-phone icon'></i>
                               <input id="numero" value="0635666101" class="form-control Field" readonly/>
                             </div>
-                        </div>                
+                        </div>
                     </div>
 				</div>
 	</div>
@@ -172,7 +173,7 @@
                     )
                 }
             });
-        }             
+        }
     }
     $(document).ready(function(){
       $('#newsletter').click(){

@@ -23,7 +23,7 @@
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="text-white">Devloppeur</h5>
+                    <h5 class="text-white">Développeur</h5>
                     <div class="text-muted">
                         <a href="https://www.facebook.com/mehdi.ouqas/"> 
                             <i class="bx bxl-facebook-square font-medium-5"></i>
