@@ -17,7 +17,12 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    /** je peut declare plusieur variables come HOME et les affecter des url de ce que je veut 
+     * et appelet le serviceprovider avec lopption ::MONURL
+     * ex : 
+     * public const Telephones = '/telephone/GetAllPhones';
+     */
+     public const HOME = '/home';
 
     /**
      * The controller namespace for the application.

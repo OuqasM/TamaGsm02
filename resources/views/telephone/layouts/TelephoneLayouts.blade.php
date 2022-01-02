@@ -9,7 +9,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    
+
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/vendors.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.css">
@@ -41,7 +41,7 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/style.css') }}">
     <!-- END: Custom CSS-->
-   <style>
+<style>
        .text-small {
     font-size: 0.9rem;
     }
@@ -84,7 +84,7 @@
             <!-- content -->
         </div>
     </div>
-    @if (request()->route()->getName() === 'showphone' || request()->route()->getName() === 'showallphones')        
+    @if (request()->route()->getName() === 'showphone' || request()->route()->getName() === 'showallphones')
     @include('layouts.partials.Footer')
     @endif
 
@@ -93,12 +93,6 @@
     <script src="{{ asset('newassets/js/LivIconsEvo.tools.js') }}"></script>
     <script src="{{ asset('newassets/js/LivIconsEvo.defaults.js') }}"></script>
     <script src="{{ asset('newassets/js/LivIconsEvo.min.js') }}"></script>
-    <!-- BEGIN Vendor JS-->
-
-    <!-- BEGIN: Page Vendor JS-->
-    {{-- <script src="{{ asset('newassets/js/apexcharts.min.js') }}"></script> --}}
-    <script src="{{ asset('newassets/js/swiper.min.js') }}"></script>
-    <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
     <script src="{{ asset('newassets/js/app-menu.js') }}"></script>
@@ -119,9 +113,8 @@
     <script src="{{ asset('js/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('js/filepond.min.js') }}"></script>
     <!-- BEGIN: Page JS-->
-    {{-- <script src="{{ asset('newassets/js/chart-apex.min.js') }}"></script> --}}
-    <script src="{{ asset('newassets/js/number-input.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.js"></script>
+    <script src="{{ asset('newassets/js/swiper.min.js') }}"></script>
 
 @yield('Js')
 </body>

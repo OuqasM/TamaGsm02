@@ -9,10 +9,9 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    
+
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/vendors.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('newassets/css/apexcharts.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.css">
 
     <!-- END: Vendor CSS-->
@@ -30,7 +29,7 @@
      <link href="{{ asset('css/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
      <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
      <link href="{{ asset('css/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
- 
+
     <!-- END: Theme CSS-->
 
     <!-- BEGIN: Page CSS-->
@@ -88,7 +87,7 @@
             <!-- content -->
         </div>
     </div>
-    @if (request()->route()->getName() === 'showallservices')        
+    @if (request()->route()->getName() === 'showallservices')
     @include('layouts.partials.Footer')
     @endif
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -128,7 +127,7 @@
     <script src="{{ asset('newassets/js/dashboard-ecommerce.js') }}"></script>
     {{-- <script src="{{ asset('newassets/js/chart-apex.min.js') }}"></script> --}}
     <script src="{{ asset('newassets/js/number-input.js') }}"></script>
-    
+
 @yield('Js')
 </body>
 </html>

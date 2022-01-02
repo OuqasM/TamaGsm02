@@ -152,7 +152,7 @@
           title: 'Input email address',
           input: 'email',
           inputLabel: 'Your email address',
-          inputPlaceholder: 'Entrer vortr email'
+          inputPlaceholder: 'Entrer votre email'
          })
         if (email) {
             $.ajax({
@@ -175,10 +175,6 @@
             });
         }
     }
-    $(document).ready(function(){
-      $('#newsletter').click(){
-        consol.log('hhhhhhh');
-      }
-    })
+
 </script>
 @endsection

@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 use App\Models\Telephone;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Telephone_img;
 use App\Models\User;
 use App\Models\Visiteur;
 use App\Models\Aime;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class TelephoneController extends Controller
@@ -26,7 +25,7 @@ class TelephoneController extends Controller
         foreach($al as $t){
             $allimg = Telephone_img::where('tele_id','=',$t->id_tele)->get();
             $collect->push([
-                'imgs' => $allimg, 
+                'imgs' => $allimg,
                 'telephones' => $t
             ]);
         }
@@ -35,14 +34,14 @@ class TelephoneController extends Controller
     }
     public function createtelephone(Request $request){
 
-    
+
         $t = new Telephone();
         $t->nom = $request->nomproduit;
         $t->description = $request->description;
         $t->prix = $request->prix;
         $t->marque = $request->marque;
         $t->nbr_visite = 0;
-        $t->admin_id = 3;
+        $t->admin_id = Auth::user()->id;
         $t->per_solde = $request->solde;
         $t->ram = $request->ram;
         $t->stockage = $request->stockage;
@@ -52,11 +51,9 @@ class TelephoneController extends Controller
         $t->battery = $request->batterie;
         $t->save();
 
-        
         $tid = Telephone::where('id_tele','=',$t->id_tele)->first();
         if ($request->has('images')) {
             $imgs = $request->images;
-           
             foreach($imgs as $img){
                 $ti = new Telephone_img();
                 $decodedimage = json_decode($img);
@@ -67,7 +64,6 @@ class TelephoneController extends Controller
                 $ti->save();
             }
             return redirect()->route('createphoneview')->with('success','Telephone bien crée');
-
         }else{
             $ti = new Telephone_img();
             $ti->path = '../images/no-image.png';
@@ -78,13 +74,13 @@ class TelephoneController extends Controller
     }
     public function showPhone($id)
     {
-            
+
             $tele = Telephone::find($id);
             $allimg = Telephone_img::where('tele_id','=',$tele->id_tele)->get();
         return view('telephone.showphone', compact('tele','allimg'));
 
     }
-    public function editphones()
+    public function GetPhoneOnManage()
     {
         $al = Telephone::all();
         $collect = collect();
@@ -92,7 +88,7 @@ class TelephoneController extends Controller
             $allimg = Telephone_img::where('tele_id','=',$t->id_tele)->get();
             $user = User::where('id','=',$t->admin_id)->first();
             $collect->push([
-                'imgs' => $allimg, 
+                'imgs' => $allimg,
                 'telephones' => $t,
                 'user' =>$user
             ]);
@@ -105,7 +101,7 @@ class TelephoneController extends Controller
             $image_path = public_path().'/storage/'.$img->path;
             if($img->path != '../images/no-image.png' && Storage::disk('public')->exists($img->path)){
                 unlink($image_path);
-            } 
+            }
         }
         $allimg = Telephone_img::where('tele_id','=',$request->id)->delete();
         Telephone::where('id_tele','=',$request->id)->delete();
@@ -129,15 +125,11 @@ class TelephoneController extends Controller
             return response('done');
     }
     public function Updatetelephone(Request $request){
-
-    
         $t = Telephone::where('id_tele','=',$request->idphone)->first();
         $t->nom = $request->nomproduit;
         $t->description = $request->description;
         $t->prix = $request->prix;
         $t->marque = $request->marque;
-        $t->nbr_visite = 0;
-        $t->admin_id = 3;
         $t->per_solde = $request->solde;
         $t->ram = $request->ram;
         $t->stockage = $request->stockage;
@@ -149,7 +141,7 @@ class TelephoneController extends Controller
 
         if ($request->has('images')) {
             $imgs = $request->images;
-           
+
             foreach($imgs as $img){
                 $ti = new Telephone_img();
                 $decodedimage = json_decode($img);
@@ -170,7 +162,7 @@ class TelephoneController extends Controller
             return redirect()->route('editphone',$t->id_tele)->with('success','Telephone bien modifiée');
         }
         $imgs = Telephone_img::where('tele_id','=',$t->id_tele)->get();
-        if($imgs->count()>0){ 
+        if($imgs->count()>0){
             return redirect()->route('editphone',$t->id_tele)->with('failed','Telephone Modifié avec sans image ajoutéé');
         }else{
             $ti = new Telephone_img();
@@ -182,12 +174,12 @@ class TelephoneController extends Controller
         }
     }
     public function LikePhone(Request $request){
-        
-        $visiteur = Visiteur::where('email',$request->email)->first(); 
+
+        $visiteur = Visiteur::where('email',$request->email)->first();
 
         if(isset($visiteur)){
             $a = Aime::where('id_visiteur',$visiteur->id)->where('id_produit',$request->id)
-            ->where('produit','telephone')->get();      
+            ->where('produit','telephone')->get();
                 if($a->count()>0){
                 // deja aimée
                 return response('Merci pour votre réaction',200);
@@ -197,7 +189,7 @@ class TelephoneController extends Controller
                     $t = Telephone::find($request->id);
                     $t->nbr_visite += 1;
                     $t->save();
-            
+
                     $j = new Aime();
                     $j->id_visiteur = $visiteur->id;
                     $j->id_produit = $request->id;
@@ -211,18 +203,18 @@ class TelephoneController extends Controller
             $t = Telephone::find($request->id);
             $t->nbr_visite += 1;
             $t->save();
-          
+
             $v = new Visiteur();
             $v->email = $request->email;
             $v->save();
-    
+
             $j = new Aime();
             $j->id_visiteur = $v->id;
             $j->id_produit = $request->id;
             $j->produit = 'telephone';
             $j->save();
             return response('Merci pour votre réaction',200);
-        }    
-       
+        }
+
     }
 }

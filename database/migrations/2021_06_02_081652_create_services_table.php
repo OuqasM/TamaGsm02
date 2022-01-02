@@ -19,6 +19,8 @@ class CreateServicesTable extends Migration
             $table->text('description');
             $table->string('prix');
             $table->string('image');
+            $table->bigInteger('admin_id')->unsigned();
+            $table->decimal('nbr_visite');
             $table->timestamps();
         });
     }
